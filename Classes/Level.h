@@ -16,9 +16,14 @@ enum _LevelType {
 @interface Level : NSObject {
 	NSInteger levelType;
 	NSString *objectStr;
+	NSArray *answers;
+	BOOL upgradeLevel;
 }
+
+- (BOOL)correctAnswer:(NSString *)answer;
 
 @property (readonly) NSInteger levelType;
 @property (readonly) NSString *objectStr;
+@property (readonly) BOOL upgradeLevel;
 
 @end

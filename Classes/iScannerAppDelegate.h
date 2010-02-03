@@ -17,6 +17,8 @@
 	LevelPack *levelPack;
 }
 
+- (void)openFeintAction:(id)sender;
+
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 @property BOOL fullVersion;

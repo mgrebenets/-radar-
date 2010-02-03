@@ -44,6 +44,9 @@
 	[super dealloc];
 }
 
+- (void)openFeintAction:(id)sender {
+	// TODO: launch openfeint dashboard
+}
 
 @end
 

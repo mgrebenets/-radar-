@@ -12,5 +12,12 @@
 @implementation Level
 @synthesize levelType;
 @synthesize objectStr;
+@synthesize upgradeLevel;
+
+// TODO: initialization
+
+- (BOOL)correctAnswer:(NSString *)answer {
+	// TODO: look for answer in answers array
+}
 
 @end

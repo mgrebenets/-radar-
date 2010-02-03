@@ -28,6 +28,11 @@
 #define kNextLevelAnimationDuration	(1.0f)
 #define kNextTutorialStepAnimationID	@"kNextTutorialStepAnimationID"
 #define kNextTutorialStepDuration	(0.5f)
+#define kAnswerCheckAnimationID	@"kAnswerCheckAnimationID"
+#define kAnswerCheckDuration	(0.5f)
+#define kMessageHideDuration	(1.0f)
+#define	kProceedToUpgradeAnimationID	@"kProceedToUpgradeAnimationID"
+#define kMessageHideAnimationID	@"kMessageHideAnimationID"
 
 @interface ScanViewController ()
 - (void)scanViewAnimationDidStop:(NSString *)animationID 
@@ -179,7 +184,10 @@
 	} else if ([animationID isEqual:kNextTutorialStepAnimationID]) {
 		tutorialStep++;
 		[self doTutorialStep];
+	} else if ([animationID isEqual:kProceedToUpgradeAnimationID]){
+		// TODO: create upgrade view and push to nav ctl
 	}
+
 }
 
 #pragma mark -
@@ -211,6 +219,73 @@
 }
 
 #pragma mark -
+#pragma mark Answer handling
+- (void)checkAnswer:(NSString *)answer {
+	Level *level = [appDelegate.levelPack levelAtIndex:levelIdx];
+	BOOL correctAnswer = [level correctAnswer:answer];
+	
+	if (level.upgradeLevel) {
+		if (correctAnswer) {
+			messageLabel.text = locStr(@"Correct");
+		} else {
+			messageLabel.text = locStr(@"Did you mean \"Yes\"? :)");
+		}
+		[UIView beginAnimations:kAnswerCheckAnimationID context:NULL];
+		[UIView setAnimationDuration:kAnswerCheckDuration];
+		messageLabel.hidden = NO;
+		[UIView commitAnimations];
+		
+		// fade off
+		[UIView beginAnimations:kProceedToUpgradeAnimationID context:NULL];
+		[UIView setAnimationDuration:kMessageHideDuration];
+		[UIView setAnimationDelay:kAnswerCheckDuration];
+		[UIView setAnimationDelegate:self];
+		[UIView setAnimationDidStopSelector:@selector(scanViewAnimationDidStop:finished:context:)];
+		messageLabel.hidden = YES;
+		[UIView commitAnimations];
+
+	} else {
+
+		// begin animaion
+		[UIView beginAnimations:kAnswerCheckAnimationID context:NULL];
+		[UIView setAnimationDuration:kAnswerCheckDuration];
+
+		if (correctAnswer) {
+			messageLabel.text = locStr(@"Correct");
+			// TODO: play correct sound
+			objectView.center = ScanCenterPoint;
+			stopRepeatingScan = TRUE;
+			cutView.alpha = 0.8;	// TODO: check
+		} else {
+			messageLabel.text = locStr(@"Wrong");
+			// TODO: play wrong sound
+		}
+
+		messageLabel.hidden = NO;
+		[UIView commitAnimations];
+		
+		// fade off
+		if (correctAnswer) {
+			[UIView beginAnimations:kNextLevelAnimationID context:NULL];
+			[UIView setAnimationDuration:kMessageHideDuration];
+			[UIView setAnimationDelay:kAnswerCheckDuration];
+			[UIView setAnimationDelegate:self];
+			[UIView setAnimationDidStopSelector:@selector(scanViewAnimationDidStop:finished:context:)];
+			messageLabel.hidden = YES;
+			objectView.hidden = YES;
+			cutView.alpha = 1.0;
+			[UIView commitAnimations];
+		} else {
+			[UIView beginAnimations:kMessageHideAnimationID context:NULL];
+			[UIView setAnimationDuration:kMessageHideDuration];
+			[UIView setAnimationDelay:kAnswerCheckDuration];
+			messageLabel.hidden = YES;
+			[UIView commitAnimations];
+		}
+	}
+}
+
+#pragma mark -
 #pragma mark Action handlers
 
 - (IBAction)answerAction:(id)sender {
@@ -219,6 +294,35 @@
 
 - (IBAction)exitAction:(id)sender {
 	[[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (IBAction)openFeintAction:(id)sender {
+	[appDelegate openFeintAction:self];
+}
+
+- (IBAction)soundAction:(id)sender {
+	appDelegate.soundOn = !appDelegate.soundOn;
+	soundButton.enabled = appDelegate.soundOn;
+}
+
+- (IBAction)prevLevelAction:(id)sender {
+	levelIdx--;
+	[self viewWillAppear:YES];
+}
+
+- (IBAction)firstLevelAction:(id)sender {
+	levelIdx = 0;
+	[self viewWillAppear:YES];
+}
+
+- (IBAction)nextLevelAction:(id)sender {
+	levelIdx++;
+	[self viewWillAppear:YES];
+}
+
+- (IBAction)lastLevelAction:(id)sender {
+	levelIdx = appDelegate.levelPack.unlockedLevelIdx;
+	[self viewWillAppear:YES];
 }
 
 @end

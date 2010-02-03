@@ -15,7 +15,9 @@
 	BOOL tutorialLevel;
 	NSInteger tutorialStep;
 	BOOL requireTouch;
+	BOOL stopRepeatingScan;
 	UIView *objectView;
+	IBOutlet UIImageView *cutView;
 	IBOutlet UIImageView *objectImageView;
 	IBOutlet UILabel *objectLabel;
 	IBOutlet UIButton *openFeintButton;
@@ -32,6 +34,12 @@
 - (void)tapAction:(id)sender;
 - (IBAction)answerAction:(id)sender;
 - (IBAction)exitAction:(id)sender;
+- (IBAction)openFeintAction:(id)sender;
+- (IBAction)soundAction:(id)sender;
+- (IBAction)prevLevelAction:(id)sender;
+- (IBAction)firstLevelAction:(id)sender;
+- (IBAction)nextLevelAction:(id)sender;
+- (IBAction)lastLevelAction:(id)sender;
 
 @property (nonatomic, assign) iScannerAppDelegate *appDelegate;
 

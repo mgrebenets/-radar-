@@ -6,6 +6,8 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
+// OBSOLETE
+
 #import "LevelPack.h"
 
 
@@ -14,6 +16,7 @@
 @synthesize lastLevelIdx;
 
 - (Level *)levelAtIndex:(NSInteger)levelIdx {
+	// TODO: get level key by its idx (from array)
 	return nil;
 }
 

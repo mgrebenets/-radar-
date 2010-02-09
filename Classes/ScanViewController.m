@@ -8,33 +8,53 @@
 
 #import "ScanViewController.h"
 #import "iScannerAppDelegate.h"
+#import "CutView.h"
+#import <QuartzCore/QuartzCore.h>
 #import "Macro.h"
 
-#define ScanBeginPoint	CGPointMake(160, 480)
-#define ScanEndPoint	CGPointMake(160, 0)
-#define ScanCenterPoint	CGPointMake(160, 240)
 
-#define	kLastTutorialStep	(5)
-
+#pragma mark -
 #pragma mark Animation IDs and durations
-#define	kShowObjectViewAnimationID	@"kShowObjectViewAnimationID"
-#define kScanMoveAnimationID	@"kScanMoveAnimationID"
-#define kShowTutorialStepAnimationID	@"kShowTutorialStepAnimationID"
 
-#define kTapRequestShowAnimationID	@"kTapRequestShowAnimationID"
-#define kTapRequestHideAnimationID	@"kTapRequestHideAnimationID"
-#define kTapRequestAnimationDuration	(0.5f)
-#define kNextLevelAnimationID	@"kNextLevelAnimationID"
-#define kNextLevelAnimationDuration	(1.0f)
+#pragma mark View appearance
+#define	kViewAppearanceAnimation	@"kViewAppearanceAnimation"
+#define kViewAppearanceAnimationDuration	(1.0f)
+
+#pragma mark Tutorial animations and defines
+#define	kLastTutorialStep	(5)
+#define kShowTutorialStepAnimationID	@"kShowTutorialStepAnimationID"
+#define kShowTutorialStepAnimationDuration  (0.5f)
 #define kNextTutorialStepAnimationID	@"kNextTutorialStepAnimationID"
 #define kNextTutorialStepDuration	(0.5f)
-#define kAnswerCheckAnimationID	@"kAnswerCheckAnimationID"
-#define kAnswerCheckDuration	(0.5f)
-#define kMessageHideDuration	(1.0f)
-#define	kProceedToUpgradeAnimationID	@"kProceedToUpgradeAnimationID"
-#define kMessageHideAnimationID	@"kMessageHideAnimationID"
+#define kShowTapRequestAnimationID	@"kShowTapRequestAnimationID"
+#define kHideTapRequestAnimationID	@"kHideTapRequestAnimationID"
+#define kTapRequestAnimationDuration	(0.2f)
+
+#define kRevealOpacity  (0.5f)      // reveal object view (by making cut view transparent)
+
+#pragma mark Next level animations
+#define kNextLevelAnimationID	@"kNextLevelAnimationID"
+#define kNextLevelAnimationDuration	(1.0f)
+
+#pragma mark Answer check animations
+#define kCheckAnswerAnimationID	@"kCheckAnswerAnimationID"
+#define kCheckAnswerAnimationDuration	(0.5f)
+#define kHideAnswerCheckAnimationID	@"kHideAnswerCheckAnimationID"
+#define kHideAnswerCheckAnimationDuration	(1.0f)
+#define kCorrectAnswerColor ([UIColor greenColor])
+#define kWrongAnswerColor ([UIColor redColor])
+#define kMoveAnswerFieldAnimationID @"kMoveAnswerFieldAnimationID"
+#define kMoveAnswerFieldAnimationDuration   (0.1f)
+
+#pragma mark Upgrade view proceed animation
+#define kProceedToUpgradeAnimationID	@"kProceedToUpgradeAnimationID"
+
 
 @interface ScanViewController ()
+- (Level *)currentLevel;
+- (void)updateView:(BOOL)animated;
+- (void)startScanningAnimation;
+- (void)stopScanningAnimation;
 - (void)scanViewAnimationDidStop:(NSString *)animationID 
 						finished:(NSNumber *)finished 
 						 context:(void *)context;
@@ -45,87 +65,64 @@
 - (NSString *)tutorialMessageAtStep:(NSInteger)step;
 @end
 
+enum _MoveDirection {
+    MoveDirectionUp,
+    MoveDirectionDown
+};
+
+@interface ScanViewController   (Keyboard)
+- (void)moveAnswerTextField:(enum _MoveDirection)moveDirection keyboardHeight:(CGFloat)height;
+- (void)keyboardWasShown:(NSNotification*)aNotification;
+- (void)keyboardWasHidden:(NSNotification*)aNotification;
+- (void)registerForKeyboardNotifications;
+@end
+
 
 @implementation ScanViewController
-@synthesize appDelegate;
+@synthesize levelPackId;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+ - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+ if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+ // Custom initialization
+ }
+ return self;
+ }
+ */
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
+	// get delegate
+	appDelegate = (iScannerAppDelegate *)[[UIApplication sharedApplication] delegate];
+	// register for keyboard notifications
+	[self registerForKeyboardNotifications];
+	// get the answer input field original frame as set by IB, to use for positioning
+	answerFieldOriginalFrmae = answerTextField.frame;
+	
+	cutView.cutViewType = CutViewTypeCircleScan;
 }
-*/
-
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-//	objectImageView.center = CGPointMake(160, 480);
-	
-	if (appDelegate.fullVersion) {
-		openFeintButton.hidden = NO;
-	}
-	
-	soundButton.hidden = !appDelegate.soundOn;
-	
-	prevLevelButton.hidden = (levelIdx == 0);
-	firstLevelButton.hidden = (levelIdx == 0);
-	nextLevelButton.hidden = !(levelIdx < appDelegate.levelPack.unlockedLevelIdx);
-	lastLevelButton.hidden = !(levelIdx < appDelegate.levelPack.unlockedLevelIdx);
-
-	Level *level = [appDelegate.levelPack levelAtIndex:levelIdx];
-	
-	if (level.levelType == LevelTypeChar) {
-		objectView = objectLabel;
-		objectLabel.text = level.objectStr;
-	} else {
-		objectView = objectImageView;
-		objectImageView.image = [UIImage imageNamed:level.objectStr];
-	}
-
-	// reveal object view (and set to start position)
-	objectView.center = ScanBeginPoint;
-	[UIView beginAnimations:kShowObjectViewAnimationID context:NULL];
-	[UIView setAnimationDuration:0.5];
-	objectView.hidden = NO;
-	[UIView commitAnimations];
-
-	[UIView beginAnimations:kScanMoveAnimationID context:NULL];
-	[UIView setAnimationDuration:5];
-	[UIView setAnimationRepeatCount:(-1)];
-	[UIView setAnimationDelegate:self];
-	[UIView setAnimationDidStopSelector:@selector(scanViewAnimationDidStop:finished:context:)];
-	objectView.center = ScanEndPoint;
-	[UIView commitAnimations];
-	
-	if (levelIdx == 0) {
-		tutorialLevel = TRUE;
-		tutorialStep = 0;
-		answerButton.enabled = FALSE;
-		[self doTutorialStep];
-	} else if (levelIdx == appDelegate.levelPack.lastLevelIdx) {
-		// TODO: this is the end, reveal object by changing cut view opacity
-	}
-
-	
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+	[self updateView:animated];
+	
+	[self stopScanningAnimation];
+	[self startScanningAnimation];
+}
+
 
 /*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
+ // Override to allow orientations other than the default portrait orientation.
+ - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+ // Return YES for supported orientations
+ return (interfaceOrientation == UIInterfaceOrientationPortrait);
+ }
+ */
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -145,61 +142,162 @@
 }
 
 #pragma mark -
+#pragma mark Additional methods
+- (Level *)currentLevel {
+	return [appDelegate levelFromPack:levelPackId atIndex:levelIdx];
+}
+
+- (void)updateView:(BOOL)animated {
+	
+	cutView.layer.opacity = 1.0f;
+	
+	if (animated) {
+		[UIView beginAnimations:kViewAppearanceAnimation context:NULL];
+		[UIView setAnimationDuration:kViewAppearanceAnimationDuration];
+		[UIView setAnimationDelegate:self];
+		[UIView setAnimationDidStopSelector:@selector(scanViewAnimationDidStop:finished:context:)];		
+	}
+	
+	// update current level idx to app delegates dictionary
+	[appDelegate unlockLevel:levelIdx forLevelPackWithKey:levelPackId];
+	
+	// TODO: sound button image
+	soundButton.titleLabel.text = (appDelegate.soundOn ? locStr(@"snd:on") : locStr(@"snd:off"));
+	
+	
+	// prev and first, next and last
+	prevLevelButton.layer.opacity = (levelIdx == 0 ? 0.0f : 1.0f);
+	firstLevelButton.layer.opacity = (levelIdx == 0 ? 0.0f : 1.0f);
+	NSInteger unlockedLevelIdx = [appDelegate unlockedLevelIdxForLevelPackKey:levelPackId];
+	nextLevelButton.layer.opacity = (levelIdx < unlockedLevelIdx ? 1.0f : 0.0f);
+	lastLevelButton.layer.opacity = (levelIdx < unlockedLevelIdx ? 1.0f : 0.0f);
+	
+	// get current level
+	Level *level = [self currentLevel];
+	
+	if (level.levelType == LevelTypeChar) {
+		objectView = objectLabel;
+		objectLabel.text = level.objectStr;
+		objectImageView.hidden = YES;
+		objectLabel.hidden = NO;
+	} else {
+		objectView = objectImageView;
+		objectImageView.image = [UIImage imageNamed:level.objectStr];
+		objectImageView.hidden = NO;
+		objectLabel.hidden = YES;
+	}
+	
+	// not tutorial yet
+	tutorialStep = 0;
+	tutorialLevel = FALSE;
+	requireTouch = FALSE;
+	
+	messageLabel.layer.opacity = 0.0f;
+	tapMessage.layer.opacity = 0.0f;
+	
+	// level label animation
+	levelLabel.layer.opacity = 1.0f;
+	
+	// answer input field
+	answerTextField.text = [locStr(@"Answer") lowercaseString];
+	
+	// get level pack to know max levels number
+	NSArray *levelPack = [appDelegate levelPackForKey:levelPackId];	
+	
+	if (levelIdx == 0) {
+		levelLabel.text = locStr(@"Tutorial");
+		tutorialLevel = TRUE;
+		tutorialStep = 0;
+		answerTextField.enabled = NO;
+		// doTutorialStep will be called when appearance animation is done
+	} else if ([appDelegate isUpgradeLevel:level]) {
+		levelLabel.text = locStr(@"Upgrade");
+		// set scanner opacity so that answer is visible
+		cutView.layer.opacity = kRevealOpacity;
+		answerTextField.enabled = YES;
+	}else if (levelIdx == (levelPack.count - 1)) {
+		// set level label to level object string ("end")
+		levelLabel.text = locStr(@"End");
+		// this is the end, reveal object by changing cut view opacity
+		cutView.layer.opacity = kRevealOpacity;		
+		// disable answer button
+		answerTextField.enabled = NO;
+	} else {
+		// just a level, set its number
+		levelLabel.text = [NSString stringWithFormat:@"%@ %d", locStr(@"Level"), levelIdx];
+		answerTextField.enabled = YES;		
+	}
+	
+	if (animated) {
+		[UIView commitAnimations];
+	}
+}
+
+#pragma mark -
 #pragma mark Animation callbacks
 - (void)scanViewAnimationDidStop:(NSString *)animationID 
-				finished:(NSNumber *)finished 
-				 context:(void *)context 
+						finished:(NSNumber *)finished 
+						 context:(void *)context 
 {
 	NSLog(@"scanViewAnimationDidStop:%@ finished:%d", animationID, [finished integerValue]);
 	
-	if ([animationID isEqual:kScanMoveAnimationID]) {
-	
+	if ([animationID isEqual:kViewAppearanceAnimation]) {
+		NSLog(@"kViewAppearanceAnimation animation done");
+		if (tutorialLevel) {
+			[self doTutorialStep];
+		}
+		// else - wait for user input
 	} else if ([animationID isEqual:kShowTutorialStepAnimationID]) {
-		[UIView beginAnimations:kTapRequestShowAnimationID context:NULL];
-		[UIView setAnimationDuration:kTapRequestAnimationDuration];
-		tapMessage.hidden = NO;
-		[UIView commitAnimations];
+		// TODO: more time before tap request to allow user to read message
+		BEGIN_ANIMATION(kShowTapRequestAnimationID, kTapRequestAnimationDuration * 5);
+		tapMessage.layer.opacity = 1.0f;
+		COMMIT_ANIMATION();
 		requireTouch = YES;
-	} else if ([animationID isEqual:kTapRequestHideAnimationID]) {
+	} else if ([animationID isEqual:kHideTapRequestAnimationID]) {
 		NSString *tutorialAnimationID;
 		NSTimeInterval duration;
 		if (tutorialStep == kLastTutorialStep) {
-			levelIdx++;
 			tutorialAnimationID = kNextLevelAnimationID;
 			duration = kNextLevelAnimationDuration;
 		} else {
-			tutorialStep++;
 			tutorialAnimationID = kNextTutorialStepAnimationID;
 			duration = kNextTutorialStepDuration;
 		}
-		[UIView beginAnimations:tutorialAnimationID context:NULL];
-		[UIView setAnimationDuration:duration];
-		[UIView setAnimationDelegate:self];
-		[UIView setAnimationDidStopSelector:@selector(scanViewAnimationDidStop:finished:context:)];
-		messageLabel.hidden = YES;
-		[UIView commitAnimations];
+		BEGIN_ANIMATION(tutorialAnimationID, duration);
+		messageLabel.layer.opacity = 0.0f;
+		if (tutorialStep == kLastTutorialStep) {
+			cutView.layer.opacity = 1.0f;   // also hide an answer when moving to next level
+		}
+		COMMIT_ANIMATION();
 	} else if ([animationID isEqual:kNextLevelAnimationID]) {
 		levelIdx++;
-		[self viewWillAppear:YES];
+		[self updateView:YES];
 	} else if ([animationID isEqual:kNextTutorialStepAnimationID]) {
 		tutorialStep++;
 		[self doTutorialStep];
 	} else if ([animationID isEqual:kProceedToUpgradeAnimationID]){
 		// TODO: create upgrade view and push to nav ctl
+	} else if ([animationID isEqual:kHideAnswerCheckAnimationID]) {
+		NSLog(@"kHideAnswerCheckAnimationID");
+	} else if ([animationID isEqual:kCheckAnswerAnimationID]) {
+		NSLog(@"kCheckAnswerAnimationID");
 	}
-
+	
 }
 
 #pragma mark -
-#pragma mark TUtorialSteps category implementation
+#pragma mark TutorialSteps category implementation
 - (void)doTutorialStep {
+	BEGIN_ANIMATION(kShowTutorialStepAnimationID, kShowTutorialStepAnimationDuration);
 	messageLabel.text = [self tutorialMessageAtStep:tutorialStep];
-	[UIView beginAnimations:kShowTutorialStepAnimationID context:NULL];
-	[UIView setAnimationDuration:0.5];
-	[UIView setAnimationDelegate:self];
-	[UIView setAnimationDidStopSelector:@selector(scanViewAnimationDidStop:finished:context:)];
-	messageLabel.hidden = NO;
-	[UIView commitAnimations];
+	messageLabel.layer.opacity = 1.0f;
+	if (tutorialStep == 2) {
+		// on one of the steps reveal object view by making cut view less opaque
+		cutView.layer.opacity = kRevealOpacity;
+	} else if (tutorialStep == 3) {
+		// TODO: highligt/blink or any other animation for answer input field (1 time only)
+	}
+	COMMIT_ANIMATION();
 }
 
 - (NSString *)tutorialMessageAtStep:(NSInteger)step {
@@ -211,87 +309,153 @@
 	NSLog(@"tapAction");
 	if (!requireTouch) return;
 	if (!tutorialLevel) return;
-	[UIView beginAnimations:kTapRequestHideAnimationID context:NULL];
-	[UIView setAnimationDuration:kTapRequestAnimationDuration];
-	tapMessage.hidden = YES;
-	[UIView commitAnimations];
+	BEGIN_ANIMATION(kHideTapRequestAnimationID, kTapRequestAnimationDuration);
+	tapMessage.layer.opacity = 0.0f;
+	COMMIT_ANIMATION();
 	requireTouch = NO;	
 }
 
 #pragma mark -
 #pragma mark Answer handling
 - (void)checkAnswer:(NSString *)answer {
-	Level *level = [appDelegate.levelPack levelAtIndex:levelIdx];
+	Level *level = [self currentLevel];
 	BOOL correctAnswer = [level correctAnswer:answer];
 	
-	if (level.upgradeLevel) {
+	if ([appDelegate isUpgradeLevel:level]) {
+		// TODO: play correct sound
 		if (correctAnswer) {
-			messageLabel.text = locStr(@"Correct");
+			answerCheckLabel.text = locStr(@"Correct");
+			answerCheckLabel.textColor = kCorrectAnswerColor;
 		} else {
-			messageLabel.text = locStr(@"Did you mean \"Yes\"? :)");
+			answerCheckLabel.text = locStr(@"Did you mean \"Yes\"? :)");
+			answerCheckLabel.textColor = kCorrectAnswerColor;			
 		}
-		[UIView beginAnimations:kAnswerCheckAnimationID context:NULL];
-		[UIView setAnimationDuration:kAnswerCheckDuration];
-		messageLabel.hidden = NO;
-		[UIView commitAnimations];
+		// display "correct" answer label
+		BEGIN_ANIMATION(kCheckAnswerAnimationID, kCheckAnswerAnimationDuration);
+		answerCheckLabel.layer.opacity = 1.0f;
+		cutView.layer.opacity = kRevealOpacity; // show the answer
+		COMMIT_ANIMATION();
 		
-		// fade off
-		[UIView beginAnimations:kProceedToUpgradeAnimationID context:NULL];
-		[UIView setAnimationDuration:kMessageHideDuration];
-		[UIView setAnimationDelay:kAnswerCheckDuration];
-		[UIView setAnimationDelegate:self];
-		[UIView setAnimationDidStopSelector:@selector(scanViewAnimationDidStop:finished:context:)];
-		messageLabel.hidden = YES;
-		[UIView commitAnimations];
-
+		// fade off after delay to proceed to upgrade view
+		BEGIN_ANIMATION_DELAYED(kProceedToUpgradeAnimationID, kHideAnswerCheckAnimationDuration, kCheckAnswerAnimationDuration);
+		answerCheckLabel.layer.opacity = 0.0f;
+		cutView.layer.opacity = 1.0f;   // hide the answer
+		COMMIT_ANIMATION();
+		
 	} else {
-
+		
 		// begin animaion
-		[UIView beginAnimations:kAnswerCheckAnimationID context:NULL];
-		[UIView setAnimationDuration:kAnswerCheckDuration];
-
+		BEGIN_ANIMATION(kCheckAnswerAnimationID, kCheckAnswerAnimationDuration);
+		
 		if (correctAnswer) {
-			messageLabel.text = locStr(@"Correct");
 			// TODO: play correct sound
-			objectView.center = ScanCenterPoint;
-			stopRepeatingScan = TRUE;
-			cutView.alpha = 0.8;	// TODO: check
+			answerCheckLabel.text = locStr(@"Correct");
+			answerCheckLabel.textColor = kCorrectAnswerColor;
+			cutView.layer.opacity = kRevealOpacity;
 		} else {
-			messageLabel.text = locStr(@"Wrong");
 			// TODO: play wrong sound
+			answerCheckLabel.text = locStr(@"Wrong");
+			answerCheckLabel.textColor = kWrongAnswerColor;
 		}
-
-		messageLabel.hidden = NO;
-		[UIView commitAnimations];
+		
+		// reveal answer check label
+		answerCheckLabel.layer.opacity = 1.0f;
+		
+		COMMIT_ANIMATION();
 		
 		// fade off
 		if (correctAnswer) {
-			[UIView beginAnimations:kNextLevelAnimationID context:NULL];
-			[UIView setAnimationDuration:kMessageHideDuration];
-			[UIView setAnimationDelay:kAnswerCheckDuration];
-			[UIView setAnimationDelegate:self];
-			[UIView setAnimationDidStopSelector:@selector(scanViewAnimationDidStop:finished:context:)];
-			messageLabel.hidden = YES;
-			objectView.hidden = YES;
-			cutView.alpha = 1.0;
-			[UIView commitAnimations];
+			BEGIN_ANIMATION_DELAYED(kNextLevelAnimationID, kHideAnswerCheckAnimationDuration, kCheckAnswerAnimationDuration);
+			answerCheckLabel.layer.opacity = 0.0f;
+			cutView.layer.opacity = 1.0f;
+			COMMIT_ANIMATION();
 		} else {
-			[UIView beginAnimations:kMessageHideAnimationID context:NULL];
-			[UIView setAnimationDuration:kMessageHideDuration];
-			[UIView setAnimationDelay:kAnswerCheckDuration];
-			messageLabel.hidden = YES;
-			[UIView commitAnimations];
+			BEGIN_ANIMATION_DELAYED(kHideAnswerCheckAnimationID, kHideAnswerCheckAnimationDuration, kCheckAnswerAnimationDuration);
+			answerCheckLabel.layer.opacity = 0.0f;
+			COMMIT_ANIMATION();
 		}
 	}
 }
 
 #pragma mark -
-#pragma mark Action handlers
+#pragma mark Keyboard notifications handling
 
-- (IBAction)answerAction:(id)sender {
-	// TODO: show keyboard
+#define kAnswerFieldResizeX     (40.0f)     // resize on 40px
+- (void)moveAnswerTextField:(enum _MoveDirection)moveDirection keyboardHeight:(CGFloat)height {
+	NSLog(@"%s", _cmd);
+	
+	CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;
+	BEGIN_ANIMATION(kMoveAnswerFieldAnimationID, kMoveAnswerFieldAnimationDuration);
+	if (moveDirection == MoveDirectionUp) {
+		// resize to bigger size to accept longer input and at the same time move to new position
+		answerTextField.frame = CGRectMake(answerTextField.frame.origin.x - kAnswerFieldResizeX / 2,    // move left due to resize
+										   screenSize.height - height - answerTextField.frame.size.height, // move above keyboard
+										   answerTextField.frame.size.width + kAnswerFieldResizeX, // stretch horizontally
+										   answerTextField.frame.size.height); // same height
+		
+		// clear displayed text to display cursor
+		answerTextField.text = @"";
+		answerTextField.placeholder = @"";
+	} else {
+		// move down animated (to default position) and resize to default small size
+		answerTextField.frame = answerFieldOriginalFrmae; // to original position, as set with IB
+		
+		// display "answer" string
+		answerTextField.text = @"";
+		answerTextField.placeholder = [locStr(@"Answer") lowercaseString];
+	}
+	COMMIT_ANIMATION();
 }
 
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+	NSLog(@"%s", _cmd);
+	// Get the size of the keyboard.
+	NSDictionary* info = [aNotification userInfo];
+	NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+	CGSize keyboardSize = [aValue CGRectValue].size;
+	
+	// move the answer input field up
+	[self moveAnswerTextField:MoveDirectionUp keyboardHeight:keyboardSize.height];	
+}
+
+
+// Called when the UIKeyboardDidHideNotification is sent
+- (void)keyboardWasHidden:(NSNotification*)aNotification
+{
+	NSLog(@"%s", _cmd);
+	// move the answer input field down (no need to know keyboard height here)
+	[self moveAnswerTextField:MoveDirectionDown keyboardHeight:0];	
+}
+
+- (void)registerForKeyboardNotifications
+{
+	NSLog(@"%s", _cmd);
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(keyboardWasShown:)
+												 name:UIKeyboardDidShowNotification object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(keyboardWasHidden:)
+												 name:UIKeyboardDidHideNotification object:nil];
+}
+
+#pragma mark UITextFieldDelegate protocol implementation
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	NSLog(@"%s, input: %@", _cmd, textField.text);
+	
+	[textField resignFirstResponder];
+	
+	// check answer
+	[self checkAnswer:textField.text];
+	
+	return YES;
+}
+
+#pragma mark -
+#pragma mark Action handlers
 - (IBAction)exitAction:(id)sender {
 	[[self navigationController] popViewControllerAnimated:YES];
 }
@@ -302,27 +466,54 @@
 
 - (IBAction)soundAction:(id)sender {
 	appDelegate.soundOn = !appDelegate.soundOn;
-	soundButton.enabled = appDelegate.soundOn;
+	// TODO: animated change (some picture)
+	soundButton.titleLabel.text = (appDelegate.soundOn ? locStr(@"snd:on") : locStr(@"snd:off"));
 }
 
 - (IBAction)prevLevelAction:(id)sender {
+	assert(levelIdx > 0);
 	levelIdx--;
-	[self viewWillAppear:YES];
+	[self updateView:YES];
 }
 
 - (IBAction)firstLevelAction:(id)sender {
+	assert(levelIdx > 0);
 	levelIdx = 0;
-	[self viewWillAppear:YES];
+	[self updateView:YES];
 }
 
 - (IBAction)nextLevelAction:(id)sender {
+	assert(levelIdx < [appDelegate unlockedLevelIdxForLevelPackKey:levelPackId]);
 	levelIdx++;
-	[self viewWillAppear:YES];
+	[self updateView:YES];
 }
 
 - (IBAction)lastLevelAction:(id)sender {
-	levelIdx = appDelegate.levelPack.unlockedLevelIdx;
-	[self viewWillAppear:YES];
+	assert(levelIdx < [appDelegate unlockedLevelIdxForLevelPackKey:levelPackId]);
+	levelIdx = [appDelegate unlockedLevelIdxForLevelPackKey:levelPackId];
+	[self updateView:YES];
+}
+
+// for testing
+#pragma mark -
+#pragma mark animations
+- (IBAction)scanAction:(id)sender {
+	[self stopScanningAnimation];
+	if (cutView.cutViewType == CutViewTypeCircleScan) {
+		cutView.cutViewType = CutViewTypeRadarScan;
+	} else {
+		cutView.cutViewType = CutViewTypeCircleScan;
+	}
+
+	[self startScanningAnimation];
+}
+
+- (void)startScanningAnimation {
+	[cutView startAnimation];	
+}
+
+- (void)stopScanningAnimation {
+	[cutView stopAnimation];
 }
 
 @end

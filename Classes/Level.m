@@ -7,17 +7,43 @@
 //
 
 #import "Level.h"
+#import "iScannerAppDelegate.h"
 
 
 @implementation Level
 @synthesize levelType;
 @synthesize objectStr;
-@synthesize upgradeLevel;
 
-// TODO: initialization
+- (id)initWithDic:(NSDictionary *)data {
+    if ((self = [super init])) {
+        levelType = [[data objectForKey:kLevelTypeKey] integerValue];
+        objectStr = [data objectForKey:kObjectStrKey];   // copy?
+        answers = [[data objectForKey:kAnswersKey] copy];
+    }
+    return self;
+}
+
++ (id)levelWithData:(NSDictionary *)data {
+    return [[[Level alloc] initWithDic:data] autorelease];
+}
+
+- (NSString *)descString {
+	NSString *str = [NSString stringWithFormat:@"levelType: %d\nobjectStr: %@\nanswers:\n", levelType, objectStr];
+	for (NSString *answer in answers) {
+		str = [str stringByAppendingFormat:@"%@\n", answer];
+	}
+	return str;
+}
+
+- (void)dealloc {
+    [answers release];
+    [super dealloc];
+}
 
 - (BOOL)correctAnswer:(NSString *)answer {
-	// TODO: look for answer in answers array
+    // look for answer in answers array
+    return ([objectStr localizedCaseInsensitiveCompare:answer] == NSOrderedSame 
+			|| [answers containsObject:[answer lowercaseString]]);
 }
 
 @end

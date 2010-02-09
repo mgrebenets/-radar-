@@ -8,31 +8,36 @@
 
 #import <UIKit/UIKit.h>
 @class iScannerAppDelegate;
+@class CutView;
 
-@interface ScanViewController : UIViewController {
+@interface ScanViewController : UIViewController  <UITextFieldDelegate>{
 	iScannerAppDelegate *appDelegate;
+	NSString *levelPackId;
+	NSInteger oldLevelIdx;
 	NSInteger levelIdx;
 	BOOL tutorialLevel;
 	NSInteger tutorialStep;
 	BOOL requireTouch;
 	BOOL stopRepeatingScan;
 	UIView *objectView;
-	IBOutlet UIImageView *cutView;
+	IBOutlet CutView *cutView;
 	IBOutlet UIImageView *objectImageView;
 	IBOutlet UILabel *objectLabel;
 	IBOutlet UIButton *openFeintButton;
 	IBOutlet UIButton *soundButton;
+	IBOutlet UILabel *levelLabel;
 	IBOutlet UIButton *prevLevelButton;
 	IBOutlet UIButton *firstLevelButton;
 	IBOutlet UIButton *nextLevelButton;
 	IBOutlet UIButton *lastLevelButton;
-	IBOutlet UIButton *answerButton;
 	IBOutlet UILabel *messageLabel;
 	IBOutlet UILabel *tapMessage;
+       IBOutlet UITextField *answerTextField;
+       CGRect answerFieldOriginalFrmae;
+       IBOutlet UILabel *answerCheckLabel;
 }
 
 - (void)tapAction:(id)sender;
-- (IBAction)answerAction:(id)sender;
 - (IBAction)exitAction:(id)sender;
 - (IBAction)openFeintAction:(id)sender;
 - (IBAction)soundAction:(id)sender;
@@ -41,6 +46,8 @@
 - (IBAction)nextLevelAction:(id)sender;
 - (IBAction)lastLevelAction:(id)sender;
 
-@property (nonatomic, assign) iScannerAppDelegate *appDelegate;
+- (IBAction)scanAction:(id)sender;
+
+@property (nonatomic, retain) NSString *levelPackId;
 
 @end

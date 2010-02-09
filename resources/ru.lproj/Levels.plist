@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>А</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>А</string>
+		<key>answers</key>
+		<array>
+			<string>А</string>
+			<string>Аз</string>
+		</array>
+	</dict>
+	<key>@</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>@</string>
+		<key>answers</key>
+		<array>
+			<string>@</string>
+			<string>собака</string>
+			<string>собачка</string>
+		</array>
+	</dict>
+	<key>Основы</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>Х</string>
+		<key>answers</key>
+		<array>
+			<string>Х</string>
+			<string>крестик</string>
+		</array>
+	</dict>
+	<key>Все</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>ВСЁ</string>
+		<key>answers</key>
+		<array>
+			<string>все</string>
+			<string>всё</string>
+			<string>конец</string>
+		</array>
+	</dict>
+</dict>
+</plist>

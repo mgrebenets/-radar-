@@ -6,17 +6,16 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
+// OBSOLETE
+
 #import <Foundation/Foundation.h>
 #import "Level.h"
 
 @interface LevelPack : NSObject {
-	NSInteger unlockedLevelIdx;
-	NSInteger lastLevelIdx;
+	NSArray *levelKeys;
 }
 
-- (Level *)levelAtIndex:(NSInteger)levelIdx;
 
-@property (readonly) NSInteger unlockedLevelIdx;
-@property (readonly) NSInteger lastLevelIdx;
+- (NSString *)levelKeyAtIndex:(NSInteger)levelIdx;
 
 @end

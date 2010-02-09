@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "ScanViewController.h"
+#import "iScannerAppDelegate.h"
 
 
 @implementation RootViewController
@@ -69,6 +70,7 @@
 
 - (IBAction)startAction:(id)sender {
 	ScanViewController *viewCtl = [[ScanViewController alloc] init];
+	viewCtl.levelPackId = kBasicLevelPackKey;
 	[[self navigationController] pushViewController:viewCtl animated:YES];
 	[viewCtl release];
 }

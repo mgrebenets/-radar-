@@ -17,13 +17,13 @@ enum _LevelType {
 	NSInteger levelType;
 	NSString *objectStr;
 	NSArray *answers;
-	BOOL upgradeLevel;
 }
 
++ (id)levelWithData:(NSDictionary *)data;
 - (BOOL)correctAnswer:(NSString *)answer;
+- (NSString *)descString;
 
 @property (readonly) NSInteger levelType;
 @property (readonly) NSString *objectStr;
-@property (readonly) BOOL upgradeLevel;
 
 @end

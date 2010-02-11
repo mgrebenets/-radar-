@@ -7,6 +7,12 @@
 //
 
 #import "iScannerAppDelegate.h"
+#import "OpenFeint.h"
+#import "OFLeaderboardService.h"
+#import "OFLeaderboard.h"
+#import "OFHighScoreService.h"
+#import "OFHighScore.h"
+#import "OFAchievementService.h"
 #import "RootViewController.h"
 #import "PListReader.h"
 #import "Macro.h"
@@ -24,6 +30,13 @@
 @synthesize navigationController;
 @synthesize fullVersion;
 @synthesize soundOn;
+
+- (void)setFullVersion:(BOOL)full {
+	fullVersion = full;
+	if (fullVersion) {
+		[self unlockUpgradeAchievement];
+	}
+}
 
 - (void)logLevelsDic:(NSDictionary *)theLevelsDic {
 	for (NSString *key in [theLevelsDic keyEnumerator]) {
@@ -63,18 +76,19 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     
     // Override point for customization after app launch  
+	NSLog(@"%@", [[NSBundle mainBundle] bundleIdentifier]);
 	
 	// init level objects (load from plist file)
 	levelsDic = [[PListReader applicationPlistFromFile:[[NSBundle mainBundle] pathForResource:@"Levels" ofType:@"plist"]] retain];
 
 	// debug
-	[self logLevelsDic:levelsDic];
+	//[self logLevelsDic:levelsDic];
 	
 	// load all level packs from .plist files
 	NSArray *basicLevelPack = [PListReader applicationPlistFromFile:[[NSBundle mainBundle] pathForResource:@"BasicLevelPack" ofType:@"plist"]];	
 
 	// debug
-	[self logLevelPack:basicLevelPack withName:kBasicLevelPackKey];
+	//[self logLevelPack:basicLevelPack withName:kBasicLevelPackKey];
 	
 	// compose levels pack dictionary
 	levelPacksDic = [[NSDictionary alloc] initWithObjectsAndKeys:basicLevelPack, kBasicLevelPackKey, nil];
@@ -89,19 +103,27 @@
 	}
 	
 	// debug
-	[self logUnlockedLevels:unlockedLevelsDic];
+	//[self logUnlockedLevels:unlockedLevelsDic];
 	
 	// full version flag
 	fullVersion = [[NSUserDefaults standardUserDefaults] boolForKey:kFullVersionKey];
 	
 	// TODO: new level packs added, look for missing levels in unlocked levels dic and add them
 	
-	// TODO: init openfeint
-	
-	// TODO (? ... no): more advanced (paid), get user's progress from openfeint network store card
+	// load open feint leaderboards and achievements ids
+	openFeintDic = [[PListReader applicationPlistFromFile:[[NSBundle mainBundle] 
+														   pathForResource:@"OpenFeint" 
+														   ofType:@"plist"]] retain];
 	
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
+	
+	// init open feint (AFTER MAIN WINDOW IS DISPLAYED)
+	[OpenFeint initializeWithProductKey:@"xc5YoWpsN9mbsqU8IvandA"
+							  andSecret:@"TxUIpSgWZEMKOYIlz5y2oDQ8BrZ2kS1XPSCMChFIRA"
+						 andDisplayName:@"iЯadaЯ"
+							andSettings:nil 
+						   andDelegates:nil];
 	
 	// sync user defaults
 	[[NSUserDefaults standardUserDefaults] synchronize];
@@ -109,18 +131,24 @@
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-	// Save data if appropriate
+	// Save data if appropriate	// Shutdown OpenFeint
+	[OpenFeint shutdown];
 	
 	// save full version flag
 	[[NSUserDefaults standardUserDefaults] setBool:fullVersion forKey:kFullVersionKey];
 	
-	// TODO: shutdown open feint
 	
 	// save unlocked levels dictionary to user defaults
 	[[NSUserDefaults standardUserDefaults] setObject:unlockedLevelsDic forKey:kUnlockedLevelsKey];	
 }
 
-// TODO: reload memory waringin and will resign handlers (with open feint support)
+- (void)applicationWillResignActive:(UIApplication *)application {
+	[OpenFeint applicationWillResignActive];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+	[OpenFeint applicationDidBecomeActive];
+}
 
 
 #pragma mark -
@@ -130,24 +158,47 @@
 	[levelsDic release];
 	[levelPacksDic release];
 	[unlockedLevelsDic release];
+	[openFeintDic release];
 	[navigationController release];
 	[window release];
 	[super dealloc];
 }
 
 - (void)openFeintAction:(id)sender {
-	// TODO: launch openfeint dashboard
+	// launch openfeint dashboard
+	[OpenFeint launchDashboard];
 }
 
 - (NSArray *)levelPackForKey:(NSString *)key {
 	return [levelPacksDic objectForKey:key];
 }
 
+#define kLeaderboardKey	@"LeaderboardID"
+#define kBeginnerAchKey	@"BeginnerAchID"
+#define kUpgradeAchKey	@"UpgradeAchID"
+#define	kBeginnerAchLevels	(10)
+
 - (void)unlockLevel:(NSInteger)levelIdx forLevelPackWithKey:(NSString *)key {
     if (levelIdx > [[unlockedLevelsDic objectForKey:key] integerValue]) {
         // new value is greater than old - update to dictionary
         [unlockedLevelsDic setObject:[NSNumber numberWithInteger:levelIdx] forKey:key];
+		
+		// submit highscore to leaderboard
+		[OFHighScoreService setHighScore:levelIdx
+						  forLeaderboard:[openFeintDic objectForKey:kLeaderboardKey] 
+							   onSuccess:OFDelegate() 
+							   onFailure:OFDelegate()];
+		
+		// achievements
+		if (levelIdx > kBeginnerAchLevels) {
+			[OFAchievementService unlockAchievement:[openFeintDic objectForKey:kBeginnerAchKey]];
+		}
+		// TODO: other achievements
     }
+}
+
+- (void)unlockUpgradeAchievement {
+	[OFAchievementService unlockAchievement:[openFeintDic objectForKey:kUpgradeAchKey]];
 }
 
 - (NSInteger)unlockedLevelIdxForLevelPackKey:(NSString *)key {
@@ -160,7 +211,7 @@
         && [packKey isEqual:kBasicLevelPackKey] 
         && levelIdx == kUpgradeLevelIdx)
     {
-        return [levelsDic objectForKey:kUpgradeLevelKey];
+        return [self levelForKey:kUpgradeLevelKey];
     }
 	
     return [self levelForKey:[[levelPacksDic objectForKey:packKey] objectAtIndex:levelIdx]];

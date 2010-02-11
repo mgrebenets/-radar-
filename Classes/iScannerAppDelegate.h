@@ -22,6 +22,7 @@
 	NSDictionary *levelsDic;
 	NSDictionary *levelPacksDic;
 	NSMutableDictionary *unlockedLevelsDic;
+	NSDictionary *openFeintDic;
 }
 
 - (void)openFeintAction:(id)sender;
@@ -32,6 +33,7 @@
 - (Level *)levelFromPack:(NSString *)packKey atIndex:(NSInteger)index;
 - (Level *)levelForKey:(NSString *)key;
 - (BOOL)isUpgradeLevel:(Level *)level;
+- (void)unlockUpgradeAchievement;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;

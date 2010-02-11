@@ -9,6 +9,7 @@
 #import "ScanViewController.h"
 #import "iScannerAppDelegate.h"
 #import "CutView.h"
+#import "UpgradeViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Macro.h"
 
@@ -44,7 +45,7 @@
 #define kCorrectAnswerColor ([UIColor greenColor])
 #define kWrongAnswerColor ([UIColor redColor])
 #define kMoveAnswerFieldAnimationID @"kMoveAnswerFieldAnimationID"
-#define kMoveAnswerFieldAnimationDuration   (0.1f)
+#define kMoveAnswerFieldAnimationDuration   (0.25f)
 
 #pragma mark Upgrade view proceed animation
 #define kProceedToUpgradeAnimationID	@"kProceedToUpgradeAnimationID"
@@ -72,14 +73,17 @@ enum _MoveDirection {
 
 @interface ScanViewController   (Keyboard)
 - (void)moveAnswerTextField:(enum _MoveDirection)moveDirection keyboardHeight:(CGFloat)height;
-- (void)keyboardWasShown:(NSNotification*)aNotification;
-- (void)keyboardWasHidden:(NSNotification*)aNotification;
+- (void)keyboardWillShow:(NSNotification*)aNotification;
+- (void)keyboardDidShow:(NSNotification*)aNotification;
+- (void)keyboardWillHide:(NSNotification*)aNotification;
+- (void)keyboardDidHide:(NSNotification*)aNotification;
 - (void)registerForKeyboardNotifications;
 @end
 
 
 @implementation ScanViewController
 @synthesize levelPackId;
+@synthesize levelIdx;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -101,7 +105,7 @@ enum _MoveDirection {
 	// get the answer input field original frame as set by IB, to use for positioning
 	answerFieldOriginalFrmae = answerTextField.frame;
 	
-	cutView.cutViewType = CutViewTypeCircleScan;
+	cutView.cutViewType = CutViewTypeRayScan;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -276,7 +280,10 @@ enum _MoveDirection {
 		tutorialStep++;
 		[self doTutorialStep];
 	} else if ([animationID isEqual:kProceedToUpgradeAnimationID]){
-		// TODO: create upgrade view and push to nav ctl
+		// create upgrade view and push to nav ctl
+		UpgradeViewController *upgradeViewCtl = [[UpgradeViewController alloc] init];
+		[self.navigationController pushViewController:upgradeViewCtl animated:YES];
+		[upgradeViewCtl release];
 	} else if ([animationID isEqual:kHideAnswerCheckAnimationID]) {
 		NSLog(@"kHideAnswerCheckAnimationID");
 	} else if ([animationID isEqual:kCheckAnswerAnimationID]) {
@@ -399,17 +406,11 @@ enum _MoveDirection {
 	} else {
 		// move down animated (to default position) and resize to default small size
 		answerTextField.frame = answerFieldOriginalFrmae; // to original position, as set with IB
-		
-		// display "answer" string
-		answerTextField.text = @"";
-		answerTextField.placeholder = [locStr(@"Answer") lowercaseString];
 	}
 	COMMIT_ANIMATION();
 }
 
-// Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
+- (void)keyboardWillShow:(NSNotification*)aNotification {
 	NSLog(@"%s", _cmd);
 	// Get the size of the keyboard.
 	NSDictionary* info = [aNotification userInfo];
@@ -417,28 +418,60 @@ enum _MoveDirection {
 	CGSize keyboardSize = [aValue CGRectValue].size;
 	
 	// move the answer input field up
-	[self moveAnswerTextField:MoveDirectionUp keyboardHeight:keyboardSize.height];	
+	[self moveAnswerTextField:MoveDirectionUp keyboardHeight:keyboardSize.height];
 }
 
-
-// Called when the UIKeyboardDidHideNotification is sent
-- (void)keyboardWasHidden:(NSNotification*)aNotification
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardDidShow:(NSNotification*)aNotification
 {
 	NSLog(@"%s", _cmd);
-	// move the answer input field down (no need to know keyboard height here)
-	[self moveAnswerTextField:MoveDirectionDown keyboardHeight:0];	
+	// disable level navigation buttons
+	firstLevelButton.enabled = NO;
+	prevLevelButton.enabled = NO;
+	nextLevelButton.enabled = NO;
+	lastLevelButton.enabled = NO;
+}
+
+- (void)keyboardWillHide:(NSNotification*)aNotification {
+    NSLog(@"%s", _cmd);
+    // move the answer input field down (no need to know keyboard height here)
+    [self moveAnswerTextField:MoveDirectionDown keyboardHeight:0];	
+}
+
+// Called when the UIKeyboardDidHideNotification is sent
+- (void)keyboardDidHide:(NSNotification*)aNotification
+{
+	NSLog(@"%s", _cmd);
+	
+	// display "answer" string
+	answerTextField.text = @"";
+	answerTextField.placeholder = [locStr(@"Answer") lowercaseString];	
+	
+	// enable level navigation buttons
+	firstLevelButton.enabled = YES;
+	prevLevelButton.enabled = YES;
+	nextLevelButton.enabled = YES;
+	lastLevelButton.enabled = YES;
 }
 
 - (void)registerForKeyboardNotifications
 {
 	NSLog(@"%s", _cmd);
-	
+
 	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(keyboardWasShown:)
+											 selector:@selector(keyboardWillShow:)
+												 name:UIKeyboardWillShowNotification object:nil];
+												 
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(keyboardDidShow:)
 												 name:UIKeyboardDidShowNotification object:nil];
-	
+
 	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(keyboardWasHidden:)
+											 selector:@selector(keyboardWillHide:)
+												 name:UIKeyboardWillHideNotification object:nil];
+
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(keyboardDidHide:)
 												 name:UIKeyboardDidHideNotification object:nil];
 }
 
@@ -499,10 +532,10 @@ enum _MoveDirection {
 #pragma mark animations
 - (IBAction)scanAction:(id)sender {
 	[self stopScanningAnimation];
-	if (cutView.cutViewType == CutViewTypeCircleScan) {
-		cutView.cutViewType = CutViewTypeRadarScan;
+	if (cutView.cutViewType == CutViewTypeDrawnConcentricScan) {
+		cutView.cutViewType = CutViewTypeRayScan;
 	} else {
-		cutView.cutViewType = CutViewTypeCircleScan;
+		cutView.cutViewType = CutViewTypeDrawnConcentricScan;
 	}
 
 	[self startScanningAnimation];

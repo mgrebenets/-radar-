@@ -32,9 +32,9 @@
 	IBOutlet UIButton *lastLevelButton;
 	IBOutlet UILabel *messageLabel;
 	IBOutlet UILabel *tapMessage;
-       IBOutlet UITextField *answerTextField;
-       CGRect answerFieldOriginalFrmae;
-       IBOutlet UILabel *answerCheckLabel;
+	IBOutlet UITextField *answerTextField;
+	CGRect answerFieldOriginalFrmae;
+	IBOutlet UILabel *answerCheckLabel;
 }
 
 - (void)tapAction:(id)sender;
@@ -49,5 +49,6 @@
 - (IBAction)scanAction:(id)sender;
 
 @property (nonatomic, retain) NSString *levelPackId;
+@property NSInteger levelIdx;
 
 @end

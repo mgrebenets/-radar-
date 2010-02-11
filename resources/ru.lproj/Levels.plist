@@ -39,6 +39,18 @@
 			<string>крестик</string>
 		</array>
 	</dict>
+	<key>Апгрейд</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>Апгрейд</string>
+		<key>answers</key>
+		<array>
+			<string>апгрейд</string>
+			<string>да</string>
+		</array>
+	</dict>
 	<key>Все</key>
 	<dict>
 		<key>levelType</key>

@@ -10,8 +10,9 @@
 
 enum _CutViewType {
 	CutViewTypeHorizontalScan,
-	CutViewTypeRadarScan,
-	CutViewTypeCircleScan
+	CutViewTypeRayScan,
+	CutViewTypeDrawnConcentricScan,
+	CutViewTypeImageConcentricScan,
 };
 
 @interface CutView : UIView {

@@ -9,13 +9,21 @@
 #import "CutView.h"
 #import <QuartzCore/QuartzCore.h>
 
+// horizontal scan image
 #define	kHorizontalScanImageName	@"5_cut_static.png"
-#define kRadarScanImageName	@"cut_sector.png"
 
-#define kCircleScanTimeInterval	(0.05f)
-#define kMaxCircleDiameter	(440)
-#define kCircleDiameterDelta	(1)
-#define kCircleScanWidth	(5)
+// ray scan image
+#define kRayScanImageName	@"cut_sector.png"
+
+// drawn concentric scan
+#define kDrawnConcentricScanTimerInterval	(0.05f)
+#define kDrawnConcentricScanMaxDiameter	(440)
+#define kDrawnConcentricScanDiameterDelta	(1)
+#define kDrawnConcentricScanWidth	(5)
+
+// image concentric scan
+#define kImageConcentricScanInitialFrame    CGRectMake(160, 240, 480, 480)
+#define kImageConcentricScanFinalFrame      CGRectMake(0, 0, 0, 0)
 
 @interface CutView ()
 - (void)detachTimerCreate:(id)val;
@@ -37,12 +45,12 @@
 			cutImageView.hidden = NO;
 			[self clearCircleScan];
 			break;
-		case CutViewTypeRadarScan:
-			cutImageView.image = [UIImage imageNamed:kRadarScanImageName];
+		case CutViewTypeRayScan:
+			cutImageView.image = [UIImage imageNamed:kRayScanImageName];
 			cutImageView.hidden = NO;
 			[self clearCircleScan];			
 			break;
-		case CutViewTypeCircleScan:
+		case CutViewTypeDrawnConcentricScan:
 			// don't hide image view immediately, it will reveal answer before first draw occurs
 			[self setNeedsDisplay];			
 			break;
@@ -55,13 +63,17 @@
 	NSLog(@"%s", _cmd);
     if (self = [super initWithFrame:frame]) {
         // Initialization code
-		self.cutViewType = CutViewTypeRadarScan;
+		self.cutViewType = CutViewTypeRayScan;
     }
     return self;
 }
 
 - (void)detachTimerCreate:(id)val {
-
+	// doesn't work (thread dies, so does its run loop)
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	updateTimer = [[NSTimer scheduledTimerWithTimeInterval:kDrawnConcentricScanTimerInterval target:self selector:@selector(updateTimerFire:) userInfo:nil repeats:YES] retain];
+	[updateTimer fire];
+	[pool release];
 }
 
 - (void)detachTimerStop:(id)val {
@@ -70,15 +82,15 @@
 
 - (void)updateTimerFire:(NSTimer *)timer {
 //	NSLog(@"%s", _cmd);
-	circleDiameter += kCircleDiameterDelta;
-	if (circleDiameter > kMaxCircleDiameter) {
+	circleDiameter += kDrawnConcentricScanDiameterDelta;
+	if (circleDiameter > kDrawnConcentricScanMaxDiameter) {
 		circleDiameter = 0.0f;
 	}
 	[self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)rect {
-	if (cutViewType != CutViewTypeCircleScan) return;
+	if (cutViewType != CutViewTypeDrawnConcentricScan) return;
 	
     // Drawing code
 //	NSLog(@"%s", _cmd);
@@ -103,10 +115,10 @@
 	CGContextClearRect(ctx, cRect);
 	
 	CGContextSetRGBFillColor(ctx, 0, 0, 0, 1);
-	cRect = CGRectMake(cRect.origin.x + kCircleScanWidth, 
-					   cRect.origin.y + kCircleScanWidth, 
-					   cRect.size.width - kCircleScanWidth * 2, 
-					   cRect.size.height - kCircleScanWidth * 2);
+	cRect = CGRectMake(cRect.origin.x + kDrawnConcentricScanWidth, 
+					   cRect.origin.y + kDrawnConcentricScanWidth, 
+					   cRect.size.width - kDrawnConcentricScanWidth * 2, 
+					   cRect.size.height - kDrawnConcentricScanWidth * 2);
 	CGContextFillEllipseInRect(ctx, cRect);
 
 }
@@ -123,7 +135,7 @@
 }
 
 #define kScanningAnimationKey	@"kScanningAnimationKey"
-#define kScanningAnimationDuration  (5.0f)
+#define kScanningAnimationDuration  (8.0f)
 
 
 - (void)startAnimation {
@@ -131,7 +143,7 @@
 		case CutViewTypeHorizontalScan:
 			// nothing, in this case the image itself must be moving
 			break;
-		case CutViewTypeRadarScan:
+		case CutViewTypeRayScan:
 		{
 			// 360 degrees rotation
 			CABasicAnimation *animation;
@@ -144,14 +156,14 @@
 			[[cutImageView layer] addAnimation:animation forKey:kScanningAnimationKey];				
 			break;
 		}
-		case CutViewTypeCircleScan:
+		case CutViewTypeDrawnConcentricScan:
 			if (!updateTimer) {
 //				[NSThread detachNewThreadSelector:@selector(detachTimerCreate:) toTarget:self withObject:nil];
-				updateTimer = [[NSTimer timerWithTimeInterval:kCircleScanTimeInterval target:self selector:@selector(updateTimerFire:) userInfo:nil repeats:YES] retain];
+//				updateTimer = [[NSTimer timerWithTimeInterval:kDrawnConcentricScanTimerInterval target:self selector:@selector(updateTimerFire:) userInfo:nil repeats:YES] retain];
 //				[[NSRunLoop new] addTimer:updateTimer forMode:NSDefaultRunLoopMode];
-				[[NSRunLoop currentRunLoop] addTimer:updateTimer forMode:NSDefaultRunLoopMode];				
-				//updateTimer = [[NSTimer scheduledTimerWithTimeInterval:kCircleScanTimeInterval target:self selector:@selector(updateTimerFire:) userInfo:nil repeats:YES] retain];
-				//[updateTimer fire];
+//				[[NSRunLoop currentRunLoop] addTimer:updateTimer forMode:NSDefaultRunLoopMode];				
+				updateTimer = [[NSTimer scheduledTimerWithTimeInterval:kDrawnConcentricScanTimerInterval target:self selector:@selector(updateTimerFire:) userInfo:nil repeats:YES] retain];
+				[updateTimer fire];
 			}			
 			break;
 		default:
@@ -164,10 +176,10 @@
 		case CutViewTypeHorizontalScan:
 			// nothing, in this case the image itself must be moving and stopping
 			break;
-		case CutViewTypeRadarScan:
+		case CutViewTypeRayScan:
 			[[cutImageView layer] removeAnimationForKey:kScanningAnimationKey];			
 			break;
-		case CutViewTypeCircleScan:
+		case CutViewTypeDrawnConcentricScan:
 			if (updateTimer) {
 				[updateTimer invalidate];
 				[updateTimer release];

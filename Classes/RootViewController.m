@@ -9,24 +9,30 @@
 #import "RootViewController.h"
 #import "ScanViewController.h"
 #import "iScannerAppDelegate.h"
+#import "UpgradeViewController.h"
+#import "Macro.h"
 
 
 @implementation RootViewController
 
-/*
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	appDelegate = (iScannerAppDelegate *)[[UIApplication sharedApplication] delegate];
 }
-*/
 
-/*
+
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	
+	upgradeButton.hidden = appDelegate.fullVersion;
+	versionLabel.text = (appDelegate.fullVersion ? locStr(@"Full Version") : locStr(@"Lite Version"));
 }
-*/
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -71,9 +77,31 @@
 - (IBAction)startAction:(id)sender {
 	ScanViewController *viewCtl = [[ScanViewController alloc] init];
 	viewCtl.levelPackId = kBasicLevelPackKey;
+	viewCtl.levelIdx = [appDelegate unlockedLevelIdxForLevelPackKey:kBasicLevelPackKey];
 	[[self navigationController] pushViewController:viewCtl animated:YES];
 	[viewCtl release];
 }
+
+- (IBAction)upgradeAction:(id)sender {
+	UpgradeViewController *upgradeViewCtl = [[UpgradeViewController alloc] init];
+	[self.navigationController pushViewController:upgradeViewCtl animated:YES];
+	[upgradeViewCtl release];
+}
+
+- (IBAction)openFeintAction:(id)sender {
+	[appDelegate openFeintAction:sender];
+}
+
+- (IBAction)debugUpgradeAction:(id)sender {
+	appDelegate.fullVersion = YES;
+	[self viewWillAppear:YES];
+}
+
+- (IBAction)debugDowngradeAction:(id)sender {
+	appDelegate.fullVersion = NO;
+	[self viewWillAppear:YES];	
+}
+
 
 @end
 

@@ -8,5 +8,21 @@
 	<string>194523</string>
 	<key>UpgradeAchID</key>
 	<string>194533</string>
+	<key>EagleEyeAchID</key>
+	<string>195663</string>
+	<key>HawkEyedAchID</key>
+	<string>195683</string>
+	<key>FalconEyeAchID</key>
+	<string>195703</string>
+	<key>PenetratingEyeAchID</key>
+	<string>195723</string>
+	<key>ClairvoyantAchID</key>
+	<string>195743</string>
+	<key>SymbolsExpertAchID</key>
+	<string>195763</string>
+	<key>UnicodeMasterAchID</key>
+	<string>195783</string>
+	<key>CrazyImaginationAchID</key>
+	<string>195823</string>
 </dict>
 </plist>

@@ -12,6 +12,9 @@
 	iScannerAppDelegate *appDelegate;
 	IBOutlet UIButton *upgradeButton;
 	IBOutlet UILabel *versionLabel;
+	IBOutlet UILabel *appNameLabel;
+	IBOutlet UILabel *versionNumLabel;
+	IBOutlet UIButton *startButton;
 }
 
 - (IBAction)startAction:(id)sender;

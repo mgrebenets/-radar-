@@ -31,6 +31,12 @@
 	
 	// observe transactions
 	[[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+	
+	moreNowLabel.text = NSLocalizedString(@"More Levels Now", @"More Levels Now");
+	moreLaterLabel.text = NSLocalizedString(@"More Levels Later", @"More Levels Later");
+	moreAchievementsLabel.text = NSLocalizedString(@"More Achievements", @"More Achievements");
+	[backButton setTitle:NSLocalizedString(@"Back", @"Back") forState:UIControlStateNormal];
+	[buyButton setTitle:NSLocalizedString(@"Buy", @"Buy") forState:UIControlStateNormal];
 }
 
 
@@ -104,10 +110,10 @@
 				
 				[indicatorView stopAnimating];
 				
-				UIAlertView *failAlert = [[UIAlertView alloc] initWithTitle:locStr(@"Purchase Error") 
+				UIAlertView *failAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Purchase Error", @"Purchase Error") 
 																	message:[transaction.error localizedDescription] 
 																   delegate:nil 
-														  cancelButtonTitle:locStr(@"OK") 
+														  cancelButtonTitle:NSLocalizedString(@"OK", @"OK") 
 														  otherButtonTitles:nil];
 				[failAlert show];
 				[failAlert release];

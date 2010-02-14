@@ -22,7 +22,7 @@
 #define kViewAppearanceAnimationDuration	(1.0f)
 
 #pragma mark Tutorial animations and defines
-#define	kLastTutorialStep	(5)
+#define	kLastTutorialStep	(6)
 #define kShowTutorialStepAnimationID	@"kShowTutorialStepAnimationID"
 #define kShowTutorialStepAnimationDuration  (0.5f)
 #define kNextTutorialStepAnimationID	@"kNextTutorialStepAnimationID"
@@ -50,6 +50,7 @@
 #pragma mark Upgrade view proceed animation
 #define kProceedToUpgradeAnimationID	@"kProceedToUpgradeAnimationID"
 
+#define	kSoundAnimationImagesCnt	(6)
 
 @interface ScanViewController ()
 - (Level *)currentLevel;
@@ -84,6 +85,7 @@ enum _MoveDirection {
 @implementation ScanViewController
 @synthesize levelPackId;
 @synthesize levelIdx;
+@synthesize soundButton;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -103,11 +105,68 @@ enum _MoveDirection {
 	// register for keyboard notifications
 	[self registerForKeyboardNotifications];
 	// get the answer input field original frame as set by IB, to use for positioning
-	answerFieldOriginalFrmae = answerTextField.frame;
+	answerFieldOriginalFrame = answerTextField.frame;
+	
+	[menuButton setTitle:NSLocalizedString(@"Menu", @"Menu") forState:UIControlStateNormal];
+	
+	// initially hide most of the elements
+	// did not set them transparent in IB because it is not convinient to work there that way
+	firstLevelButton.layer.opacity = 0.0f;
+	prevLevelButton.layer.opacity = 0.0f;
+	nextLevelButton.layer.opacity = 0.0f;
+	lastLevelButton.layer.opacity = 0.0f;
+	
+	levelLabel.layer.opacity = 0.0f;
+	tapMessage.layer.opacity = 0.0f;
+	tapMessage.text = NSLocalizedString(@"Tap to Continue", @"Tap to Continue");	
+	messageLabel.layer.opacity = 0.0f;
+	answerCheckLabel.layer.opacity = 0.0f;
+	answerTextField.layer.opacity = 0.0f;
+	
+	backButton.layer.opacity = 0.0f;
+	openFeintButton.layer.opacity = 0.0f;
+	
+	// sound button
+	soundButton.layer.opacity = 0.0f;
+	NSMutableArray *animationImages = [NSMutableArray arrayWithObjects:nil];
+	for (int i = 0; i < kSoundAnimationImagesCnt; i++) {
+		NSString *imageName = [NSString stringWithFormat:@"sound-frame-%d.png", (i + 1)];
+		[animationImages addObject:[UIImage imageNamed:imageName]];
+	}
+	soundButton.animationImages = animationImages;
+	soundButton.animationDuration = 1.0f;
+	soundButton.animationRepeatCount = 0;
 	
 	cutView.cutViewType = CutViewTypeRayScan;
-}
+	correctMessages = [[NSArray arrayWithObjects:NSLocalizedString(@"Correct!", @"Correct!"),
+						 NSLocalizedString(@"Yes!", @"Yes!"),
+						 NSLocalizedString(@"Right!", @"Right!"),
+						 NSLocalizedString(@"Sure!", @"Sure!"),
+						 NSLocalizedString(@"Of course!", @"Of course!"),
+						 NSLocalizedString(@"Well yes!", @"Well yes!"),
+						 NSLocalizedString(@"Well done!", @"Well done!"),
+						 NSLocalizedString(@"Keep going!", @"Keep going!"),
+						 NSLocalizedString(@"You knew it!", @"You knew it!"),
+						 NSLocalizedString(@"Exactly!", @"Exactly!"),
+						 NSLocalizedString(@"Good!", @"Good!"),
+						 NSLocalizedString(@"Great!", @"Great!"),
+						 nil] retain];
+	 
+	 wrongMessages = [[NSArray arrayWithObjects:NSLocalizedString(@"Wrong!", @"Wrong!"),
+						NSLocalizedString(@"No!", @"No!"),
+						NSLocalizedString(@"Oops!", @"Oops!"),
+						NSLocalizedString(@"Nope!", @"Nope!"),
+						NSLocalizedString(@"Try again!", @"Try again!"),
+						NSLocalizedString(@"You were close!", @"You were close!"),
+						NSLocalizedString(@"Maybe next time!", @"Maybe next time!"),
+						NSLocalizedString(@"Almost there!", @"Almost there!"),
+						NSLocalizedString(@"Another time!", @"Another time!"),
+						nil] retain];	
+	
 
+	  
+}
+	  
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 }
@@ -142,6 +201,8 @@ enum _MoveDirection {
 
 
 - (void)dealloc {
+	[correctMessages release];
+	[wrongMessages release];	
     [super dealloc];
 }
 
@@ -165,9 +226,12 @@ enum _MoveDirection {
 	// update current level idx to app delegates dictionary
 	[appDelegate unlockLevel:levelIdx forLevelPackWithKey:levelPackId];
 	
-	// TODO: sound button image
-	soundButton.titleLabel.text = (appDelegate.soundOn ? locStr(@"snd:on") : locStr(@"snd:off"));
-	
+	// sound button image
+	if (appDelegate.soundOn) {
+		[soundButton startAnimating];
+	} else {
+		[soundButton stopAnimating];
+	}
 	
 	// prev and first, next and last
 	prevLevelButton.layer.opacity = (levelIdx == 0 ? 0.0f : 1.0f);
@@ -175,6 +239,14 @@ enum _MoveDirection {
 	NSInteger unlockedLevelIdx = [appDelegate unlockedLevelIdxForLevelPackKey:levelPackId];
 	nextLevelButton.layer.opacity = (levelIdx < unlockedLevelIdx ? 1.0f : 0.0f);
 	lastLevelButton.layer.opacity = (levelIdx < unlockedLevelIdx ? 1.0f : 0.0f);
+	
+	// level label animation
+	levelLabel.layer.opacity = 1.0f;
+	
+	// buttons
+	backButton.layer.opacity = 1.0f;
+	openFeintButton.layer.opacity = 1.0f;
+	soundButton.layer.opacity = 1.0f;	
 	
 	// get current level
 	Level *level = [self currentLevel];
@@ -198,38 +270,41 @@ enum _MoveDirection {
 	
 	messageLabel.layer.opacity = 0.0f;
 	tapMessage.layer.opacity = 0.0f;
-	
-	// level label animation
-	levelLabel.layer.opacity = 1.0f;
-	
+		
 	// answer input field
-	answerTextField.text = [locStr(@"Answer") lowercaseString];
+	answerTextField.text = [NSLocalizedString(@"Answer", @"Answer") lowercaseString];
+	answerTextField.layer.opacity = 1.0f;
+	answerTextField.frame = answerFieldOriginalFrame;
 	
 	// get level pack to know max levels number
 	NSArray *levelPack = [appDelegate levelPackForKey:levelPackId];	
 	
 	if (levelIdx == 0) {
-		levelLabel.text = locStr(@"Tutorial");
+		levelLabel.text = NSLocalizedString(@"Tutorial", @"Tutorial");
 		tutorialLevel = TRUE;
 		tutorialStep = 0;
 		answerTextField.enabled = NO;
+		answerTextField.textColor = [UIColor grayColor];
 		// doTutorialStep will be called when appearance animation is done
 	} else if ([appDelegate isUpgradeLevel:level]) {
-		levelLabel.text = locStr(@"Upgrade");
+		levelLabel.text = NSLocalizedString(@"Upgrade", @"Upgrade");
 		// set scanner opacity so that answer is visible
 		cutView.layer.opacity = kRevealOpacity;
 		answerTextField.enabled = YES;
+		answerTextField.textColor = [UIColor greenColor];
 	}else if (levelIdx == (levelPack.count - 1)) {
 		// set level label to level object string ("end")
-		levelLabel.text = locStr(@"End");
+		levelLabel.text = NSLocalizedString(@"To Be Continued...", @"To Be Continued...");
 		// this is the end, reveal object by changing cut view opacity
 		cutView.layer.opacity = kRevealOpacity;		
 		// disable answer button
 		answerTextField.enabled = NO;
+		answerTextField.textColor = [UIColor grayColor];
 	} else {
 		// just a level, set its number
-		levelLabel.text = [NSString stringWithFormat:@"%@ %d", locStr(@"Level"), levelIdx];
+		levelLabel.text = [NSString stringWithFormat:@"%@ %d", NSLocalizedString(@"Level", @"Level"), levelIdx];
 		answerTextField.enabled = YES;		
+		answerTextField.textColor = [UIColor greenColor];		
 	}
 	
 	if (animated) {
@@ -252,11 +327,15 @@ enum _MoveDirection {
 		}
 		// else - wait for user input
 	} else if ([animationID isEqual:kShowTutorialStepAnimationID]) {
-		// TODO: more time before tap request to allow user to read message
-		BEGIN_ANIMATION(kShowTapRequestAnimationID, kTapRequestAnimationDuration * 5);
-		tapMessage.layer.opacity = 1.0f;
-		COMMIT_ANIMATION();
-		requireTouch = YES;
+		// more time before tap request to allow user to read message
+		// the user could press next level already, so check if we're still in tutorial
+		if (tutorialLevel) {
+			BEGIN_ANIMATION(kShowTapRequestAnimationID, kTapRequestAnimationDuration * 5);
+			tapMessage.layer.opacity = 1.0f;
+			answerTextField.frame = answerFieldOriginalFrame;
+			COMMIT_ANIMATION();
+			requireTouch = YES;			
+		}
 	} else if ([animationID isEqual:kHideTapRequestAnimationID]) {
 		NSString *tutorialAnimationID;
 		NSTimeInterval duration;
@@ -302,14 +381,17 @@ enum _MoveDirection {
 		// on one of the steps reveal object view by making cut view less opaque
 		cutView.layer.opacity = kRevealOpacity;
 	} else if (tutorialStep == 3) {
-		// TODO: highligt/blink or any other animation for answer input field (1 time only)
+		// pop up answer field
+		CGRect popRect = answerFieldOriginalFrame;
+		popRect.origin = CGPointMake(popRect.origin.x, popRect.origin.y - 20);
+		answerTextField.frame = popRect;
 	}
 	COMMIT_ANIMATION();
 }
 
 - (NSString *)tutorialMessageAtStep:(NSInteger)step {
-	NSString *stepStr = [NSString stringWithFormat:@"Tutorial Step %d", step + 1];
-	return locStr(stepStr);
+	NSString *stepStr = [NSString stringWithFormat:@"Step %d", step + 1];
+	return NSLocalizedString(stepStr, stepStr);
 }
 
 - (void)tapAction:(id)sender {
@@ -331,10 +413,10 @@ enum _MoveDirection {
 	if ([appDelegate isUpgradeLevel:level]) {
 		// TODO: play correct sound
 		if (correctAnswer) {
-			answerCheckLabel.text = locStr(@"Correct");
+			answerCheckLabel.text = [correctMessages objectAtIndex:(rand() % correctMessages.count)];			
 			answerCheckLabel.textColor = kCorrectAnswerColor;
 		} else {
-			answerCheckLabel.text = locStr(@"Did you mean \"Yes\"? :)");
+			answerCheckLabel.text = NSLocalizedString(@"Did you mean \"Yes\"? :)", @"Did you mean \"Yes\"? :)");
 			answerCheckLabel.textColor = kCorrectAnswerColor;			
 		}
 		// display "correct" answer label
@@ -356,12 +438,12 @@ enum _MoveDirection {
 		
 		if (correctAnswer) {
 			// TODO: play correct sound
-			answerCheckLabel.text = locStr(@"Correct");
+			answerCheckLabel.text = [correctMessages objectAtIndex:(rand() % correctMessages.count)];
 			answerCheckLabel.textColor = kCorrectAnswerColor;
 			cutView.layer.opacity = kRevealOpacity;
 		} else {
 			// TODO: play wrong sound
-			answerCheckLabel.text = locStr(@"Wrong");
+			answerCheckLabel.text = [wrongMessages objectAtIndex:(rand() % wrongMessages.count)];
 			answerCheckLabel.textColor = kWrongAnswerColor;
 		}
 		
@@ -387,7 +469,7 @@ enum _MoveDirection {
 #pragma mark -
 #pragma mark Keyboard notifications handling
 
-#define kAnswerFieldResizeX     (40.0f)     // resize on 40px
+#define kAnswerFieldResizeX     (80.0f)     // resize
 - (void)moveAnswerTextField:(enum _MoveDirection)moveDirection keyboardHeight:(CGFloat)height {
 	NSLog(@"%s", _cmd);
 	
@@ -403,9 +485,11 @@ enum _MoveDirection {
 		// clear displayed text to display cursor
 		answerTextField.text = @"";
 		answerTextField.placeholder = @"";
+		answerTextField.backgroundColor = [UIColor darkGrayColor];
 	} else {
 		// move down animated (to default position) and resize to default small size
-		answerTextField.frame = answerFieldOriginalFrmae; // to original position, as set with IB
+		answerTextField.frame = answerFieldOriginalFrame; // to original position, as set with IB
+		answerTextField.backgroundColor = [UIColor clearColor];
 	}
 	COMMIT_ANIMATION();
 }
@@ -444,8 +528,7 @@ enum _MoveDirection {
 	NSLog(@"%s", _cmd);
 	
 	// display "answer" string
-	answerTextField.text = @"";
-	answerTextField.placeholder = [locStr(@"Answer") lowercaseString];	
+	answerTextField.text = [NSLocalizedString(@"Answer", @"Answer") lowercaseString];	
 	
 	// enable level navigation buttons
 	firstLevelButton.enabled = YES;
@@ -499,31 +582,38 @@ enum _MoveDirection {
 
 - (IBAction)soundAction:(id)sender {
 	appDelegate.soundOn = !appDelegate.soundOn;
-	// TODO: animated change (some picture)
-	soundButton.titleLabel.text = (appDelegate.soundOn ? locStr(@"snd:on") : locStr(@"snd:off"));
+	if (appDelegate.soundOn) {
+		[soundButton startAnimating];
+	} else {
+		[soundButton stopAnimating];
+	}
 }
 
 - (IBAction)prevLevelAction:(id)sender {
 	assert(levelIdx > 0);
 	levelIdx--;
+	levelLabel.layer.opacity = 0.0f;	
 	[self updateView:YES];
 }
 
 - (IBAction)firstLevelAction:(id)sender {
 	assert(levelIdx > 0);
 	levelIdx = 0;
+	levelLabel.layer.opacity = 0.0f;
 	[self updateView:YES];
 }
 
 - (IBAction)nextLevelAction:(id)sender {
 	assert(levelIdx < [appDelegate unlockedLevelIdxForLevelPackKey:levelPackId]);
 	levelIdx++;
+	levelLabel.layer.opacity = 0.0f;
 	[self updateView:YES];
 }
 
 - (IBAction)lastLevelAction:(id)sender {
 	assert(levelIdx < [appDelegate unlockedLevelIdxForLevelPackKey:levelPackId]);
 	levelIdx = [appDelegate unlockedLevelIdxForLevelPackKey:levelPackId];
+	levelLabel.layer.opacity = 0.0f;	
 	[self updateView:YES];
 }
 

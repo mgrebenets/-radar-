@@ -22,6 +22,11 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	appDelegate = (iScannerAppDelegate *)[[UIApplication sharedApplication] delegate];
+	
+	appNameLabel.text = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+	versionNumLabel.text = [NSString stringWithFormat:@"v%@", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
+	[startButton setTitle:NSLocalizedString(@"Start", @"Start") forState:UIControlStateNormal];
+	[upgradeButton setTitle:NSLocalizedString(@"Upgrade", @"Upgrade") forState:UIControlStateNormal];
 }
 
 
@@ -30,7 +35,7 @@
     [super viewWillAppear:animated];
 	
 	upgradeButton.hidden = appDelegate.fullVersion;
-	versionLabel.text = (appDelegate.fullVersion ? locStr(@"Full Version") : locStr(@"Lite Version"));
+	versionLabel.text = (appDelegate.fullVersion ? NSLocalizedString(@"Full Version", @"Full Version") : NSLocalizedString(@"Lite Version", @"Lite Version"));
 }
 
 /*

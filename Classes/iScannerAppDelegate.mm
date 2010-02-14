@@ -18,10 +18,10 @@
 #import "Macro.h"
 
 #define kFullVersionKey	@"kFullVersionKey"
-#define kUpgradeLevelIdx    (10)
-#define kUpgradeLevelKey    locStr(@"Upgrade")
-#define kUpgradeLevelObjectStr  kUpgradeLevelKey
-#define kUnlockedLevelsKey	@"kUnlockedLevelsKey"
+#define kUpgradeLevelIdx    (11)
+#define kUpgradeLevelKey    @"Upgrade"	// this is a dictionary key, do not localize it
+#define kUpgradeLevelObjectStr  NSLocalizedString(@"Upgrade", @"Upgrade")
+#define kUnlockedLevelsKey	NSLocalizedString(@"kUnlockedLevelsKey", @"kUnlockedLevelsKey")
 
 
 @implementation iScannerAppDelegate
@@ -75,8 +75,17 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     
+//	float f = hypotf(512, 512);
+//	NSLog(@"%f", f);
+
+	
     // Override point for customization after app launch  
+
+	// debugging
 	NSLog(@"%@", [[NSBundle mainBundle] bundleIdentifier]);
+	NSString *bundleDisplayName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+	NSString *bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+	NSLog(@"\nDisplay name: %@, Name: %@", bundleDisplayName, bundleName);
 	
 	// init level objects (load from plist file)
 	levelsDic = [[PListReader applicationPlistFromFile:[[NSBundle mainBundle] pathForResource:@"Levels" ofType:@"plist"]] retain];
@@ -94,6 +103,9 @@
 	levelPacksDic = [[NSDictionary alloc] initWithObjectsAndKeys:basicLevelPack, kBasicLevelPackKey, nil];
 	
 	// read unlocked levels dictionary from user defaults
+	//NSString *userLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
+	//NSLog(@"%@", userLanguage);
+	
 	unlockedLevelsDic = [[NSUserDefaults standardUserDefaults] objectForKey:kUnlockedLevelsKey];
 	if (!unlockedLevelsDic) {
 		// first time, nothing in user default yet
@@ -107,6 +119,9 @@
 	
 	// full version flag
 	fullVersion = [[NSUserDefaults standardUserDefaults] boolForKey:kFullVersionKey];
+	
+	// enable sound by default
+	soundOn = TRUE;
 	
 	// TODO: new level packs added, look for missing levels in unlocked levels dic and add them
 	
@@ -136,7 +151,6 @@
 	
 	// save full version flag
 	[[NSUserDefaults standardUserDefaults] setBool:fullVersion forKey:kFullVersionKey];
-	
 	
 	// save unlocked levels dictionary to user defaults
 	[[NSUserDefaults standardUserDefaults] setObject:unlockedLevelsDic forKey:kUnlockedLevelsKey];	
@@ -176,7 +190,11 @@
 #define kLeaderboardKey	@"LeaderboardID"
 #define kBeginnerAchKey	@"BeginnerAchID"
 #define kUpgradeAchKey	@"UpgradeAchID"
+#define	kEagleEyeAchKey	@"EagleEyeAchID"
+#define kHawkEyedAchKey	@"HawkEyedAchID"
 #define	kBeginnerAchLevels	(10)
+#define kEagleEyeAchLevels	(25)
+#define kHawkEyedAchLevels	(50)
 
 - (void)unlockLevel:(NSInteger)levelIdx forLevelPackWithKey:(NSString *)key {
     if (levelIdx > [[unlockedLevelsDic objectForKey:key] integerValue]) {
@@ -193,6 +211,13 @@
 		if (levelIdx > kBeginnerAchLevels) {
 			[OFAchievementService unlockAchievement:[openFeintDic objectForKey:kBeginnerAchKey]];
 		}
+		if (levelIdx > kEagleEyeAchLevels) {
+			[OFAchievementService unlockAchievement:[openFeintDic objectForKey:kEagleEyeAchKey]];
+		}
+		if (levelIdx > kHawkEyedAchLevels) {
+			[OFAchievementService unlockAchievement:[openFeintDic objectForKey:kHawkEyedAchKey]];
+		}
+		
 		// TODO: other achievements
     }
 }
@@ -222,7 +247,7 @@
 }
 
 - (BOOL)isUpgradeLevel:(Level *)level {
-	return [level.objectStr isEqual:kUpgradeLevelObjectStr];
+	return ([level.objectStr caseInsensitiveCompare:kUpgradeLevelObjectStr] == NSOrderedSame);
 }
 
 @end

@@ -32,7 +32,6 @@
 		ED212CC41120526600BC4FBD /* PListReader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED212CC31120526600BC4FBD /* PListReader.m */; };
 		ED212F3E1121786500BC4FBD /* CutView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED212F3D1121786500BC4FBD /* CutView.m */; };
 		ED2131B91122CCE300BC4FBD /* UpgradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2131B71122CCE300BC4FBD /* UpgradeViewController.m */; };
-		ED2131BA1122CCE300BC4FBD /* UpgradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED2131B81122CCE300BC4FBD /* UpgradeViewController.xib */; };
 		ED2131DE1122EA5F00BC4FBD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2131DD1122EA5F00BC4FBD /* StoreKit.framework */; };
 		ED5D006811186288001AB944 /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5D006611186288001AB944 /* ScanViewController.m */; };
 		ED5D01521119B437001AB944 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5D01511119B437001AB944 /* Level.m */; };
@@ -716,6 +715,22 @@
 		ED77F9771124531C00AE03C1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED77F9761124531C00AE03C1 /* SystemConfiguration.framework */; };
 		ED77F99A11245D1000AE03C1 /* OpenFeint.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED77F99811245D1000AE03C1 /* OpenFeint.plist */; };
 		ED77F9B3112463AE00AE03C1 /* openfeint_offline_config.xml in Resources */ = {isa = PBXBuildFile; fileRef = ED77F9B2112463AE00AE03C1 /* openfeint_offline_config.xml */; };
+		ED77FA771125A14700AE03C1 /* UpgradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED77FA761125A14700AE03C1 /* UpgradeViewController.xib */; };
+		ED77FA7E1125A17600AE03C1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED77FA7C1125A17600AE03C1 /* Localizable.strings */; };
+		ED77FB561126704700AE03C1 /* badge_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FB551126704700AE03C1 /* badge_30x30.png */; };
+		ED77FB751126826D00AE03C1 /* sound-frame-1.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FB6F1126826D00AE03C1 /* sound-frame-1.png */; };
+		ED77FB761126826D00AE03C1 /* sound-frame-2.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FB701126826D00AE03C1 /* sound-frame-2.png */; };
+		ED77FB771126826D00AE03C1 /* sound-frame-3.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FB711126826D00AE03C1 /* sound-frame-3.png */; };
+		ED77FB781126826D00AE03C1 /* sound-frame-4.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FB721126826D00AE03C1 /* sound-frame-4.png */; };
+		ED77FB791126826D00AE03C1 /* sound-frame-5.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FB731126826D00AE03C1 /* sound-frame-5.png */; };
+		ED77FB7A1126826D00AE03C1 /* sound-frame-6.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FB741126826D00AE03C1 /* sound-frame-6.png */; };
+		ED77FC921126F54700AE03C1 /* cut_sector_1.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FC911126F54700AE03C1 /* cut_sector_1.png */; };
+		ED77FCA11126FB3400AE03C1 /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FCA01126FB3400AE03C1 /* grid.png */; };
+		ED77FCC011279AD800AE03C1 /* grid2.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FCBF11279AD800AE03C1 /* grid2.png */; };
+		ED77FCC71127A57A00AE03C1 /* preved.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FCC61127A57A00AE03C1 /* preved.png */; };
+		ED77FCD11127A8FB00AE03C1 /* smiley.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FCD01127A8FB00AE03C1 /* smiley.png */; };
+		ED77FCFA1127C99800AE03C1 /* button_140x40.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FCF91127C99800AE03C1 /* button_140x40.png */; };
+		ED77FD191128030400AE03C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED77FD171128030400AE03C1 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -746,7 +761,6 @@
 		ED212CB81120525600BC4FBD /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		ED212CB91120525600BC4FBD /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		ED212CBA1120525600BC4FBD /* ru */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ru; path = ru.lproj/BasicLevelPack.plist; sourceTree = "<group>"; };
-		ED212CBB1120525600BC4FBD /* ru */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ru; path = ru.lproj/Levels.plist; sourceTree = "<group>"; };
 		ED212CBC1120525600BC4FBD /* ScanViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScanViewController.xib; sourceTree = "<group>"; };
 		ED212CC21120526600BC4FBD /* PListReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PListReader.h; sourceTree = "<group>"; };
 		ED212CC31120526600BC4FBD /* PListReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PListReader.m; sourceTree = "<group>"; };
@@ -754,7 +768,6 @@
 		ED212F3D1121786500BC4FBD /* CutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CutView.m; sourceTree = "<group>"; };
 		ED2131B61122CCE300BC4FBD /* UpgradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeViewController.h; sourceTree = "<group>"; };
 		ED2131B71122CCE300BC4FBD /* UpgradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeViewController.m; sourceTree = "<group>"; };
-		ED2131B81122CCE300BC4FBD /* UpgradeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UpgradeViewController.xib; path = ../Classes/UpgradeViewController.xib; sourceTree = "<group>"; };
 		ED2131DD1122EA5F00BC4FBD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		ED5D006511186288001AB944 /* ScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
 		ED5D006611186288001AB944 /* ScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
@@ -1854,6 +1867,25 @@
 		ED77F99911245D1000AE03C1 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/OpenFeint.plist; sourceTree = "<group>"; };
 		ED77F99B11245D1A00AE03C1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = ru; path = ru.lproj/OpenFeint.plist; sourceTree = "<group>"; };
 		ED77F9B2112463AE00AE03C1 /* openfeint_offline_config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = openfeint_offline_config.xml; sourceTree = "<group>"; };
+		ED77FA6011259F5700AE03C1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = ru; path = ru.lproj/Levels.plist; sourceTree = "<group>"; };
+		ED77FA761125A14700AE03C1 /* UpgradeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpgradeViewController.xib; sourceTree = "<group>"; };
+		ED77FA7D1125A17600AE03C1 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ED77FA7F1125A18000AE03C1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ED77FB551126704700AE03C1 /* badge_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = badge_30x30.png; sourceTree = "<group>"; };
+		ED77FB6F1126826D00AE03C1 /* sound-frame-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sound-frame-1.png"; sourceTree = "<group>"; };
+		ED77FB701126826D00AE03C1 /* sound-frame-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sound-frame-2.png"; sourceTree = "<group>"; };
+		ED77FB711126826D00AE03C1 /* sound-frame-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sound-frame-3.png"; sourceTree = "<group>"; };
+		ED77FB721126826D00AE03C1 /* sound-frame-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sound-frame-4.png"; sourceTree = "<group>"; };
+		ED77FB731126826D00AE03C1 /* sound-frame-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sound-frame-5.png"; sourceTree = "<group>"; };
+		ED77FB741126826D00AE03C1 /* sound-frame-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sound-frame-6.png"; sourceTree = "<group>"; };
+		ED77FC911126F54700AE03C1 /* cut_sector_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cut_sector_1.png; sourceTree = "<group>"; };
+		ED77FCA01126FB3400AE03C1 /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
+		ED77FCBF11279AD800AE03C1 /* grid2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid2.png; sourceTree = "<group>"; };
+		ED77FCC61127A57A00AE03C1 /* preved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preved.png; sourceTree = "<group>"; };
+		ED77FCD01127A8FB00AE03C1 /* smiley.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smiley.png; sourceTree = "<group>"; };
+		ED77FCF91127C99800AE03C1 /* button_140x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_140x40.png; sourceTree = "<group>"; };
+		ED77FD181128030400AE03C1 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ED77FD1A1128030E00AE03C1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1963,6 +1995,19 @@
 		ED212C9E1120523300BC4FBD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				ED77FCF91127C99800AE03C1 /* button_140x40.png */,
+				ED77FCD01127A8FB00AE03C1 /* smiley.png */,
+				ED77FCC61127A57A00AE03C1 /* preved.png */,
+				ED77FCBF11279AD800AE03C1 /* grid2.png */,
+				ED77FCA01126FB3400AE03C1 /* grid.png */,
+				ED77FC911126F54700AE03C1 /* cut_sector_1.png */,
+				ED77FB6F1126826D00AE03C1 /* sound-frame-1.png */,
+				ED77FB701126826D00AE03C1 /* sound-frame-2.png */,
+				ED77FB711126826D00AE03C1 /* sound-frame-3.png */,
+				ED77FB721126826D00AE03C1 /* sound-frame-4.png */,
+				ED77FB731126826D00AE03C1 /* sound-frame-5.png */,
+				ED77FB741126826D00AE03C1 /* sound-frame-6.png */,
+				ED77FB551126704700AE03C1 /* badge_30x30.png */,
 				ED77F13F11244AB700AE03C1 /* atom.png */,
 				ED77F09D112423B700AE03C1 /* recycle.png */,
 				ED212CB11120524B00BC4FBD /* cut_sector.png */,
@@ -1982,14 +2027,16 @@
 		ED212CB31120525600BC4FBD /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				ED77FD171128030400AE03C1 /* InfoPlist.strings */,
+				ED77FA7C1125A17600AE03C1 /* Localizable.strings */,
 				ED77F9B2112463AE00AE03C1 /* openfeint_offline_config.xml */,
+				ED212CB61120525600BC4FBD /* Levels.plist */,
 				ED77F99811245D1000AE03C1 /* OpenFeint.plist */,
 				ED212CB41120525600BC4FBD /* BasicLevelPack.plist */,
-				ED212CB61120525600BC4FBD /* Levels.plist */,
 				ED212CB81120525600BC4FBD /* MainWindow.xib */,
 				ED212CB91120525600BC4FBD /* RootViewController.xib */,
 				ED212CBC1120525600BC4FBD /* ScanViewController.xib */,
-				ED2131B81122CCE300BC4FBD /* UpgradeViewController.xib */,
+				ED77FA761125A14700AE03C1 /* UpgradeViewController.xib */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -4846,7 +4893,6 @@
 				ED212CBF1120525600BC4FBD /* MainWindow.xib in Resources */,
 				ED212CC01120525600BC4FBD /* RootViewController.xib in Resources */,
 				ED212CC11120525600BC4FBD /* ScanViewController.xib in Resources */,
-				ED2131BA1122CCE300BC4FBD /* UpgradeViewController.xib in Resources */,
 				ED77F09E112423B700AE03C1 /* recycle.png in Resources */,
 				ED77F14011244AB700AE03C1 /* atom.png in Resources */,
 				ED77F6ED1124509D00AE03C1 /* OFSmartObject.inl in Resources */,
@@ -5144,6 +5190,22 @@
 				ED77F8C61124509D00AE03C1 /* OFDashboardTabNowPlayingPortraitHit.png in Resources */,
 				ED77F99A11245D1000AE03C1 /* OpenFeint.plist in Resources */,
 				ED77F9B3112463AE00AE03C1 /* openfeint_offline_config.xml in Resources */,
+				ED77FA771125A14700AE03C1 /* UpgradeViewController.xib in Resources */,
+				ED77FA7E1125A17600AE03C1 /* Localizable.strings in Resources */,
+				ED77FB561126704700AE03C1 /* badge_30x30.png in Resources */,
+				ED77FB751126826D00AE03C1 /* sound-frame-1.png in Resources */,
+				ED77FB761126826D00AE03C1 /* sound-frame-2.png in Resources */,
+				ED77FB771126826D00AE03C1 /* sound-frame-3.png in Resources */,
+				ED77FB781126826D00AE03C1 /* sound-frame-4.png in Resources */,
+				ED77FB791126826D00AE03C1 /* sound-frame-5.png in Resources */,
+				ED77FB7A1126826D00AE03C1 /* sound-frame-6.png in Resources */,
+				ED77FC921126F54700AE03C1 /* cut_sector_1.png in Resources */,
+				ED77FCA11126FB3400AE03C1 /* grid.png in Resources */,
+				ED77FCC011279AD800AE03C1 /* grid2.png in Resources */,
+				ED77FCC71127A57A00AE03C1 /* preved.png in Resources */,
+				ED77FCD11127A8FB00AE03C1 /* smiley.png in Resources */,
+				ED77FCFA1127C99800AE03C1 /* button_140x40.png in Resources */,
+				ED77FD191128030400AE03C1 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5558,7 +5620,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				ED212CB71120525600BC4FBD /* en */,
-				ED212CBB1120525600BC4FBD /* ru */,
+				ED77FA6011259F5700AE03C1 /* ru */,
 			);
 			name = Levels.plist;
 			sourceTree = "<group>";
@@ -5570,6 +5632,24 @@
 				ED77F99B11245D1A00AE03C1 /* ru */,
 			);
 			name = OpenFeint.plist;
+			sourceTree = "<group>";
+		};
+		ED77FA7C1125A17600AE03C1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED77FA7D1125A17600AE03C1 /* en */,
+				ED77FA7F1125A18000AE03C1 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		ED77FD171128030400AE03C1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED77FD181128030400AE03C1 /* en */,
+				ED77FD1A1128030E00AE03C1 /* ru */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

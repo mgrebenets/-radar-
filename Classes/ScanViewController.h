@@ -23,8 +23,9 @@
 	IBOutlet CutView *cutView;
 	IBOutlet UIImageView *objectImageView;
 	IBOutlet UILabel *objectLabel;
+	IBOutlet UIButton *backButton;
 	IBOutlet UIButton *openFeintButton;
-	IBOutlet UIButton *soundButton;
+	IBOutlet UIImageView *soundButton;
 	IBOutlet UILabel *levelLabel;
 	IBOutlet UIButton *prevLevelButton;
 	IBOutlet UIButton *firstLevelButton;
@@ -33,8 +34,11 @@
 	IBOutlet UILabel *messageLabel;
 	IBOutlet UILabel *tapMessage;
 	IBOutlet UITextField *answerTextField;
-	CGRect answerFieldOriginalFrmae;
+	IBOutlet UIButton *menuButton;
+	CGRect answerFieldOriginalFrame;
 	IBOutlet UILabel *answerCheckLabel;
+	NSArray *correctMessages;
+	NSArray *wrongMessages;	
 }
 
 - (void)tapAction:(id)sender;
@@ -50,5 +54,6 @@
 
 @property (nonatomic, retain) NSString *levelPackId;
 @property NSInteger levelIdx;
+@property (readonly) UIImageView *soundButton;
 
 @end

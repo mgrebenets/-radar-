@@ -30,6 +30,11 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+	UITouch *touch = [touches anyObject];
+	if ([viewCtl.soundButton hitTest:[touch locationInView:viewCtl.soundButton] withEvent:event]) {
+		[viewCtl soundAction:self];
+		return;
+	}
 	[viewCtl tapAction:self];
 }
 

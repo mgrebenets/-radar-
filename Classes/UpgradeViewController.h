@@ -19,6 +19,9 @@
 	IBOutlet UIActivityIndicatorView *indicatorView;
 	IBOutlet UIButton *backButton;
 	IBOutlet UIButton *buyButton;
+	IBOutlet UILabel *moreNowLabel;
+	IBOutlet UILabel *moreLaterLabel;
+	IBOutlet UILabel *moreAchievementsLabel;
 }
 
 - (IBAction)backAction:(id)sender;

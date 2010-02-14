@@ -7,7 +7,6 @@
  *
  */
 
-#define locStr(x)	NSLocalizedString(x, x)
 
 #define BEGIN_ANIMATION_DELAYED(id, duration, delay) \
 	[UIView beginAnimations:id context:NULL];\

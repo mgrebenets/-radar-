@@ -7,10 +7,10 @@
 		<key>levelType</key>
 		<integer>0</integer>
 		<key>objectStr</key>
-		<string>X</string>
+		<string>+</string>
 		<key>answers</key>
 		<array>
-			<string>cross</string>
+			<string>plus</string>
 		</array>
 	</dict>
 	<key>A</key>
@@ -779,6 +779,20 @@
 			<string>happy</string>
 		</array>
 	</dict>
+	<key>Yellow Smiley</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>smiley.png</string>
+		<key>answers</key>
+		<array>
+			<string>:)</string>
+			<string>smile</string>
+			<string>smiley</string>
+			<string>happy</string>
+		</array>
+	</dict>
 	<key>Sad Smile</key>
 	<dict>
 		<key>levelType</key>
@@ -906,6 +920,9 @@
 		<key>answers</key>
 		<array>
 			<string>peace</string>
+			<string>pacifica</string>
+			<string>pacifism</string>
+			<string>hippy</string>
 		</array>
 	</dict>
 	<key>Phone</key>
@@ -1663,7 +1680,7 @@
 		<array>
 			<string>david star</string>
 			<string>david&apos;s star</string>
-			<string>djudaism</string>
+			<string>judaism</string>
 		</array>
 	</dict>
 	<key>Roman II</key>
@@ -1852,7 +1869,7 @@
 		<string>℃</string>
 		<key>answers</key>
 		<array>
-			<string>celcius</string>
+			<string>celsius</string>
 			<string>temperature</string>
 			<string>degree</string>
 		</array>
@@ -1866,6 +1883,13 @@
 		<key>answers</key>
 		<array>
 			<string>ankh</string>
+			<string>key of life</string>
+			<string>key of the nile</string>
+			<string>key of nile</string>
+			<string>the key of the nile</string>
+			<string>crux ansata</string>
+			<string>eternal life</string>
+			<string>handled cross</string>
 			<string>lost</string>
 		</array>
 	</dict>
@@ -2040,6 +2064,7 @@
 		<key>answers</key>
 		<array>
 			<string>hammer and pick</string>
+			<string>tools</string>
 		</array>
 	</dict>
 	<key>Anchor</key>
@@ -2100,17 +2125,39 @@
 			<string>lightning bolt</string>
 		</array>
 	</dict>
+	<key>Preved</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>preved.png</string>
+		<key>answers</key>
+		<array>
+			<string>preved</string>
+			<string>medved</string>
+			<string>krosavcheg</string>
+		</array>
+	</dict>
 	<key>Upgrade</key>
 	<dict>
 		<key>levelType</key>
 		<integer>0</integer>
 		<key>objectStr</key>
-		<string>Upgrade</string>
+		<string>UPGRADE</string>
 		<key>answers</key>
 		<array>
 			<string>upgrade</string>
 			<string>yes</string>
 		</array>
+	</dict>
+	<key>To Be Continued</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>To be continued...</string>
+		<key>answers</key>
+		<array/>
 	</dict>
 	<key>End</key>
 	<dict>

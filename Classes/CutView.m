@@ -13,7 +13,7 @@
 #define	kHorizontalScanImageName	@"5_cut_static.png"
 
 // ray scan image
-#define kRayScanImageName	@"cut_sector.png"
+#define kRayScanImageName	@"cut_sector_1.png"
 
 // drawn concentric scan
 #define kDrawnConcentricScanTimerInterval	(0.05f)

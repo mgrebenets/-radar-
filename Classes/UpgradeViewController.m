@@ -8,20 +8,22 @@
 
 #import "UpgradeViewController.h"
 #import "iScannerAppDelegate.h"
+#import "RotatingSymbolsViewController.h"
 #import "Macro.h"
 
 
 @implementation UpgradeViewController
 
-/*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
+		
+		glyphsViewCtl = [[RotatingSymbolsViewController alloc] initWithNibName:@"RotatingSymbolsViewController" bundle:[NSBundle mainBundle]];
     }
     return self;
 }
-*/
+
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -32,13 +34,30 @@
 	// observe transactions
 	[[SKPaymentQueue defaultQueue] addTransactionObserver:self];
 	
+	upgradeLabel.text = NSLocalizedString(@"Upgrade", @"Upgrade");
 	moreNowLabel.text = NSLocalizedString(@"More Levels Now", @"More Levels Now");
 	moreLaterLabel.text = NSLocalizedString(@"More Levels Later", @"More Levels Later");
 	moreAchievementsLabel.text = NSLocalizedString(@"More Achievements", @"More Achievements");
 	[backButton setTitle:NSLocalizedString(@"Back", @"Back") forState:UIControlStateNormal];
 	[buyButton setTitle:NSLocalizedString(@"Buy", @"Buy") forState:UIControlStateNormal];
+	
+	[self.view insertSubview:glyphsViewCtl.view atIndex:0];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+
+	[glyphsViewCtl startAnimating];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	[glyphsViewCtl stopAnimating];
+}
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -77,12 +96,16 @@
 #pragma mark SKPaymentTransactionObserver protocol implementation
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions{
 	for (SKPaymentTransaction *transaction in transactions) {
+#ifdef DEBUGFULL
 		NSLog(@"State: %d", transaction.transactionState);
 		NSLog(@"Id: %d", transaction.transactionIdentifier);
+#endif		
 		switch (transaction.transactionState) {
 			case SKPaymentTransactionStatePurchased:
 			case SKPaymentTransactionStateRestored:
+#ifdef DEBUGFULL				
 				NSLog(@"Transaction purchased or restored");
+#endif				
 				[[SKPaymentQueue defaultQueue] finishTransaction:transaction];	
 				
 				// set app delegate full version flag
@@ -98,15 +121,19 @@
 				
 				break;
 			case SKPaymentTransactionStateFailed:
+#ifdef DEBUGFULL				
 				NSLog(@"Tranaction failed");
+#endif				
 				// user has already been notified about failed transaction by AppStore dialog
 				[[SKPaymentQueue defaultQueue] finishTransaction:transaction];	
-				
+
+#ifdef DEBUGFULL				
 				NSLog(@"%@", transaction.error);
 				NSLog(@"%@", [transaction.error localizedDescription]);
 				NSLog(@"%@", [transaction.error localizedFailureReason]);				
 				NSLog(@"%@", [transaction.error localizedRecoveryOptions]);
 				NSLog(@"%@", [transaction.error localizedRecoverySuggestion]);
+#endif
 				
 				[indicatorView stopAnimating];
 				
@@ -123,7 +150,9 @@
 				buyButton.enabled = YES;
 				break;
 			default:
+#ifdef DEBUGFULL				
 				NSLog(@"Transaction is still in progress");
+#endif				
 				break;
 		}
 	}
@@ -138,7 +167,9 @@
 #define kProductID	@"com.i4nApps.iRadar.FullVersion"
 
 - (IBAction)buyAction:(id)sender {
+#ifdef DEBUGFULL	
 	NSLog(@"%s", _cmd);
+#endif	
 	
 	// initiate payment
 	SKPayment *payment = [SKPayment paymentWithProductIdentifier:kProductID];

@@ -24,8 +24,10 @@
 	NSString *error;
 	id retPlist;
 	NSPropertyListFormat format;
-	
+
+#ifdef DEBUGFULL	
 	NSLog(@"\napplicationPlistFromFile");
+#endif
 	
 	retData = [PListReader applicationDataFromFile:fileName];
 	if (!retData) {	

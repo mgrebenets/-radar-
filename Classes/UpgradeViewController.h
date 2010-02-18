@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <StoreKit/StoreKit.h>
 @class iScannerAppDelegate;
-
+@class RotatingSymbolsViewController;
 
 @interface UpgradeViewController : UIViewController 
 									<UIAlertViewDelegate,
@@ -19,9 +19,11 @@
 	IBOutlet UIActivityIndicatorView *indicatorView;
 	IBOutlet UIButton *backButton;
 	IBOutlet UIButton *buyButton;
+	IBOutlet UILabel *upgradeLabel;
 	IBOutlet UILabel *moreNowLabel;
 	IBOutlet UILabel *moreLaterLabel;
 	IBOutlet UILabel *moreAchievementsLabel;
+	RotatingSymbolsViewController *glyphsViewCtl;
 }
 
 - (IBAction)backAction:(id)sender;

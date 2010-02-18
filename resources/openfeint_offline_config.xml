@@ -1,16 +1,16 @@
 <resources>
 <game_profile_page_info>
-  <short_name>-Radar-</short_name>
-  <has_ipurchase>false</has_ipurchase>
-  <is_owned_by_local_player>true</is_owned_by_local_player>
-  <has_chat_rooms>false</has_chat_rooms>
-  <name>-Radar-</name>
-  <has_challenges>false</has_challenges>
   <suggestions_topic_id>136133</suggestions_topic_id>
   <has_achievements>true</has_achievements>
   <has_featured_application>false</has_featured_application>
-  <id>59823</id>
   <has_leaderboards>true</has_leaderboards>
+  <short_name>-Radar-</short_name>
+  <name>-Radar-</name>
+  <has_ipurchase>false</has_ipurchase>
+  <is_owned_by_local_player>true</is_owned_by_local_player>
+  <has_chat_rooms>false</has_chat_rooms>
+  <id>59823</id>
+  <has_challenges>false</has_challenges>
 </game_profile_page_info>
 <offline>
   <leaderboards>
@@ -30,6 +30,24 @@
       <score nil="true"></score>
       <start_version>0000.00.00</start_version>
       <updated_at>2010-02-11T15:26:29Z</updated_at>
+      <visible>true</visible>
+    </leaderboard>
+    <leaderboard>
+      <active>true</active>
+      <allow_posting_lower_scores>false</allow_posting_lower_scores>
+      <client_application_id>59823</client_application_id>
+      <created_at>2010-02-11T15:46:56Z</created_at>
+      <custom_data nil="true"></custom_data>
+      <descending_sort_order>true</descending_sort_order>
+      <display_text nil="true"></display_text>
+      <end_version>9999.99.99</end_version>
+      <id>185083</id>
+      <is_aggregate>false</is_aggregate>
+      <name>&#1054;&#1073;&#1097;&#1080;&#1081; &#1047;&#1072;&#1095;&#1077;&#1090;</name>
+      <reached_at nil="true"></reached_at>
+      <score nil="true"></score>
+      <start_version>0000.00.00</start_version>
+      <updated_at>2010-02-15T14:20:46Z</updated_at>
       <visible>true</visible>
     </leaderboard>
   </leaderboards>

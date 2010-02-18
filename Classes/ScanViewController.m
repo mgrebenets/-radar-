@@ -51,6 +51,7 @@
 #define kProceedToUpgradeAnimationID	@"kProceedToUpgradeAnimationID"
 
 #define	kSoundAnimationImagesCnt	(6)
+#define KSoundAnimationDuration		(4.0f)
 
 @interface ScanViewController ()
 - (Level *)currentLevel;
@@ -134,7 +135,7 @@ enum _MoveDirection {
 		[animationImages addObject:[UIImage imageNamed:imageName]];
 	}
 	soundButton.animationImages = animationImages;
-	soundButton.animationDuration = 1.0f;
+	soundButton.animationDuration = KSoundAnimationDuration;
 	soundButton.animationRepeatCount = 0;
 	
 	cutView.cutViewType = CutViewTypeRayScan;
@@ -318,10 +319,14 @@ enum _MoveDirection {
 						finished:(NSNumber *)finished 
 						 context:(void *)context 
 {
+#ifdef DEBUGFULL	
 	NSLog(@"scanViewAnimationDidStop:%@ finished:%d", animationID, [finished integerValue]);
+#endif
 	
 	if ([animationID isEqual:kViewAppearanceAnimation]) {
+#ifdef DEBUGFULL
 		NSLog(@"kViewAppearanceAnimation animation done");
+#endif		
 		if (tutorialLevel) {
 			[self doTutorialStep];
 		}
@@ -364,11 +369,14 @@ enum _MoveDirection {
 		[self.navigationController pushViewController:upgradeViewCtl animated:YES];
 		[upgradeViewCtl release];
 	} else if ([animationID isEqual:kHideAnswerCheckAnimationID]) {
+#ifdef DEBUGFULL
 		NSLog(@"kHideAnswerCheckAnimationID");
+#endif		
 	} else if ([animationID isEqual:kCheckAnswerAnimationID]) {
+#ifdef DEBUGFULL
 		NSLog(@"kCheckAnswerAnimationID");
+#endif		
 	}
-	
 }
 
 #pragma mark -
@@ -395,7 +403,7 @@ enum _MoveDirection {
 }
 
 - (void)tapAction:(id)sender {
-	NSLog(@"tapAction");
+	//NSLog(@"tapAction");
 	if (!requireTouch) return;
 	if (!tutorialLevel) return;
 	BEGIN_ANIMATION(kHideTapRequestAnimationID, kTapRequestAnimationDuration);
@@ -421,6 +429,8 @@ enum _MoveDirection {
 		}
 		// display "correct" answer label
 		BEGIN_ANIMATION(kCheckAnswerAnimationID, kCheckAnswerAnimationDuration);
+		answerTextField.enabled = NO;
+		answerTextField.textColor = [UIColor grayColor];
 		answerCheckLabel.layer.opacity = 1.0f;
 		cutView.layer.opacity = kRevealOpacity; // show the answer
 		COMMIT_ANIMATION();
@@ -441,6 +451,8 @@ enum _MoveDirection {
 			answerCheckLabel.text = [correctMessages objectAtIndex:(rand() % correctMessages.count)];
 			answerCheckLabel.textColor = kCorrectAnswerColor;
 			cutView.layer.opacity = kRevealOpacity;
+			answerTextField.enabled = NO;
+			answerTextField.textColor = [UIColor grayColor];
 		} else {
 			// TODO: play wrong sound
 			answerCheckLabel.text = [wrongMessages objectAtIndex:(rand() % wrongMessages.count)];
@@ -471,7 +483,9 @@ enum _MoveDirection {
 
 #define kAnswerFieldResizeX     (80.0f)     // resize
 - (void)moveAnswerTextField:(enum _MoveDirection)moveDirection keyboardHeight:(CGFloat)height {
+#ifdef DEBUGFULL
 	NSLog(@"%s", _cmd);
+#endif	
 	
 	CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;
 	BEGIN_ANIMATION(kMoveAnswerFieldAnimationID, kMoveAnswerFieldAnimationDuration);
@@ -495,7 +509,9 @@ enum _MoveDirection {
 }
 
 - (void)keyboardWillShow:(NSNotification*)aNotification {
+#ifdef DEBUGFULL
 	NSLog(@"%s", _cmd);
+#endif	
 	// Get the size of the keyboard.
 	NSDictionary* info = [aNotification userInfo];
 	NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
@@ -508,7 +524,9 @@ enum _MoveDirection {
 // Called when the UIKeyboardDidShowNotification is sent.
 - (void)keyboardDidShow:(NSNotification*)aNotification
 {
+#ifdef DEBUGFULL
 	NSLog(@"%s", _cmd);
+#endif	
 	// disable level navigation buttons
 	firstLevelButton.enabled = NO;
 	prevLevelButton.enabled = NO;
@@ -517,7 +535,9 @@ enum _MoveDirection {
 }
 
 - (void)keyboardWillHide:(NSNotification*)aNotification {
+#ifdef DEBUGFULL
     NSLog(@"%s", _cmd);
+#endif	
     // move the answer input field down (no need to know keyboard height here)
     [self moveAnswerTextField:MoveDirectionDown keyboardHeight:0];	
 }
@@ -525,7 +545,9 @@ enum _MoveDirection {
 // Called when the UIKeyboardDidHideNotification is sent
 - (void)keyboardDidHide:(NSNotification*)aNotification
 {
+#ifdef DEBUGFULL	
 	NSLog(@"%s", _cmd);
+#endif	
 	
 	// display "answer" string
 	answerTextField.text = [NSLocalizedString(@"Answer", @"Answer") lowercaseString];	
@@ -539,8 +561,10 @@ enum _MoveDirection {
 
 - (void)registerForKeyboardNotifications
 {
+#ifdef DEBUGFULL	
 	NSLog(@"%s", _cmd);
-
+#endif	
+	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(keyboardWillShow:)
 												 name:UIKeyboardWillShowNotification object:nil];
@@ -560,7 +584,9 @@ enum _MoveDirection {
 
 #pragma mark UITextFieldDelegate protocol implementation
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+#ifdef DEBUGFULL
 	NSLog(@"%s, input: %@", _cmd, textField.text);
+#endif	
 	
 	[textField resignFirstResponder];
 	

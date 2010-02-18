@@ -7,10 +7,10 @@
 		<key>levelType</key>
 		<integer>0</integer>
 		<key>objectStr</key>
-		<string>+</string>
+		<string>8</string>
 		<key>answers</key>
 		<array>
-			<string>плюс</string>
+			<string>восемь</string>
 		</array>
 	</dict>
 	<key>А</key>
@@ -2226,6 +2226,7 @@
 			<string>медвед</string>
 			<string>кросавчег</string>
 			<string>кагдила</string>
+			<string>медведь</string>
 		</array>
 	</dict>
 	<key>Upgrade</key>

@@ -6,6 +6,7 @@
 //  Copyright __MyCompanyName__ 2010. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
 #import "Level.h"
 
 #define kBasicLevelPackKey   @"kBasicLevelPackKey"
@@ -23,6 +24,7 @@
 	NSDictionary *levelPacksDic;
 	NSMutableDictionary *unlockedLevelsDic;
 	NSDictionary *openFeintDic;
+	AVAudioPlayer *audioPlayer;
 }
 
 - (void)openFeintAction:(id)sender;

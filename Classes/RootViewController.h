@@ -7,14 +7,19 @@
 //
 
 @class iScannerAppDelegate;
+@class RotatingSymbolsViewController;
 
-@interface RootViewController : UIViewController {
+@interface RootViewController : UIViewController <UIAlertViewDelegate> {
 	iScannerAppDelegate *appDelegate;
+	IBOutlet UIImageView *hourglassImageView;
+	IBOutlet UIImageView *gridImageView;
 	IBOutlet UIButton *upgradeButton;
 	IBOutlet UILabel *versionLabel;
 	IBOutlet UILabel *appNameLabel;
 	IBOutlet UILabel *versionNumLabel;
 	IBOutlet UIButton *startButton;
+	IBOutlet UIButton *openFeintButton;
+	RotatingSymbolsViewController *glyphsViewCtl;
 }
 
 - (IBAction)startAction:(id)sender;

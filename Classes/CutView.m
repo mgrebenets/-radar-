@@ -60,7 +60,9 @@
 }
 
 - (id)initWithFrame:(CGRect)frame {
+#ifdef DEBUGFULL	
 	NSLog(@"%s", _cmd);
+#endif	
     if (self = [super initWithFrame:frame]) {
         // Initialization code
 		self.cutViewType = CutViewTypeRayScan;

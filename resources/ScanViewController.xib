@@ -178,6 +178,7 @@
 							<double key="NSSize">10</double>
 							<int key="NSfFlags">16</int>
 						</object>
+						<bool key="IBUIShowsTouchWhenHighlighted">YES</bool>
 						<reference key="IBUIHighlightedTitleColor" ref="329603280"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -226,6 +227,10 @@
 						<object class="NSColor" key="IBUINormalTitleColor" id="878645866">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwLjYgMAA</bytes>
+						</object>
+						<object class="NSColor" key="IBUINormalTitleShadowColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MAA</bytes>
 						</object>
 					</object>
 					<object class="IBUIButton" id="684437338">
@@ -362,7 +367,7 @@
 					<object class="IBUILabel" id="464818276">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{5, 40}, {310, 40}}</string>
+						<string key="NSFrame">{{5, 40}, {310, 60}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -376,7 +381,7 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUINumberOfLines">2</int>
+						<int key="IBUINumberOfLines">3</int>
 						<int key="IBUITextAlignment">1</int>
 						<int key="IBUILineBreakMode">0</int>
 					</object>
@@ -684,13 +689,13 @@
 							<reference ref="998489622"/>
 							<reference ref="597548285"/>
 							<reference ref="559241262"/>
-							<reference ref="935089739"/>
 							<reference ref="114421435"/>
 							<reference ref="46259151"/>
 							<reference ref="652087712"/>
 							<reference ref="29482625"/>
 							<reference ref="107461011"/>
 							<reference ref="813937277"/>
+							<reference ref="935089739"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -840,7 +845,7 @@
 					<string>ScanViewController</string>
 					<string>UIResponder</string>
 					<string>TouchView</string>
-					<string>{{-958, 20}, {320, 480}}</string>
+					<string>{{-875, 31}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

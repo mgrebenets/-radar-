@@ -23,6 +23,10 @@
 #define kUpgradeLevelObjectStr  NSLocalizedString(@"Upgrade", @"Upgrade")
 #define kUnlockedLevelsKey	NSLocalizedString(@"kUnlockedLevelsKey", @"kUnlockedLevelsKey")
 
+@interface iScannerAppDelegate ()
+- (void)submitScore;
+@end
+
 
 @implementation iScannerAppDelegate
 
@@ -36,6 +40,17 @@
 	if (fullVersion) {
 		[self unlockUpgradeAchievement];
 	}
+}
+
+- (void)setSoundOn:(BOOL)sound {
+	if (soundOn != sound) {
+		if (sound) {
+			[audioPlayer play];
+		} else {
+			[audioPlayer stop];
+		}
+	}
+	soundOn = sound;
 }
 
 - (void)logLevelsDic:(NSDictionary *)theLevelsDic {
@@ -80,12 +95,16 @@
 
 	
     // Override point for customization after app launch  
+	
+	srand(time(NULL));
 
 	// debugging
+#ifdef DEBUGFULL	
 	NSLog(@"%@", [[NSBundle mainBundle] bundleIdentifier]);
 	NSString *bundleDisplayName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
 	NSString *bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
 	NSLog(@"\nDisplay name: %@, Name: %@", bundleDisplayName, bundleName);
+#endif
 	
 	// init level objects (load from plist file)
 	levelsDic = [[PListReader applicationPlistFromFile:[[NSBundle mainBundle] pathForResource:@"Levels" ofType:@"plist"]] retain];
@@ -120,8 +139,18 @@
 	// full version flag
 	fullVersion = [[NSUserDefaults standardUserDefaults] boolForKey:kFullVersionKey];
 	
-	// enable sound by default
-	soundOn = TRUE;
+	// disable sound by default
+	soundOn = FALSE;
+	
+	// prepare audio player
+	NSString *sonarSoundPath = [[NSBundle mainBundle] pathForResource:@"sonar" ofType:@"mp3"];
+	
+	audioPlayer = [[AVAudioPlayer alloc] 
+				   initWithContentsOfURL:[NSURL URLWithString:sonarSoundPath]
+				   error:nil];	
+	
+	audioPlayer.numberOfLoops = -1;
+	[audioPlayer setVolume:1];
 	
 	// TODO: new level packs added, look for missing levels in unlocked levels dic and add them
 	
@@ -131,7 +160,7 @@
 														   ofType:@"plist"]] retain];
 	
 	[window addSubview:[navigationController view]];
-    [window makeKeyAndVisible];
+	[window makeKeyAndVisible];
 	
 	// init open feint (AFTER MAIN WINDOW IS DISPLAYED)
 	[OpenFeint initializeWithProductKey:@"xc5YoWpsN9mbsqU8IvandA"
@@ -146,6 +175,10 @@
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+	
+	// submit score to open feint
+	[self submitScore];
+	
 	// Save data if appropriate	// Shutdown OpenFeint
 	[OpenFeint shutdown];
 	
@@ -154,6 +187,8 @@
 	
 	// save unlocked levels dictionary to user defaults
 	[[NSUserDefaults standardUserDefaults] setObject:unlockedLevelsDic forKey:kUnlockedLevelsKey];	
+	
+	[audioPlayer stop];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -164,7 +199,6 @@
 	[OpenFeint applicationDidBecomeActive];
 }
 
-
 #pragma mark -
 #pragma mark Memory management
 
@@ -174,13 +208,9 @@
 	[unlockedLevelsDic release];
 	[openFeintDic release];
 	[navigationController release];
+	[audioPlayer release];
 	[window release];
 	[super dealloc];
-}
-
-- (void)openFeintAction:(id)sender {
-	// launch openfeint dashboard
-	[OpenFeint launchDashboard];
 }
 
 - (NSArray *)levelPackForKey:(NSString *)key {
@@ -196,25 +226,52 @@
 #define kEagleEyeAchLevels	(25)
 #define kHawkEyedAchLevels	(50)
 
+- (void)submitScore {
+	// go through all levels and update score
+	for (NSString *levelPackKey in [levelPacksDic keyEnumerator]) {
+		// submit highscore for this level to leaderboard
+		NSInteger unlockedIdx = [[unlockedLevelsDic objectForKey:levelPackKey] integerValue];
+		// submit progress only when level at least level 2 is unlocked (so at least level 1 is solved)
+		if (unlockedIdx < 2) continue;
+		[OFHighScoreService setHighScore:(unlockedIdx - 1)
+						  forLeaderboard:[openFeintDic objectForKey:kLeaderboardKey] 
+							   onSuccess:OFDelegate() 
+							   onFailure:OFDelegate()];
+		
+	}	
+}
+
+- (void)openFeintAction:(id)sender {
+	// launch openfeint dashboard
+	[OpenFeint launchDashboard];
+	// send high score to OF for all level packs
+	[self submitScore];	
+}
+
 - (void)unlockLevel:(NSInteger)levelIdx forLevelPackWithKey:(NSString *)key {
     if (levelIdx > [[unlockedLevelsDic objectForKey:key] integerValue]) {
         // new value is greater than old - update to dictionary
         [unlockedLevelsDic setObject:[NSNumber numberWithInteger:levelIdx] forKey:key];
 		
-		// submit highscore to leaderboard
-		[OFHighScoreService setHighScore:levelIdx
-						  forLeaderboard:[openFeintDic objectForKey:kLeaderboardKey] 
-							   onSuccess:OFDelegate() 
-							   onFailure:OFDelegate()];
-		
 		// achievements
+		BOOL soundPlayed = FALSE;
 		if (levelIdx > kBeginnerAchLevels) {
+			// TODO: sound 
+			soundPlayed = TRUE;
 			[OFAchievementService unlockAchievement:[openFeintDic objectForKey:kBeginnerAchKey]];
 		}
 		if (levelIdx > kEagleEyeAchLevels) {
+			if (!soundPlayed) {
+				// TODO: play sound
+				soundPlayed = TRUE;
+			}
 			[OFAchievementService unlockAchievement:[openFeintDic objectForKey:kEagleEyeAchKey]];
 		}
 		if (levelIdx > kHawkEyedAchLevels) {
+			if (!soundPlayed) {
+				// TODO: play sound
+				soundPlayed = TRUE;
+			}			
 			[OFAchievementService unlockAchievement:[openFeintDic objectForKey:kHawkEyedAchKey]];
 		}
 		

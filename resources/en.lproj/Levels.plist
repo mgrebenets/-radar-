@@ -765,6 +765,79 @@
 			<string>sad</string>
 		</array>
 	</dict>
+	<key>;)</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>;)</string>
+		<key>answers</key>
+		<array>
+			<string>smile</string>
+			<string>smiley</string>
+			<string>wink</string>
+		</array>
+	</dict>
+	<key>;(</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>;(</string>
+		<key>answers</key>
+		<array>
+			<string>smile</string>
+			<string>smiley</string>
+			<string>cry</string>
+		</array>
+	</dict>
+	<key>:D</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>:D</string>
+		<key>answers</key>
+		<array>
+			<string>smile</string>
+			<string>smiley</string>
+			<string>laugh</string>
+			<string>happy</string>
+			<string>lol</string>
+		</array>
+	</dict>
+	<key>LOL</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>LOL</string>
+		<key>answers</key>
+		<array>
+			<string>lol</string>
+			<string>funny</string>
+			<string>laugh</string>
+			<string>lots of laugh</string>
+			<string>lots of laughing</string>
+		</array>
+	</dict>
+	<key>ORLY</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>ORLY</string>
+		<key>answers</key>
+		<array>
+			<string>orly</string>
+			<string>oh really</string>
+			<string>oh, really</string>
+			<string>oh, really!</string>
+			<string>oh really!</string>
+			<string>o&apos;really</string>
+			<string>o&apos;really!</string>
+		</array>
+	</dict>
 	<key>Happy Smile</key>
 	<dict>
 		<key>levelType</key>
@@ -826,8 +899,7 @@
 		<string>☂</string>
 		<key>answers</key>
 		<array>
-			<string>mail</string>
-			<string>envelope</string>
+			<string>umbrella</string>
 		</array>
 	</dict>
 	<key>Star</key>
@@ -898,17 +970,22 @@
 			<string>spades</string>
 		</array>
 	</dict>
-	<key>Skull</key>
+	<key>Jolly Roger</key>
 	<dict>
 		<key>levelType</key>
-		<integer>0</integer>
+		<integer>1</integer>
 		<key>objectStr</key>
-		<string>☠</string>
+		<string>jolly-roger.png</string>
 		<key>answers</key>
 		<array>
 			<string>skull</string>
 			<string>danger</string>
 			<string>death</string>
+			<string>jolly roger</string>
+			<string>pirate</string>
+			<string>pirates</string>
+			<string>corsair</string>
+			<string>corsairs</string>
 		</array>
 	</dict>
 	<key>Peace</key>
@@ -1436,6 +1513,7 @@
 		<key>answers</key>
 		<array>
 			<string>alpha</string>
+			<string>a</string>
 		</array>
 	</dict>
 	<key>Beta</key>
@@ -1681,6 +1759,10 @@
 			<string>david star</string>
 			<string>david&apos;s star</string>
 			<string>judaism</string>
+			<string>david</string>
+			<string>star of david</string>
+			<string>jewish star</string>
+			<string>hexagram</string>
 		</array>
 	</dict>
 	<key>Roman II</key>
@@ -2137,6 +2219,453 @@
 			<string>medved</string>
 			<string>krosavcheg</string>
 			<string>bear</string>
+		</array>
+	</dict>
+	<key>Olympic Rings</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>olympic-rings.png</string>
+		<key>answers</key>
+		<array>
+			<string>olympic rings</string>
+			<string>olympics</string>
+			<string>vancouver</string>
+			<string>rings</string>
+			<string>olympic</string>
+		</array>
+	</dict>
+	<key>Apple Logo</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>apple-logo.png</string>
+		<key>answers</key>
+		<array>
+			<string>apple</string>
+		</array>
+	</dict>
+	<key>Alpine Skiing</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>alpine-skiing.png</string>
+		<key>answers</key>
+		<array>
+			<string>alpine skiing</string>
+			<string>skiing</string>
+		</array>
+	</dict>
+	<key>Soccer Ball</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>soccer-ball.png</string>
+		<key>answers</key>
+		<array>
+			<string>soccer</string>
+			<string>football</string>
+			<string>soccer ball</string>
+			<string>ball</string>
+		</array>
+	</dict>
+	<key>Flag Russia</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>flag-russia.png</string>
+		<key>answers</key>
+		<array>
+			<string>russia</string>
+			<string>russian federation</string>
+			<string>russian flag</string>
+		</array>
+	</dict>
+	<key>Flag US</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>flag-us.png</string>
+		<key>answers</key>
+		<array>
+			<string>us</string>
+			<string>usa</string>
+			<string>united states</string>
+			<string>united states of america</string>
+			<string>america</string>
+		</array>
+	</dict>
+	<key>Flag Canada</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>flag-canada.png</string>
+		<key>answers</key>
+		<array>
+			<string>canada</string>
+			<string>maple leaf</string>
+			<string>canada flag</string>
+		</array>
+	</dict>
+	<key>Flag UK</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>flag-uk.png</string>
+		<key>answers</key>
+		<array>
+			<string>uk</string>
+			<string>united kingdom</string>
+			<string>gb</string>
+			<string>great britain</string>
+			<string>england</string>
+			<string>britain</string>
+			<string>hi hottab</string>
+		</array>
+	</dict>
+	<key>Flag Korea</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>flag-korea.png</string>
+		<key>answers</key>
+		<array>
+			<string>korea</string>
+			<string>south korea</string>
+			<string>corea</string>
+			<string>hanguk</string>
+			<string>samsung</string>
+		</array>
+	</dict>
+	<key>Flag EU</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>flag-eu.png</string>
+		<key>answers</key>
+		<array>
+			<string>eu</string>
+			<string>europe</string>
+			<string>european union</string>
+		</array>
+	</dict>
+	<key>Pool Ball 9</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>pool-ball-9.png</string>
+		<key>answers</key>
+		<array>
+			<string>pool</string>
+			<string>pool ball</string>
+			<string>ball</string>
+			<string>9</string>
+			<string>billiard</string>
+			<string>billiards</string>
+		</array>
+	</dict>
+	<key>Pool Ball 8</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>pool-ball-8.png</string>
+		<key>answers</key>
+		<array>
+			<string>pool</string>
+			<string>pool ball</string>
+			<string>ball</string>
+			<string>8</string>
+			<string>billiard</string>
+			<string>billiards</string>
+			<string>8 ball</string>
+			<string>ball 8</string>
+		</array>
+	</dict>
+	<key>Olympic Bear</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>olympic-bear.png</string>
+		<key>answers</key>
+		<array>
+			<string>bear</string>
+			<string>olympic bear</string>
+			<string>olympics</string>
+			<string>olympic games</string>
+			<string>moscow 80</string>
+		</array>
+	</dict>
+	<key>Avatar</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>avatar.png</string>
+		<key>answers</key>
+		<array>
+			<string>avatar</string>
+			<string>cameron</string>
+		</array>
+	</dict>
+	<key>Batman</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>batman.png</string>
+		<key>answers</key>
+		<array>
+			<string>batman</string>
+			<string>bat</string>
+		</array>
+	</dict>
+	<key>Darth Vader</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>darth-vader.png</string>
+		<key>answers</key>
+		<array>
+			<string>darth</string>
+			<string>darth vader</string>
+			<string>star wars</string>
+			<string>starwars</string>
+		</array>
+	</dict>
+	<key>FreeBSD</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>free-bsd.png</string>
+		<key>answers</key>
+		<array>
+			<string>linux</string>
+			<string>unix</string>
+			<string>freebsd</string>
+			<string>free bsd</string>
+			<string>devil</string>
+			<string>daemon</string>
+			<string>demon</string>
+		</array>
+	</dict>
+	<key>G-Clef</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>g-clef.png</string>
+		<key>answers</key>
+		<array>
+			<string>clef</string>
+			<string>g-clef</string>
+			<string>g clef</string>
+			<string>music</string>
+		</array>
+	</dict>
+	<key>Karlson</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>karlson.png</string>
+		<key>answers</key>
+		<array>
+			<string>karlson</string>
+			<string>astrid lindgren</string>
+			<string>karlsson</string>
+		</array>
+	</dict>
+	<key>Quake I</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>quake1.png</string>
+		<key>answers</key>
+		<array>
+			<string>quake</string>
+			<string>quake 1</string>
+			<string>quake I</string>
+			<string>game</string>
+			<string>pc game</string>
+			<string>q1</string>
+			<string>q 1</string>
+		</array>
+	</dict>
+	<key>Quake III</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>quake3.png</string>
+		<key>answers</key>
+		<array>
+			<string>quake</string>
+			<string>quake 3</string>
+			<string>q3</string>
+			<string>q 3</string>
+			<string>quake III</string>
+			<string>game</string>
+			<string>pc game</string>
+		</array>
+	</dict>
+	<key>Sputnik</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>sputnik.png</string>
+		<key>answers</key>
+		<array>
+			<string>sputnik</string>
+			<string>satellite</string>
+		</array>
+	</dict>
+	<key>Tux</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>tux.png</string>
+		<key>answers</key>
+		<array>
+			<string>linux</string>
+			<string>unix</string>
+			<string>tux</string>
+			<string>penguin</string>
+		</array>
+	</dict>
+	<key>USB</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>usb.png</string>
+		<key>answers</key>
+		<array>
+			<string>usb</string>
+			<string>universal serial bus</string>
+			<string>flash</string>
+			<string>memory stick</string>
+			<string>usb stick</string>
+		</array>
+	</dict>
+	<key>Homer X-Ray</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>homer-x-ray.png</string>
+		<key>answers</key>
+		<array>
+			<string>simpson</string>
+			<string>simpsons</string>
+			<string>homer</string>
+			<string>homer simpson</string>
+			<string>homer j simpson</string>
+			<string>x-ray</string>
+			<string>xray</string>
+			<string>x ray</string>
+			<string>homer x-ray</string>
+		</array>
+	</dict>
+	<key>Homer Simpson</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>homer-simpson.png</string>
+		<key>answers</key>
+		<array>
+			<string>simpson</string>
+			<string>simpsons</string>
+			<string>homer simpson</string>
+			<string>homer</string>
+			<string>homer j simpson</string>
+		</array>
+	</dict>
+	<key>Winnie Pooh</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>winnie-pooh.png</string>
+		<key>answers</key>
+		<array>
+			<string>winnie</string>
+			<string>pooh</string>
+			<string>winnie pooh</string>
+			<string>bear</string>
+		</array>
+	</dict>
+	<key>Alien Head</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>alien-head.png</string>
+		<key>answers</key>
+		<array>
+			<string>alien</string>
+			<string>alien head</string>
+			<string>aliens</string>
+			<string>ufo</string>
+			<string>extraterrestial</string>
+		</array>
+	</dict>
+	<key>Baseball</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>baseball.png</string>
+		<key>answers</key>
+		<array>
+			<string>baseball</string>
+		</array>
+	</dict>
+	<key>Baseball Player</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>baseball-player.png</string>
+		<key>answers</key>
+		<array>
+			<string>baseball</string>
+			<string>baseball player</string>
+			<string>batter</string>
+		</array>
+	</dict>
+	<key>No U Turn Sign</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>no-u-turn-sign.png</string>
+		<key>answers</key>
+		<array>
+			<string>no turn</string>
+			<string>no u turn</string>
+			<string>no u-turn</string>
+			<string>no uturn</string>
+			<string>road sign</string>
+			<string>sign</string>
 		</array>
 	</dict>
 	<key>Upgrade</key>

@@ -522,6 +522,7 @@
 			<string>и</string>
 			<string>конъюнкция</string>
 			<string>амперсант</string>
+			<string>амперсанд</string>
 		</array>
 	</dict>
 	<key>*</key>
@@ -835,6 +836,81 @@
 			<string>грусть</string>
 		</array>
 	</dict>
+	<key>;)</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>;)</string>
+		<key>answers</key>
+		<array>
+			<string>смайлик</string>
+			<string>улыбка</string>
+			<string>подмигивает</string>
+			<string>подмигиваю</string>
+			<string>подмигивать</string>
+			<string>хитрый</string>
+			<string>смайл</string>
+		</array>
+	</dict>
+	<key>;(</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>;(</string>
+		<key>answers</key>
+		<array>
+			<string>смайл</string>
+			<string>смайлки</string>
+			<string>плачет</string>
+			<string>плачу</string>
+			<string>плакать</string>
+		</array>
+	</dict>
+	<key>:D</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>:D</string>
+		<key>answers</key>
+		<array>
+			<string>смайл</string>
+			<string>смайлик</string>
+			<string>смех</string>
+			<string>смешно</string>
+			<string>смеюсь</string>
+			<string>ха ха ха</string>
+		</array>
+	</dict>
+	<key>УГ</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>УГ</string>
+		<key>answers</key>
+		<array>
+			<string>унылое говно</string>
+			<string>артемий лебедев</string>
+			<string>унылое гавно</string>
+		</array>
+	</dict>
+	<key>ХЗ</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>ХЗ</string>
+		<key>answers</key>
+		<array>
+			<string>а я хз</string>
+			<string>хз</string>
+			<string>хер знает</string>
+			<string>хуй знает</string>
+		</array>
+	</dict>
 	<key>Happy Smile</key>
 	<dict>
 		<key>levelType</key>
@@ -850,6 +926,20 @@
 			<string>радость</string>
 			<string>смех</string>
 			<string>веселье</string>
+		</array>
+	</dict>
+	<key>Yellow Smiley</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>smiley.png</string>
+		<key>answers</key>
+		<array>
+			<string>:)</string>
+			<string>смайл</string>
+			<string>смайлик</string>
+			<string>смайлики</string>
 		</array>
 	</dict>
 	<key>Sad Smile</key>
@@ -969,18 +1059,23 @@
 			<string>пики</string>
 		</array>
 	</dict>
-	<key>Skull</key>
+	<key>Jolly Roger</key>
 	<dict>
 		<key>levelType</key>
-		<integer>0</integer>
+		<integer>1</integer>
 		<key>objectStr</key>
-		<string>☠</string>
+		<string>jolly-roger.png</string>
 		<key>answers</key>
 		<array>
 			<string>череп</string>
 			<string>опастность</string>
 			<string>смерть</string>
 			<string>опасно</string>
+			<string>веселый роджер</string>
+			<string>пират</string>
+			<string>пираты</string>
+			<string>корсар</string>
+			<string>корсары</string>
 		</array>
 	</dict>
 	<key>Peace</key>
@@ -1492,6 +1587,8 @@
 		<key>answers</key>
 		<array>
 			<string>альфа</string>
+			<string>a</string>
+			<string>а</string>
 		</array>
 	</dict>
 	<key>Beta</key>
@@ -1594,6 +1691,7 @@
 		<array>
 			<string>король</string>
 			<string>шахматный король</string>
+			<string>корона</string>
 		</array>
 	</dict>
 	<key>Queen</key>
@@ -1607,6 +1705,7 @@
 			<string>королева</string>
 			<string>шахматная королева</string>
 			<string>ферзь</string>
+			<string>корона</string>
 		</array>
 	</dict>
 	<key>Rook</key>
@@ -1740,6 +1839,10 @@
 			<string>звезда давида</string>
 			<string>иудаизм</string>
 			<string>иудеи</string>
+			<string>гексаграма</string>
+			<string>гексаграмма</string>
+			<string>евреи</string>
+			<string>давид</string>
 		</array>
 	</dict>
 	<key>Roman II</key>
@@ -2227,6 +2330,505 @@
 			<string>кросавчег</string>
 			<string>кагдила</string>
 			<string>медведь</string>
+		</array>
+	</dict>
+	<key>Olympic Rings</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>olympic-rings.png</string>
+		<key>answers</key>
+		<array>
+			<string>олимпийские кольца</string>
+			<string>олимпиада</string>
+			<string>ванкувер</string>
+			<string>кольца</string>
+		</array>
+	</dict>
+	<key>Apple Logo</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>apple-logo.png</string>
+		<key>answers</key>
+		<array>
+			<string>apple</string>
+			<string>яблоко</string>
+			<string>эппл</string>
+		</array>
+	</dict>
+	<key>Alpine Skiing</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>alpine-skiing.png</string>
+		<key>answers</key>
+		<array>
+			<string>лыжи</string>
+			<string>скоростной спуск</string>
+		</array>
+	</dict>
+	<key>Soccer Ball</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>soccer-ball.png</string>
+		<key>answers</key>
+		<array>
+			<string>футбол</string>
+			<string>футбольный мяч</string>
+			<string>мяч</string>
+			<string>кожанный дружок</string>
+		</array>
+	</dict>
+	<key>Cheburashka</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>cheburashka.png</string>
+		<key>answers</key>
+		<array>
+			<string>чебурашка</string>
+			<string>чебур</string>
+			<string>чебуратор</string>
+		</array>
+	</dict>
+	<key>Flag Russia</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>flag-russia.png</string>
+		<key>answers</key>
+		<array>
+			<string>россия</string>
+			<string>флаг россии</string>
+			<string>триколор</string>
+			<string>флаг</string>
+			<string>наша раша</string>
+			<string>рашка</string>
+			<string>российская федерация</string>
+		</array>
+	</dict>
+	<key>Flag US</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>flag-us.png</string>
+		<key>answers</key>
+		<array>
+			<string>штаты</string>
+			<string>америка</string>
+			<string>сша</string>
+			<string>соединенные штаты</string>
+			<string>пиндосия</string>
+			<string>пиндосы</string>
+		</array>
+	</dict>
+	<key>Flag Canada</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>flag-canada.png</string>
+		<key>answers</key>
+		<array>
+			<string>канада</string>
+			<string>кленовый лист</string>
+			<string>флаг канады</string>
+		</array>
+	</dict>
+	<key>Flag UK</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>flag-uk.png</string>
+		<key>answers</key>
+		<array>
+			<string>англия</string>
+			<string>великобритания</string>
+			<string>британия</string>
+			<string>соединенное королевство</string>
+			<string>привет хоттаб</string>
+		</array>
+	</dict>
+	<key>Flag Korea</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>flag-korea.png</string>
+		<key>answers</key>
+		<array>
+			<string>корея</string>
+			<string>южная корея</string>
+			<string>хангук</string>
+			<string>гнусмас</string>
+			<string>самсунг козлы</string>
+			<string>завод</string>
+			<string>принтера рулят</string>
+		</array>
+	</dict>
+	<key>Flag EU</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>flag-eu.png</string>
+		<key>answers</key>
+		<array>
+			<string>европа</string>
+			<string>европейский зоюз</string>
+		</array>
+	</dict>
+	<key>Pool Ball 9</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>pool-ball-9.png</string>
+		<key>answers</key>
+		<array>
+			<string>пул</string>
+			<string>шар</string>
+			<string>бильярдный шар</string>
+			<string>биллиардный шар</string>
+			<string>девятка</string>
+			<string>шар девятка</string>
+			<string>9</string>
+		</array>
+	</dict>
+	<key>Pool Ball 8</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>pool-ball-8.png</string>
+		<key>answers</key>
+		<array>
+			<string>пул</string>
+			<string>шар</string>
+			<string>бильярдный шар</string>
+			<string>биллиардный шар</string>
+			<string>восьмерка</string>
+			<string>шар восьмерка</string>
+			<string>8</string>
+			<string>8 шар</string>
+		</array>
+	</dict>
+	<key>Olympic Bear</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>olympic-bear.png</string>
+		<key>answers</key>
+		<array>
+			<string>мишка</string>
+			<string>олимпийский мишка</string>
+			<string>олимпиада</string>
+			<string>олимпиада 80</string>
+			<string>москва олимпиада</string>
+		</array>
+	</dict>
+	<key>Avatar</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>avatar.png</string>
+		<key>answers</key>
+		<array>
+			<string>аватар</string>
+			<string>камерон</string>
+		</array>
+	</dict>
+	<key>Batman</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>batman.png</string>
+		<key>answers</key>
+		<array>
+			<string>бетмен</string>
+			<string>бетмэн</string>
+			<string>летучая мышь</string>
+			<string>batman</string>
+		</array>
+	</dict>
+	<key>Darth Vader</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>darth-vader.png</string>
+		<key>answers</key>
+		<array>
+			<string>дарт вейдер</string>
+			<string>darth vader</string>
+			<string>звездные войны</string>
+			<string>звездные воины</string>
+			<string>star wars</string>
+			<string>starwars</string>
+		</array>
+	</dict>
+	<key>FreeBSD</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>free-bsd.png</string>
+		<key>answers</key>
+		<array>
+			<string>linux</string>
+			<string>unix</string>
+			<string>freebsd</string>
+			<string>free bsd</string>
+			<string>фрибсд</string>
+			<string>фри бсд</string>
+			<string>фряха</string>
+			<string>чертенок</string>
+			<string>дьявол</string>
+			<string>дьяволенок</string>
+			<string>черт</string>
+			<string>демон</string>
+		</array>
+	</dict>
+	<key>G-Clef</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>g-clef.png</string>
+		<key>answers</key>
+		<array>
+			<string>ключ</string>
+			<string>скрипичный ключ</string>
+			<string>музыка</string>
+		</array>
+	</dict>
+	<key>Karlson</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>karlson.png</string>
+		<key>answers</key>
+		<array>
+			<string>карлсон</string>
+			<string>карлсончик</string>
+			<string>карлсон который живет на крыше</string>
+			<string>астрид линдгрен</string>
+		</array>
+	</dict>
+	<key>Quake I</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>quake1.png</string>
+		<key>answers</key>
+		<array>
+			<string>quake</string>
+			<string>quake 1</string>
+			<string>quake I</string>
+			<string>квейк</string>
+			<string>квейк 1</string>
+			<string>квака</string>
+			<string>квака 1</string>
+			<string>игра</string>
+			<string>компьютерная игра</string>
+			<string>q1</string>
+			<string>q 1</string>
+		</array>
+	</dict>
+	<key>Quake III</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>quake3.png</string>
+		<key>answers</key>
+		<array>
+			<string>quake</string>
+			<string>quake 3</string>
+			<string>quake III</string>
+			<string>квейк</string>
+			<string>квейк 3</string>
+			<string>квака</string>
+			<string>квака 3</string>
+			<string>компьютерная игра</string>
+			<string>игра</string>
+			<string>q 1</string>
+			<string>q1</string>
+		</array>
+	</dict>
+	<key>Sputnik</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>sputnik.png</string>
+		<key>answers</key>
+		<array>
+			<string>спутник</string>
+			<string>ссср</string>
+			<string>космос</string>
+		</array>
+	</dict>
+	<key>Tux</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>tux.png</string>
+		<key>answers</key>
+		<array>
+			<string>linux</string>
+			<string>unix</string>
+			<string>tux</string>
+			<string>penguin</string>
+			<string>тукс</string>
+			<string>линукс</string>
+			<string>юникс</string>
+			<string>пингвин</string>
+			<string>такс</string>
+		</array>
+	</dict>
+	<key>USB</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>usb.png</string>
+		<key>answers</key>
+		<array>
+			<string>usb</string>
+			<string>universal serial bus</string>
+			<string>усб</string>
+			<string>юсб</string>
+			<string>юэсби</string>
+			<string>флешка</string>
+			<string>юсб флешка</string>
+		</array>
+	</dict>
+	<key>Homer X-Ray</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>homer-x-ray.png</string>
+		<key>answers</key>
+		<array>
+			<string>симпсон</string>
+			<string>simpsons</string>
+			<string>симпсоны</string>
+			<string>гомер</string>
+			<string>гомер джей симпсон</string>
+			<string>гомер симпсон</string>
+			<string>рентген</string>
+			<string>снимок</string>
+			<string>флю</string>
+		</array>
+	</dict>
+	<key>Homer Simpson</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>homer-simpson.png</string>
+		<key>answers</key>
+		<array>
+			<string>симпсон</string>
+			<string>симпсоны</string>
+			<string>гомер</string>
+			<string>гомер симпсон</string>
+			<string>гомер джей симпсон</string>
+		</array>
+	</dict>
+	<key>Winnie Pooh</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>winnie-pooh-ru.png</string>
+		<key>answers</key>
+		<array>
+			<string>винни</string>
+			<string>винни пух</string>
+			<string>вини пух</string>
+			<string>вини</string>
+			<string>винипух</string>
+			<string>виннипух</string>
+			<string>медведь</string>
+		</array>
+	</dict>
+	<key>Alien Head</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>alien-head.png</string>
+		<key>answers</key>
+		<array>
+			<string>чужие</string>
+			<string>инопланетяне</string>
+			<string>инопланетянин</string>
+			<string>пришельцы</string>
+			<string>пришелец</string>
+			<string>нло</string>
+		</array>
+	</dict>
+	<key>Baseball</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>baseball.png</string>
+		<key>answers</key>
+		<array>
+			<string>бейсбол</string>
+			<string>бейсбольный мяч</string>
+		</array>
+	</dict>
+	<key>Baseball Player</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>baseball-player.png</string>
+		<key>answers</key>
+		<array>
+			<string>бейсбол</string>
+			<string>бейсбольный игрок</string>
+			<string>бейсболист</string>
+		</array>
+	</dict>
+	<key>No U Turn Sign</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>no-u-turn-sign.png</string>
+		<key>answers</key>
+		<array>
+			<string>поворота нет</string>
+			<string>нет разворота</string>
+			<string>нет поворота</string>
+			<string>разворота нет</string>
+			<string>разворот запрещен</string>
+			<string>поворот запрещен</string>
+			<string>маневр запрещен</string>
+			<string>знак</string>
+			<string>дорожный знак</string>
 		</array>
 	</dict>
 	<key>Upgrade</key>

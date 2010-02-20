@@ -31,7 +31,7 @@
 #define kHideTapRequestAnimationID	@"kHideTapRequestAnimationID"
 #define kTapRequestAnimationDuration	(0.2f)
 
-#define kRevealOpacity  (0.5f)      // reveal object view (by making cut view transparent)
+#define kRevealOpacity  (0.3f)      // reveal object view (by making cut view transparent)
 
 #pragma mark Next level animations
 #define kNextLevelAnimationID	@"kNextLevelAnimationID"
@@ -469,6 +469,7 @@ enum _MoveDirection {
 			BEGIN_ANIMATION_DELAYED(kNextLevelAnimationID, kHideAnswerCheckAnimationDuration, kCheckAnswerAnimationDuration);
 			answerCheckLabel.layer.opacity = 0.0f;
 			cutView.layer.opacity = 1.0f;
+			levelLabel.layer.opacity = 0.0f;
 			COMMIT_ANIMATION();
 		} else {
 			BEGIN_ANIMATION_DELAYED(kHideAnswerCheckAnimationID, kHideAnswerCheckAnimationDuration, kCheckAnswerAnimationDuration);

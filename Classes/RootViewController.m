@@ -41,6 +41,8 @@
 	upgradeButton.alpha = 0.0f;
 	openFeintButton.alpha = 0.0f;
 	glyphsViewCtl.view.alpha = 0.0f;
+	
+	soundSettingRequested = FALSE;
 }
 
 #define	kLoadingAnimationID	@"kLoadingAnimationID"
@@ -53,7 +55,7 @@
 						finished:(NSNumber *)finished 
 						 context:(void *)context 
 {
-	if ([animationID isEqual:kRevealAnimationID]) {
+	if (!soundSettingRequested && [animationID isEqual:kRevealAnimationID]) {
 		// ask user if he wants to use in-game sounds
 		UIAlertView *soundAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enable Sounds Title", @"Enable Sounds Title") 
 															 message:NSLocalizedString(@"Enable Sounds Message", @"Enable Sounds Message") 
@@ -63,6 +65,8 @@
 		soundAlert.tag = kSoundAlertViewTag;
 		[soundAlert show];
 		[soundAlert release];
+		
+		soundSettingRequested = TRUE;
 	}
 }
 
@@ -127,8 +131,6 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (alertView.tag == kSoundAlertViewTag) {
 		if (buttonIndex != alertView.cancelButtonIndex) {
-//			[audioPlayer prepareToPlay];
-//			[audioPlayer play];
 			appDelegate.soundOn = TRUE;
 		} else {
 			appDelegate.soundOn = FALSE;

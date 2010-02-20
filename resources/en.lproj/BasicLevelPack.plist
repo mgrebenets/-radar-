@@ -3,40 +3,40 @@
 <plist version="1.0">
 <array>
 	<string>Tutorial</string>
-	<string>G</string>
-	<string>O</string>
-	<string>O</string>
-	<string>D</string>
-	<string>L</string>
-	<string>U</string>
-	<string>C</string>
-	<string>K</string>
-	<string>!</string>
-	<string>Yellow Smiley</string>
+	<string>Apple Logo</string>
+	<string>@</string>
+	<string>X</string>
+	<string>Olympic Rings</string>
+	<string>Soccer Ball</string>
 	<string>F</string>
+	<string>7</string>
+	<string>Pawn</string>
+	<string>Clubs</string>
+	<string>Z</string>
+	<string>9</string>
 	<string>E</string>
-	<string>Left Arrow</string>
-	<string>P</string>
-	<string>4</string>
-	<string>=</string>
-	<string>Roman IV</string>
-	<string>:</string>
-	<string>S</string>
-	<string>%</string>
+	<string>Down Arrow</string>
+	<string>#</string>
+	<string>;</string>
+	<string>T</string>
 	<string>Copyright</string>
+	<string>%</string>
+	<string>3</string>
+	<string>Yellow Smiley</string>
+	<string>:</string>
 	<string>A</string>
 	<string>Q</string>
 	<string>Half</string>
 	<string>$</string>
 	<string>Euro</string>
-	<string>Down Arrow</string>
+	<string>Left Arrow</string>
 	<string>V</string>
 	<string>&amp;</string>
-	<string>Y</string>
-	<string>Pawn</string>
+	<string>Jolly Roger</string>
+	<string>Queen</string>
 	<string>Fahrenheit</string>
-	<string>Celsius</string>
-	<string>@</string>
+	<string>Mars</string>
+	<string>Infinity</string>
 	<string>J</string>
 	<string>0</string>
 	<string>&lt;</string>
@@ -45,13 +45,63 @@
 	<string>Z</string>
 	<string>Taurus</string>
 	<string>Aquarius</string>
-	<string>Clubs</string>
-	<string>Mars</string>
+	<string>Celsius</string>
+	<string>Musical Note</string>
 	<string>Heart</string>
 	<string>Venus</string>
 	<string>Nuke</string>
-	<string>Skull</string>
+	<string>Pound</string>
 	<string>Peace</string>
+	<string>H</string>
+	<string>Darth Vader</string>
+	<string>G</string>
+	<string>Flag US</string>
+	<string>FreeBSD</string>
+	<string>M</string>
+	<string>USB</string>
+	<string>Alpha</string>
+	<string>Umbrella</string>
+	<string>K</string>
+	<string>G-Clef</string>
+	<string>Roman XII</string>
+	<string>Baseball</string>
+	<string>U</string>
+	<string>Alien Head</string>
+	<string>Flag UK</string>
+	<string>Quake III</string>
+	<string>N</string>
+	<string>Envelope</string>
+	<string>David&apos;s Star</string>
+	<string>Scorpio</string>
+	<string>B</string>
+	<string>Flag Canada</string>
+	<string>:D</string>
+	<string>S</string>
+	<string>Batman</string>
+	<string>Yen</string>
+	<string>Pool Ball 8</string>
+	<string>I</string>
+	<string>;)</string>
+	<string>Flag Korea</string>
+	<string>LOL</string>
+	<string>Tux</string>
+	<string>Bishop</string>
+	<string>}</string>
+	<string>Beta</string>
+	<string>Baseball Player</string>
+	<string>Atom</string>
+	<string>Roman IV</string>
+	<string>Comet</string>
+	<string>Homer Simpson</string>
+	<string>Flag EU</string>
+	<string>Quake I</string>
+	<string>?</string>
+	<string>;(</string>
+	<string>Psi</string>
+	<string>*</string>
+	<string>L</string>
+	<string>Winnie Pooh</string>
+	<string>Ankh</string>
 	<string>To Be Continued</string>
 </array>
 </plist>

@@ -18,7 +18,7 @@
 #import "Macro.h"
 
 #define kFullVersionKey	@"kFullVersionKey"
-#define kUpgradeLevelIdx    (11)
+#define kUpgradeLevelIdx    (21)
 #define kUpgradeLevelKey    @"Upgrade"	// this is a dictionary key, do not localize it
 #define kUpgradeLevelObjectStr  NSLocalizedString(@"Upgrade", @"Upgrade")
 #define kUnlockedLevelsKey	NSLocalizedString(@"kUnlockedLevelsKey", @"kUnlockedLevelsKey")
@@ -222,9 +222,11 @@
 #define kUpgradeAchKey	@"UpgradeAchID"
 #define	kEagleEyeAchKey	@"EagleEyeAchID"
 #define kHawkEyedAchKey	@"HawkEyedAchID"
-#define	kBeginnerAchLevels	(10)
-#define kEagleEyeAchLevels	(25)
-#define kHawkEyedAchLevels	(50)
+#define kPenetratingEyeAchKey	@"kPenetratingEyeAchID"
+#define	kBeginnerAchLevels	(20)
+#define kEagleEyeAchLevels	(50)
+#define kHawkEyedAchLevels	(75)
+#define kPenetratingEyeAchLevels	(100)
 
 - (void)submitScore {
 	// go through all levels and update score
@@ -248,34 +250,35 @@
 	[self submitScore];	
 }
 
+- (BOOL)unlockAchievement:(NSString *)achKey 
+			   achLevelIdx:(NSInteger)achLevelIdx
+			   levelIdx:(NSInteger)levelIdx
+{
+	BOOL unlocked = FALSE;
+	if (levelIdx > achLevelIdx) {
+		unlocked = TRUE;
+		[OFAchievementService unlockAchievement:[openFeintDic objectForKey:achKey]];
+	}
+	return unlocked;
+}
+
 - (void)unlockLevel:(NSInteger)levelIdx forLevelPackWithKey:(NSString *)key {
     if (levelIdx > [[unlockedLevelsDic objectForKey:key] integerValue]) {
         // new value is greater than old - update to dictionary
         [unlockedLevelsDic setObject:[NSNumber numberWithInteger:levelIdx] forKey:key];
 		
 		// achievements
-		BOOL soundPlayed = FALSE;
-		if (levelIdx > kBeginnerAchLevels) {
-			// TODO: sound 
-			soundPlayed = TRUE;
-			[OFAchievementService unlockAchievement:[openFeintDic objectForKey:kBeginnerAchKey]];
-		}
-		if (levelIdx > kEagleEyeAchLevels) {
-			if (!soundPlayed) {
-				// TODO: play sound
-				soundPlayed = TRUE;
-			}
-			[OFAchievementService unlockAchievement:[openFeintDic objectForKey:kEagleEyeAchKey]];
-		}
-		if (levelIdx > kHawkEyedAchLevels) {
-			if (!soundPlayed) {
-				// TODO: play sound
-				soundPlayed = TRUE;
-			}			
-			[OFAchievementService unlockAchievement:[openFeintDic objectForKey:kHawkEyedAchKey]];
-		}
+		BOOL playSound = FALSE;
+		playSound |= [self unlockAchievement:kBeginnerAchKey achLevelIdx:kBeginnerAchLevels levelIdx:levelIdx];
+		playSound |= [self unlockAchievement:kEagleEyeAchKey achLevelIdx:kEagleEyeAchLevels levelIdx:levelIdx];
+		playSound |= [self unlockAchievement:kHawkEyedAchKey achLevelIdx:kHawkEyedAchLevels levelIdx:levelIdx];
+		playSound |= [self unlockAchievement:kPenetratingEyeAchKey achLevelIdx:kPenetratingEyeAchLevels levelIdx:levelIdx];
 		
 		// TODO: other achievements
+		
+		if (playSound) {
+			// TODO: play ach unlocked sound
+		}
     }
 }
 

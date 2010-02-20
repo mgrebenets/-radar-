@@ -20,6 +20,7 @@
 	IBOutlet UIButton *startButton;
 	IBOutlet UIButton *openFeintButton;
 	RotatingSymbolsViewController *glyphsViewCtl;
+	BOOL soundSettingRequested;
 }
 
 - (IBAction)startAction:(id)sender;

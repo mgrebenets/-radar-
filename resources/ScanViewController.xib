@@ -85,15 +85,15 @@
 					<object class="IBUILabel" id="107461011">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 10}, {320, 470}}</string>
+						<string key="NSFrame">{{0, 15}, {320, 470}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">M</string>
+						<string key="IBUIText">;)</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Monaco</string>
-							<double key="NSSize">400</double>
+							<double key="NSSize">340</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<object class="NSColor" key="IBUITextColor">
@@ -344,7 +344,7 @@
 					<object class="IBUILabel" id="869432354">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{60, 405}, {200, 30}}</string>
+						<string key="NSFrame">{{60, 225}, {200, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -845,7 +845,7 @@
 					<string>ScanViewController</string>
 					<string>UIResponder</string>
 					<string>TouchView</string>
-					<string>{{-875, 31}, {320, 480}}</string>
+					<string>{{424, 276}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

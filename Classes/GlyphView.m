@@ -39,7 +39,7 @@
 	if (stopAnimations) return;
 	
 	if ([animationID isEqual:kHideAnimationID]) {
-		// TODO: hidden, replace with random character and show
+		// hidden, replace with random character and show
 		self.text = [NSString stringWithFormat:@"%C", rand() % kMaxUnicodeCode];
 		[self alphaAnimation];
 	} else if ([animationID isEqual:kShowAnimationID]) {
@@ -99,9 +99,9 @@
 
 - (void)startAnimating {
 	stopAnimations = FALSE;
-	// TODO: start movement animation
 	// start hide/show animation
 	[self alphaAnimation];
+	// start movement animation	
 	[self moveAnimation];
 }
 

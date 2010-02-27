@@ -213,7 +213,7 @@
 					</object>
 					<object class="IBUIButton" id="949425921">
 						<reference key="NSNextResponder" ref="800432413"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrameSize">{72, 37}</string>
 						<reference key="NSSuperview" ref="800432413"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="1331509">
@@ -235,7 +235,7 @@
 					</object>
 					<object class="IBUIButton" id="76388546">
 						<reference key="NSNextResponder" ref="800432413"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{248, 0}, {72, 37}}</string>
 						<reference key="NSSuperview" ref="800432413"/>
 						<reference key="IBUIBackgroundColor" ref="1331509"/>

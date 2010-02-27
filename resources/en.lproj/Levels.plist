@@ -806,6 +806,28 @@
 			<string>lol</string>
 		</array>
 	</dict>
+	<key>O_O</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>O_O</string>
+		<key>answers</key>
+		<array>
+			<string>smile</string>
+			<string>smiley</string>
+			<string>surprise</string>
+			<string>unexpected</string>
+			<string>wow</string>
+			<string>really</string>
+			<string>really?</string>
+			<string>orly</string>
+			<string>o&apos;rly</string>
+			<string>o_o</string>
+			<string>scared</string>
+			<string>0_0</string>
+		</array>
+	</dict>
 	<key>LOL</key>
 	<dict>
 		<key>levelType</key>
@@ -1026,6 +1048,8 @@
 			<string>hazard</string>
 			<string>bio hazard</string>
 			<string>hazardous</string>
+			<string>virus</string>
+			<string>quarantine</string>
 		</array>
 	</dict>
 	<key>Victory</key>
@@ -1313,6 +1337,7 @@
 			<string>aries</string>
 			<string>ram</string>
 			<string>the ram</string>
+			<string>zodiac</string>
 		</array>
 	</dict>
 	<key>Taurus</key>
@@ -1326,6 +1351,7 @@
 			<string>taurus</string>
 			<string>bull</string>
 			<string>the bull</string>
+			<string>zodiac</string>
 		</array>
 	</dict>
 	<key>Gemini</key>
@@ -1339,6 +1365,7 @@
 			<string>gemini</string>
 			<string>twins</string>
 			<string>the twins</string>
+			<string>zodiac</string>
 		</array>
 	</dict>
 	<key>Cancer</key>
@@ -1352,6 +1379,7 @@
 			<string>cancer</string>
 			<string>crab</string>
 			<string>the crab</string>
+			<string>zodiac</string>
 		</array>
 	</dict>
 	<key>Leo</key>
@@ -1365,6 +1393,7 @@
 			<string>leo</string>
 			<string>lion</string>
 			<string>the lion</string>
+			<string>zodiac</string>
 		</array>
 	</dict>
 	<key>Virgo</key>
@@ -1378,6 +1407,7 @@
 			<string>virgo</string>
 			<string>virgin</string>
 			<string>the virgin</string>
+			<string>zodiac</string>
 		</array>
 	</dict>
 	<key>Libra</key>
@@ -1391,6 +1421,7 @@
 			<string>libra</string>
 			<string>scales</string>
 			<string>the scales</string>
+			<string>zodiac</string>
 		</array>
 	</dict>
 	<key>Scorpio</key>
@@ -1404,6 +1435,7 @@
 			<string>scorpio</string>
 			<string>scorpion</string>
 			<string>the scorpion</string>
+			<string>zodiac</string>
 		</array>
 	</dict>
 	<key>Sagittarius</key>
@@ -1420,6 +1452,7 @@
 			<string>centaur the archer</string>
 			<string>centaur archer</string>
 			<string>centaur</string>
+			<string>zodiac</string>
 		</array>
 	</dict>
 	<key>Capricorn</key>
@@ -1439,6 +1472,7 @@
 			<string>sea goat</string>
 			<string>the sea-goat</string>
 			<string>the sea goat</string>
+			<string>zodiac</string>
 		</array>
 	</dict>
 	<key>Aquarius</key>
@@ -1453,6 +1487,9 @@
 			<string>water bearer</string>
 			<string>the water bearer</string>
 			<string>water</string>
+			<string>zodiac</string>
+			<string>wave</string>
+			<string>waves</string>
 		</array>
 	</dict>
 	<key>Pisces</key>
@@ -1466,6 +1503,7 @@
 			<string>pisces</string>
 			<string>fishes</string>
 			<string>the fishes</string>
+			<string>zodiac</string>
 		</array>
 	</dict>
 	<key>Watch</key>
@@ -2444,6 +2482,9 @@
 			<string>darth vader</string>
 			<string>star wars</string>
 			<string>starwars</string>
+			<string>mask</string>
+			<string>vader</string>
+			<string>sith</string>
 		</array>
 	</dict>
 	<key>FreeBSD</key>
@@ -2666,6 +2707,22 @@
 			<string>no uturn</string>
 			<string>road sign</string>
 			<string>sign</string>
+		</array>
+	</dict>
+	<key>Ace Spades</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>ace-spades.png</string>
+		<key>answers</key>
+		<array>
+			<string>ace</string>
+			<string>ace spades</string>
+			<string>ace of spades</string>
+			<string>spades</string>
+			<string>card</string>
+			<string>poker</string>
 		</array>
 	</dict>
 	<key>Upgrade</key>

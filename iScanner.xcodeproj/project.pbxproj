@@ -766,6 +766,7 @@
 		ED77FCD11127A8FB00AE03C1 /* smiley.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FCD01127A8FB00AE03C1 /* smiley.png */; };
 		ED77FCFA1127C99800AE03C1 /* button_140x40.png in Resources */ = {isa = PBXBuildFile; fileRef = ED77FCF91127C99800AE03C1 /* button_140x40.png */; };
 		ED77FD191128030400AE03C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED77FD171128030400AE03C1 /* InfoPlist.strings */; };
+		ED7FFA071137D65600204079 /* ace-spades.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7FFA061137D65600204079 /* ace-spades.png */; };
 		ED9198CB11291A6A00504F03 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9198CA11291A6A00504F03 /* Default.png */; };
 		ED9198EF11292E2B00504F03 /* hourglass_s.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9198EE11292E2B00504F03 /* hourglass_s.png */; };
 		ED91991A112933B700504F03 /* loading_circle_1.png in Resources */ = {isa = PBXBuildFile; fileRef = ED919916112933B700504F03 /* loading_circle_1.png */; };
@@ -1967,6 +1968,7 @@
 		ED77FCF91127C99800AE03C1 /* button_140x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_140x40.png; sourceTree = "<group>"; };
 		ED77FD181128030400AE03C1 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ED77FD1A1128030E00AE03C1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ED7FFA061137D65600204079 /* ace-spades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ace-spades.png"; sourceTree = "<group>"; };
 		ED9198CA11291A6A00504F03 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		ED9198EE11292E2B00504F03 /* hourglass_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hourglass_s.png; sourceTree = "<group>"; };
 		ED919916112933B700504F03 /* loading_circle_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_circle_1.png; sourceTree = "<group>"; };
@@ -2092,6 +2094,7 @@
 		ED212C9E1120523300BC4FBD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				ED7FFA061137D65600204079 /* ace-spades.png */,
 				ED34C4AA1130017B00EE51A1 /* no-u-turn-sign.png */,
 				ED34C48D112FEDCF00EE51A1 /* baseball-player.png */,
 				ED34C48E112FEDCF00EE51A1 /* baseball.png */,
@@ -2166,8 +2169,8 @@
 				ED77FD171128030400AE03C1 /* InfoPlist.strings */,
 				ED77FA7C1125A17600AE03C1 /* Localizable.strings */,
 				ED77F9B2112463AE00AE03C1 /* openfeint_offline_config.xml */,
-				ED212CB61120525600BC4FBD /* Levels.plist */,
 				ED77F99811245D1000AE03C1 /* OpenFeint.plist */,
+				ED212CB61120525600BC4FBD /* Levels.plist */,
 				ED212CB41120525600BC4FBD /* BasicLevelPack.plist */,
 				ED212CB81120525600BC4FBD /* MainWindow.xib */,
 				ED212CB91120525600BC4FBD /* RootViewController.xib */,
@@ -5392,6 +5395,7 @@
 				ED34C48F112FEDCF00EE51A1 /* baseball-player.png in Resources */,
 				ED34C490112FEDCF00EE51A1 /* baseball.png in Resources */,
 				ED34C4AB1130017B00EE51A1 /* no-u-turn-sign.png in Resources */,
+				ED7FFA071137D65600204079 /* ace-spades.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5901,6 +5905,35 @@
 			};
 			name = Release;
 		};
+		ED1079C51131454F00F75D8A /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OBJC_CALL_CXX_XDTORS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				PRODUCT_NAME = iRadar;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.1.2;
+			};
+			name = Distribution;
+		};
+		ED1079C61131454F00F75D8A /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iScanner_Prefix.pch;
+				INFOPLIST_FILE = "iScanner-Info.plist";
+				PRODUCT_NAME = iRadar;
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -5909,6 +5942,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				ED1079C61131454F00F75D8A /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5918,6 +5952,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				ED1079C51131454F00F75D8A /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

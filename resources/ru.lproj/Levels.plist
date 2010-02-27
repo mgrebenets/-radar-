@@ -884,6 +884,28 @@
 			<string>ха ха ха</string>
 		</array>
 	</dict>
+	<key>O_O</key>
+	<dict>
+		<key>levelType</key>
+		<integer>0</integer>
+		<key>objectStr</key>
+		<string>O_O</string>
+		<key>answers</key>
+		<array>
+			<string>смайл</string>
+			<string>смайлик</string>
+			<string>удивление</string>
+			<string>удивлен</string>
+			<string>да ну</string>
+			<string>правда?</string>
+			<string>не может быть</string>
+			<string>афигеть</string>
+			<string>офигеть</string>
+			<string>я фигею</string>
+			<string>о_о</string>
+			<string>0_0</string>
+		</array>
+	</dict>
 	<key>УГ</key>
 	<dict>
 		<key>levelType</key>
@@ -1115,6 +1137,9 @@
 			<string>биоотходы</string>
 			<string>отходы</string>
 			<string>вирусы</string>
+			<string>вирус</string>
+			<string>карантин</string>
+			<string>биологическая угроза</string>
 		</array>
 	</dict>
 	<key>Victory</key>
@@ -1140,6 +1165,10 @@
 		<key>answers</key>
 		<array>
 			<string>бесконечность</string>
+			<string>инфинити</string>
+			<string>бесконечно много</string>
+			<string>бесконечно</string>
+			<string>infinity</string>
 		</array>
 	</dict>
 	<key>Trademark</key>
@@ -1415,6 +1444,8 @@
 		<array>
 			<string>овен</string>
 			<string>баран</string>
+			<string>зодиак</string>
+			<string>знак зодиака</string>
 		</array>
 	</dict>
 	<key>Taurus</key>
@@ -1427,6 +1458,8 @@
 		<array>
 			<string>телец</string>
 			<string>бык</string>
+			<string>зодиак</string>
+			<string>знак зодиака</string>
 		</array>
 	</dict>
 	<key>Gemini</key>
@@ -1438,6 +1471,8 @@
 		<key>answers</key>
 		<array>
 			<string>близнецы</string>
+			<string>зодиак</string>
+			<string>знак зодиака</string>
 		</array>
 	</dict>
 	<key>Cancer</key>
@@ -1449,6 +1484,8 @@
 		<key>answers</key>
 		<array>
 			<string>рак</string>
+			<string>зодиак</string>
+			<string>знак зодиака</string>
 		</array>
 	</dict>
 	<key>Leo</key>
@@ -1460,6 +1497,8 @@
 		<key>answers</key>
 		<array>
 			<string>лев</string>
+			<string>зодиак</string>
+			<string>знак зодиака</string>
 		</array>
 	</dict>
 	<key>Virgo</key>
@@ -1471,6 +1510,8 @@
 		<key>answers</key>
 		<array>
 			<string>дева</string>
+			<string>зодиак</string>
+			<string>знак зодиака</string>
 		</array>
 	</dict>
 	<key>Libra</key>
@@ -1482,6 +1523,8 @@
 		<key>answers</key>
 		<array>
 			<string>весы</string>
+			<string>зодиак</string>
+			<string>знак зодиака</string>
 		</array>
 	</dict>
 	<key>Scorpio</key>
@@ -1493,6 +1536,8 @@
 		<key>answers</key>
 		<array>
 			<string>скорпион</string>
+			<string>зодиак</string>
+			<string>знак зодиака</string>
 		</array>
 	</dict>
 	<key>Sagittarius</key>
@@ -1504,6 +1549,8 @@
 		<key>answers</key>
 		<array>
 			<string>стрелец</string>
+			<string>зодиак</string>
+			<string>знак зодиака</string>
 		</array>
 	</dict>
 	<key>Capricorn</key>
@@ -1515,6 +1562,8 @@
 		<key>answers</key>
 		<array>
 			<string>козерог</string>
+			<string>зодиак</string>
+			<string>знак зодиака</string>
 		</array>
 	</dict>
 	<key>Aquarius</key>
@@ -1526,6 +1575,8 @@
 		<key>answers</key>
 		<array>
 			<string>водолей</string>
+			<string>зодиак</string>
+			<string>знак зодиака</string>
 		</array>
 	</dict>
 	<key>Pisces</key>
@@ -1537,6 +1588,8 @@
 		<key>answers</key>
 		<array>
 			<string>рыбы</string>
+			<string>зодиак</string>
+			<string>знак зодиака</string>
 		</array>
 	</dict>
 	<key>Watch</key>
@@ -2045,6 +2098,7 @@
 		<key>answers</key>
 		<array>
 			<string>анх</string>
+			<string>анкх</string>
 			<string>лост</string>
 			<string>пропавшие</string>
 			<string>ключ жизни</string>
@@ -2413,6 +2467,7 @@
 			<string>наша раша</string>
 			<string>рашка</string>
 			<string>российская федерация</string>
+			<string>раша</string>
 		</array>
 	</dict>
 	<key>Flag US</key>
@@ -2578,6 +2633,10 @@
 			<string>звездные воины</string>
 			<string>star wars</string>
 			<string>starwars</string>
+			<string>маска</string>
+			<string>дарт</string>
+			<string>вейдер</string>
+			<string>ситх</string>
 		</array>
 	</dict>
 	<key>FreeBSD</key>
@@ -2829,6 +2888,23 @@
 			<string>маневр запрещен</string>
 			<string>знак</string>
 			<string>дорожный знак</string>
+		</array>
+	</dict>
+	<key>Ace Spades</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>ace-spades.png</string>
+		<key>answers</key>
+		<array>
+			<string>туз</string>
+			<string>туз пик</string>
+			<string>пики</string>
+			<string>пика</string>
+			<string>карты</string>
+			<string>карта</string>
+			<string>козырь</string>
 		</array>
 	</dict>
 	<key>Upgrade</key>

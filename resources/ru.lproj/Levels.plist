@@ -2386,20 +2386,6 @@
 			<string>медведь</string>
 		</array>
 	</dict>
-	<key>Olympic Rings</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>olympic-rings.png</string>
-		<key>answers</key>
-		<array>
-			<string>олимпийские кольца</string>
-			<string>олимпиада</string>
-			<string>ванкувер</string>
-			<string>кольца</string>
-		</array>
-	</dict>
 	<key>Apple Logo</key>
 	<dict>
 		<key>levelType</key>
@@ -2578,67 +2564,6 @@
 			<string>8 шар</string>
 		</array>
 	</dict>
-	<key>Olympic Bear</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>olympic-bear.png</string>
-		<key>answers</key>
-		<array>
-			<string>мишка</string>
-			<string>олимпийский мишка</string>
-			<string>олимпиада</string>
-			<string>олимпиада 80</string>
-			<string>москва олимпиада</string>
-		</array>
-	</dict>
-	<key>Avatar</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>avatar.png</string>
-		<key>answers</key>
-		<array>
-			<string>аватар</string>
-			<string>камерон</string>
-		</array>
-	</dict>
-	<key>Batman</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>batman.png</string>
-		<key>answers</key>
-		<array>
-			<string>бетмен</string>
-			<string>бетмэн</string>
-			<string>летучая мышь</string>
-			<string>batman</string>
-		</array>
-	</dict>
-	<key>Darth Vader</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>darth-vader.png</string>
-		<key>answers</key>
-		<array>
-			<string>дарт вейдер</string>
-			<string>darth vader</string>
-			<string>звездные войны</string>
-			<string>звездные воины</string>
-			<string>star wars</string>
-			<string>starwars</string>
-			<string>маска</string>
-			<string>дарт</string>
-			<string>вейдер</string>
-			<string>ситх</string>
-		</array>
-	</dict>
 	<key>FreeBSD</key>
 	<dict>
 		<key>levelType</key>
@@ -2674,12 +2599,12 @@
 			<string>музыка</string>
 		</array>
 	</dict>
-	<key>Karlson</key>
+	<key>Карлсон</key>
 	<dict>
 		<key>levelType</key>
 		<integer>1</integer>
 		<key>objectStr</key>
-		<string>karlson.png</string>
+		<string>карлсон.png</string>
 		<key>answers</key>
 		<array>
 			<string>карлсон</string>
@@ -2779,57 +2704,6 @@
 			<string>юсб флешка</string>
 		</array>
 	</dict>
-	<key>Homer X-Ray</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>homer-x-ray.png</string>
-		<key>answers</key>
-		<array>
-			<string>симпсон</string>
-			<string>simpsons</string>
-			<string>симпсоны</string>
-			<string>гомер</string>
-			<string>гомер джей симпсон</string>
-			<string>гомер симпсон</string>
-			<string>рентген</string>
-			<string>снимок</string>
-			<string>флю</string>
-		</array>
-	</dict>
-	<key>Homer Simpson</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>homer-simpson.png</string>
-		<key>answers</key>
-		<array>
-			<string>симпсон</string>
-			<string>симпсоны</string>
-			<string>гомер</string>
-			<string>гомер симпсон</string>
-			<string>гомер джей симпсон</string>
-		</array>
-	</dict>
-	<key>Winnie Pooh</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>winnie-pooh-ru.png</string>
-		<key>answers</key>
-		<array>
-			<string>винни</string>
-			<string>винни пух</string>
-			<string>вини пух</string>
-			<string>вини</string>
-			<string>винипух</string>
-			<string>виннипух</string>
-			<string>медведь</string>
-		</array>
-	</dict>
 	<key>Alien Head</key>
 	<dict>
 		<key>levelType</key>
@@ -2905,6 +2779,40 @@
 			<string>карты</string>
 			<string>карта</string>
 			<string>козырь</string>
+		</array>
+	</dict>
+	<key>Kolobok</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>kolobok.png</string>
+		<key>answers</key>
+		<array>
+			<string>колобок</string>
+			<string>колоб</string>
+			<string>сказка</string>
+			<string>я от бабушки ушел</string>
+			<string>поскребли по сусекам</string>
+			<string>колобок повесился</string>
+			<string>хлеб</string>
+		</array>
+	</dict>
+	<key>May 9</key>
+	<dict>
+		<key>levelType</key>
+		<integer>1</integer>
+		<key>objectStr</key>
+		<string>may-9.png</string>
+		<key>answers</key>
+		<array>
+			<string>9 мая</string>
+			<string>день победы</string>
+			<string>победа</string>
+			<string>помним</string>
+			<string>спасибо</string>
+			<string>слава героям</string>
+			<string>гордость</string>
 		</array>
 	</dict>
 	<key>Upgrade</key>

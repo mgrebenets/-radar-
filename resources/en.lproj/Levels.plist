@@ -2259,21 +2259,6 @@
 			<string>bear</string>
 		</array>
 	</dict>
-	<key>Olympic Rings</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>olympic-rings.png</string>
-		<key>answers</key>
-		<array>
-			<string>olympic rings</string>
-			<string>olympics</string>
-			<string>vancouver</string>
-			<string>rings</string>
-			<string>olympic</string>
-		</array>
-	</dict>
 	<key>Apple Logo</key>
 	<dict>
 		<key>levelType</key>
@@ -2431,62 +2416,6 @@
 			<string>ball 8</string>
 		</array>
 	</dict>
-	<key>Olympic Bear</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>olympic-bear.png</string>
-		<key>answers</key>
-		<array>
-			<string>bear</string>
-			<string>olympic bear</string>
-			<string>olympics</string>
-			<string>olympic games</string>
-			<string>moscow 80</string>
-		</array>
-	</dict>
-	<key>Avatar</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>avatar.png</string>
-		<key>answers</key>
-		<array>
-			<string>avatar</string>
-			<string>cameron</string>
-		</array>
-	</dict>
-	<key>Batman</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>batman.png</string>
-		<key>answers</key>
-		<array>
-			<string>batman</string>
-			<string>bat</string>
-		</array>
-	</dict>
-	<key>Darth Vader</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>darth-vader.png</string>
-		<key>answers</key>
-		<array>
-			<string>darth</string>
-			<string>darth vader</string>
-			<string>star wars</string>
-			<string>starwars</string>
-			<string>mask</string>
-			<string>vader</string>
-			<string>sith</string>
-		</array>
-	</dict>
 	<key>FreeBSD</key>
 	<dict>
 		<key>levelType</key>
@@ -2604,54 +2533,6 @@
 			<string>flash</string>
 			<string>memory stick</string>
 			<string>usb stick</string>
-		</array>
-	</dict>
-	<key>Homer X-Ray</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>homer-x-ray.png</string>
-		<key>answers</key>
-		<array>
-			<string>simpson</string>
-			<string>simpsons</string>
-			<string>homer</string>
-			<string>homer simpson</string>
-			<string>homer j simpson</string>
-			<string>x-ray</string>
-			<string>xray</string>
-			<string>x ray</string>
-			<string>homer x-ray</string>
-		</array>
-	</dict>
-	<key>Homer Simpson</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>homer-simpson.png</string>
-		<key>answers</key>
-		<array>
-			<string>simpson</string>
-			<string>simpsons</string>
-			<string>homer simpson</string>
-			<string>homer</string>
-			<string>homer j simpson</string>
-		</array>
-	</dict>
-	<key>Winnie Pooh</key>
-	<dict>
-		<key>levelType</key>
-		<integer>1</integer>
-		<key>objectStr</key>
-		<string>winnie-pooh.png</string>
-		<key>answers</key>
-		<array>
-			<string>winnie</string>
-			<string>pooh</string>
-			<string>winnie pooh</string>
-			<string>bear</string>
 		</array>
 	</dict>
 	<key>Alien Head</key>

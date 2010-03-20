@@ -50,8 +50,13 @@
 #pragma mark Upgrade view proceed animation
 #define kProceedToUpgradeAnimationID	@"kProceedToUpgradeAnimationID"
 
+#pragma mark Sound defines
 #define	kSoundAnimationImagesCnt	(6)
 #define KSoundAnimationDuration		(4.0f)
+
+#pragma mark Add support defines
+#define PUBLISHER_ID @"fb936e4c62ed40fd8514f9737fa5a980"
+#define SITE_ID @"Radar-g7024yei"
 
 @interface ScanViewController ()
 - (Level *)currentLevel;
@@ -61,6 +66,7 @@
 - (void)scanViewAnimationDidStop:(NSString *)animationID 
 						finished:(NSNumber *)finished 
 						 context:(void *)context;
+- (void)showAd:(BOOL)show;
 @end
 
 @interface ScanViewController (TutorialSteps)
@@ -151,6 +157,9 @@ enum _MoveDirection {
 						 NSLocalizedString(@"Exactly!", @"Exactly!"),
 						 NSLocalizedString(@"Good!", @"Good!"),
 						 NSLocalizedString(@"Great!", @"Great!"),
+						 NSLocalizedString(@"Yeah!", @"!Yeah"),
+						 NSLocalizedString(@"Rocket scientist", @"Rocket scientist"),
+						 NSLocalizedString(@"Trololo man!", @"Trololo man!"),
 						 nil] retain];
 	 
 	 wrongMessages = [[NSArray arrayWithObjects:NSLocalizedString(@"Wrong!", @"Wrong!"),
@@ -164,12 +173,28 @@ enum _MoveDirection {
 						NSLocalizedString(@"Another time!", @"Another time!"),
 						nil] retain];	
 	
-
-	  
+	// ad support
+	QWEnableLocationServicesForAds(NO);
+	_bannerAd = [QWAdView adViewWithType:QWAdTypeBanner 
+								 publisherID:PUBLISHER_ID 
+									  siteID:SITE_ID 
+								 orientation:UIInterfaceOrientationPortrait 
+									delegate:nil];
+	
+	
+	[_bannerAd setBackgroundColor:[UIColor blackColor]];
+	_bannerAd.center = CGPointMake(160, -_bannerAd.frame.size.height / 2);
+	_bannerAd.displayMode = QWDisplayModeRotation;
+	_bannerAd.adInterval = 10.0;
+	[_bannerAd displayNewAd];
+	
+	[self.view addSubview:_bannerAd];
 }
 	  
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	// no ads in full version
+	_bannerAd.hidden = appDelegate.fullVersion;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -178,7 +203,6 @@ enum _MoveDirection {
 	[self stopScanningAnimation];
 	[self startScanningAnimation];
 }
-
 
 /*
  // Override to allow orientations other than the default portrait orientation.
@@ -204,6 +228,9 @@ enum _MoveDirection {
 - (void)dealloc {
 	[correctMessages release];
 	[wrongMessages release];	
+	// ad banner
+	_bannerAd.delegate = nil;
+	[_bannerAd release], _bannerAd = nil;	
     [super dealloc];
 }
 
@@ -520,6 +547,11 @@ enum _MoveDirection {
 	
 	// move the answer input field up
 	[self moveAnswerTextField:MoveDirectionUp keyboardHeight:keyboardSize.height];
+	
+	// show ad
+	if (!appDelegate.fullVersion) {
+		[self showAd:YES];
+	}
 }
 
 // Called when the UIKeyboardDidShowNotification is sent.
@@ -541,6 +573,10 @@ enum _MoveDirection {
 #endif	
     // move the answer input field down (no need to know keyboard height here)
     [self moveAnswerTextField:MoveDirectionDown keyboardHeight:0];	
+	// hide ad
+	if (!appDelegate.fullVersion) {
+		[self showAd:NO];
+	}
 }
 
 // Called when the UIKeyboardDidHideNotification is sent
@@ -664,6 +700,15 @@ enum _MoveDirection {
 
 - (void)stopScanningAnimation {
 	[cutView stopAnimation];
+}
+
+#pragma mark Ad animation
+- (void)showAd:(BOOL)show {
+	CGPoint adCenter = CGPointMake(160, (show? 1 : -1) * _bannerAd.frame.size.height / 2);
+	[UIView beginAnimations:@"bannerAnimation" context:nil];
+	[UIView setAnimationDuration:kMoveAnswerFieldAnimationDuration];
+	_bannerAd.center = adCenter;
+	[UIView commitAnimations];
 }
 
 @end

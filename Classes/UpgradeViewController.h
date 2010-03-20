@@ -23,6 +23,7 @@
 	IBOutlet UILabel *moreNowLabel;
 	IBOutlet UILabel *moreLaterLabel;
 	IBOutlet UILabel *moreAchievementsLabel;
+	IBOutlet UILabel *removeAdsLabel;
 	RotatingSymbolsViewController *glyphsViewCtl;
 }
 

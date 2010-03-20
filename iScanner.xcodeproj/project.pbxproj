@@ -13,6 +13,11 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
+		ED02BB191154AB5300146933 /* libQuattroWireless-Simulator3.1.0-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED02BB141154AB5300146933 /* libQuattroWireless-Simulator3.1.0-os3.0.a */; };
+		ED02BB1A1154AB5300146933 /* libQuattroWireless3.1.0-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED02BB151154AB5300146933 /* libQuattroWireless3.1.0-os3.0.a */; };
+		ED02BB471154AD9600146933 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED02BB461154AD9600146933 /* MediaPlayer.framework */; };
+		ED02BB491154ADA500146933 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED02BB481154ADA500146933 /* libz.dylib */; };
+		ED02BB771154AE3F00146933 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED02BB761154AE3F00146933 /* MessageUI.framework */; };
 		ED167AF211283BFE009BE080 /* RotatingSymbolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED167AF011283BFE009BE080 /* RotatingSymbolsViewController.m */; };
 		ED167AF311283BFE009BE080 /* RotatingSymbolsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED167AF111283BFE009BE080 /* RotatingSymbolsViewController.xib */; };
 		ED167AF711284049009BE080 /* GlyphView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED167AF611284049009BE080 /* GlyphView.m */; };
@@ -776,7 +781,15 @@
 		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* iScanner-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iScanner-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* iScanner-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "iScanner-Info.plist"; path = "../iScanner-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		ED02BB141154AB5300146933 /* libQuattroWireless-Simulator3.1.0-os3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libQuattroWireless-Simulator3.1.0-os3.0.a"; sourceTree = "<group>"; };
+		ED02BB151154AB5300146933 /* libQuattroWireless3.1.0-os3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libQuattroWireless3.1.0-os3.0.a"; sourceTree = "<group>"; };
+		ED02BB161154AB5300146933 /* QWAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWAd.h; sourceTree = "<group>"; };
+		ED02BB171154AB5300146933 /* QWAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWAdView.h; sourceTree = "<group>"; };
+		ED02BB181154AB5300146933 /* QWTestMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWTestMode.h; sourceTree = "<group>"; };
+		ED02BB461154AD9600146933 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		ED02BB481154ADA500146933 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		ED02BB761154AE3F00146933 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		ED167AEF11283BFE009BE080 /* RotatingSymbolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatingSymbolsViewController.h; sourceTree = "<group>"; };
 		ED167AF011283BFE009BE080 /* RotatingSymbolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatingSymbolsViewController.m; sourceTree = "<group>"; };
 		ED167AF111283BFE009BE080 /* RotatingSymbolsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RotatingSymbolsViewController.xib; path = ../Classes/RotatingSymbolsViewController.xib; sourceTree = "<group>"; };
@@ -1971,6 +1984,11 @@
 				ED77F9751124531C00AE03C1 /* Security.framework in Frameworks */,
 				ED77F9771124531C00AE03C1 /* SystemConfiguration.framework in Frameworks */,
 				ED9199AD112A8E6000504F03 /* AVFoundation.framework in Frameworks */,
+				ED02BB191154AB5300146933 /* libQuattroWireless-Simulator3.1.0-os3.0.a in Frameworks */,
+				ED02BB1A1154AB5300146933 /* libQuattroWireless3.1.0-os3.0.a in Frameworks */,
+				ED02BB471154AD9600146933 /* MediaPlayer.framework in Frameworks */,
+				ED02BB491154ADA500146933 /* libz.dylib in Frameworks */,
+				ED02BB771154AE3F00146933 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2016,14 +2034,13 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				ED02BB131154AB5300146933 /* QuattroWirelessLib */,
 				ED77F1481124509C00AE03C1 /* OpenFeint */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				ED77F970112452FE00AE03C1 /* MapKit.framework */,
-				ED9199AC112A8E6000504F03 /* AVFoundation.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -2043,7 +2060,6 @@
 				ED9199B2112A901D00504F03 /* sounds */,
 				ED212CB31120525600BC4FBD /* resources */,
 				ED212C9E1120523300BC4FBD /* images */,
-				8D1107310486CEB800E47090 /* iScanner-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2051,6 +2067,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED77F970112452FE00AE03C1 /* MapKit.framework */,
+				ED9199AC112A8E6000504F03 /* AVFoundation.framework */,
+				ED02BB461154AD9600146933 /* MediaPlayer.framework */,
+				ED02BB481154ADA500146933 /* libz.dylib */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
@@ -2061,9 +2081,23 @@
 				ED77F96A112452BB00AE03C1 /* CoreLocation.framework */,
 				ED77F9741124531C00AE03C1 /* Security.framework */,
 				ED77F9761124531C00AE03C1 /* SystemConfiguration.framework */,
+				ED02BB761154AE3F00146933 /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		ED02BB131154AB5300146933 /* QuattroWirelessLib */ = {
+			isa = PBXGroup;
+			children = (
+				ED02BB141154AB5300146933 /* libQuattroWireless-Simulator3.1.0-os3.0.a */,
+				ED02BB151154AB5300146933 /* libQuattroWireless3.1.0-os3.0.a */,
+				ED02BB161154AB5300146933 /* QWAd.h */,
+				ED02BB171154AB5300146933 /* QWAdView.h */,
+				ED02BB181154AB5300146933 /* QWTestMode.h */,
+			);
+			name = QuattroWirelessLib;
+			path = "../QuattroWirelessSDK3.1.0/QuattroWirelessLib3.1.0-os3.0/QuattroWirelessLib";
+			sourceTree = SOURCE_ROOT;
 		};
 		ED212C9E1120523300BC4FBD /* images */ = {
 			isa = PBXGroup;
@@ -2127,6 +2161,7 @@
 		ED212CB31120525600BC4FBD /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				8D1107310486CEB800E47090 /* iScanner-Info.plist */,
 				ED77FD171128030400AE03C1 /* InfoPlist.strings */,
 				ED77FA7C1125A17600AE03C1 /* Localizable.strings */,
 				ED77F9B2112463AE00AE03C1 /* openfeint_offline_config.xml */,
@@ -5805,6 +5840,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iScanner_Prefix.pch;
 				INFOPLIST_FILE = "iScanner-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../QuattroWirelessSDK3.1.0/QuattroWirelessLib3.1.0-os3.0/QuattroWirelessLib\"",
+				);
 				PRODUCT_NAME = iRadar;
 			};
 			name = Debug;
@@ -5817,6 +5856,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iScanner_Prefix.pch;
 				INFOPLIST_FILE = "iScanner-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../QuattroWirelessSDK3.1.0/QuattroWirelessLib3.1.0-os3.0/QuattroWirelessLib\"",
+				);
 				PRODUCT_NAME = iRadar;
 			};
 			name = Release;
@@ -5878,6 +5921,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iScanner_Prefix.pch;
 				INFOPLIST_FILE = "iScanner-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../QuattroWirelessSDK3.1.0/QuattroWirelessLib3.1.0-os3.0/QuattroWirelessLib\"",
+				);
 				PRODUCT_NAME = iRadar;
 			};
 			name = Distribution;

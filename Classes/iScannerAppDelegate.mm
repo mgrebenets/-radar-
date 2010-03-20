@@ -37,9 +37,6 @@
 
 - (void)setFullVersion:(BOOL)full {
 	fullVersion = full;
-	if (fullVersion) {
-		[self unlockUpgradeAchievement];
-	}
 }
 
 - (void)setSoundOn:(BOOL)sound {
@@ -218,11 +215,12 @@
 }
 
 #define kLeaderboardKey	@"LeaderboardID"
+#define kStarterAchKey	@"StarterAchID"
 #define kBeginnerAchKey	@"BeginnerAchID"
-#define kUpgradeAchKey	@"UpgradeAchID"
 #define	kEagleEyeAchKey	@"EagleEyeAchID"
 #define kHawkEyedAchKey	@"HawkEyedAchID"
 #define kPenetratingEyeAchKey	@"kPenetratingEyeAchID"
+#define kStarterAchLevels	(5)
 #define	kBeginnerAchLevels	(20)
 #define kEagleEyeAchLevels	(50)
 #define kHawkEyedAchLevels	(75)
@@ -269,6 +267,7 @@
 		
 		// achievements
 		BOOL playSound = FALSE;
+		playSound |= [self unlockAchievement:kStarterAchKey achLevelIdx:kStarterAchLevels levelIdx:levelIdx];		
 		playSound |= [self unlockAchievement:kBeginnerAchKey achLevelIdx:kBeginnerAchLevels levelIdx:levelIdx];
 		playSound |= [self unlockAchievement:kEagleEyeAchKey achLevelIdx:kEagleEyeAchLevels levelIdx:levelIdx];
 		playSound |= [self unlockAchievement:kHawkEyedAchKey achLevelIdx:kHawkEyedAchLevels levelIdx:levelIdx];
@@ -280,10 +279,6 @@
 			// TODO: play ach unlocked sound
 		}
     }
-}
-
-- (void)unlockUpgradeAchievement {
-	[OFAchievementService unlockAchievement:[openFeintDic objectForKey:kUpgradeAchKey]];
 }
 
 - (NSInteger)unlockedLevelIdxForLevelPackKey:(NSString *)key {

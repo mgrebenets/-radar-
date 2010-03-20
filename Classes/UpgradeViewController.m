@@ -38,6 +38,7 @@
 	moreNowLabel.text = NSLocalizedString(@"More Levels Now", @"More Levels Now");
 	moreLaterLabel.text = NSLocalizedString(@"More Levels Later", @"More Levels Later");
 	moreAchievementsLabel.text = NSLocalizedString(@"More Achievements", @"More Achievements");
+	removeAdsLabel.text = NSLocalizedString(@"Remove Ads", @"Remove Ads");
 	[backButton setTitle:NSLocalizedString(@"Back", @"Back") forState:UIControlStateNormal];
 	[buyButton setTitle:NSLocalizedString(@"Buy", @"Buy") forState:UIControlStateNormal];
 	

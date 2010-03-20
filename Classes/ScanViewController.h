@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QWAdView.h"	// ad support
 @class iScannerAppDelegate;
 @class CutView;
 
@@ -39,6 +40,7 @@
 	IBOutlet UILabel *answerCheckLabel;
 	NSArray *correctMessages;
 	NSArray *wrongMessages;	
+	QWAdView *_bannerAd;	// add banner
 }
 
 - (void)tapAction:(id)sender;

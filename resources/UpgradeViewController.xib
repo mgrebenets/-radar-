@@ -111,7 +111,7 @@
 					<object class="IBUILabel" id="993609453">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 170}, {320, 40}}</string>
+						<string key="NSFrame">{{0, 148}, {320, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -127,7 +127,7 @@
 					<object class="IBUILabel" id="588906848">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 266}, {320, 40}}</string>
+						<string key="NSFrame">{{0, 244}, {320, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -143,10 +143,29 @@
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
 					</object>
+					<object class="IBUILabel" id="565818767">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{0, 292}, {320, 40}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="IBUIText">Remove ads</string>
+						<reference key="IBUIFont" ref="12778449"/>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MCAwLjYgMAA</bytes>
+						</object>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<float key="IBUIMinimumFontSize">10</float>
+						<int key="IBUITextAlignment">1</int>
+					</object>
 					<object class="IBUILabel" id="470728002">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 218}, {320, 40}}</string>
+						<string key="NSFrame">{{0, 196}, {320, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -286,6 +305,14 @@
 					</object>
 					<int key="connectionID">30</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">removeAdsLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="565818767"/>
+					</object>
+					<int key="connectionID">45</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -304,11 +331,12 @@
 							<reference ref="665691674"/>
 							<reference ref="988990565"/>
 							<reference ref="1007798855"/>
-							<reference ref="470728002"/>
-							<reference ref="993609453"/>
-							<reference ref="588906848"/>
 							<reference ref="806620750"/>
 							<reference ref="676488770"/>
+							<reference ref="993609453"/>
+							<reference ref="588906848"/>
+							<reference ref="565818767"/>
+							<reference ref="470728002"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -363,6 +391,11 @@
 						<reference key="object" ref="676488770"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">44</int>
+						<reference key="object" ref="565818767"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -379,6 +412,7 @@
 					<string>18.IBPluginDependency</string>
 					<string>26.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
+					<string>44.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
 				</object>
@@ -386,7 +420,8 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UpgradeViewController</string>
 					<string>UIResponder</string>
-					<string>{{-619, -92}, {320, 480}}</string>
+					<string>{{445, 190}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -414,7 +449,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">43</int>
+			<int key="maxID">45</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -480,6 +515,7 @@
 							<string>moreAchievementsLabel</string>
 							<string>moreLaterLabel</string>
 							<string>moreNowLabel</string>
+							<string>removeAdsLabel</string>
 							<string>upgradeLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -487,6 +523,7 @@
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIActivityIndicatorView</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>

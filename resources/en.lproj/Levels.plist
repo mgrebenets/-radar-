@@ -955,6 +955,8 @@
 		<key>answers</key>
 		<array>
 			<string>clubs</string>
+			<string>club</string>
+			<string>clover</string>
 		</array>
 	</dict>
 	<key>Hearts</key>
@@ -966,6 +968,7 @@
 		<key>answers</key>
 		<array>
 			<string>hearts</string>
+			<string>heart</string>
 		</array>
 	</dict>
 	<key>Diamonds</key>
@@ -990,6 +993,7 @@
 		<key>answers</key>
 		<array>
 			<string>spades</string>
+			<string>spade</string>
 		</array>
 	</dict>
 	<key>Jolly Roger</key>

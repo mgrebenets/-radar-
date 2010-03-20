@@ -6,23 +6,23 @@
 	<string>185053</string>
 	<key>BeginnerAchID</key>
 	<string>194503</string>
-	<key>UpgradeAchID</key>
+	<key>StarterAchID</key>
 	<string>194513</string>
 	<key>EagleEyeAchID</key>
 	<string>195653</string>
 	<key>HawkEyedAchID</key>
 	<string>195673</string>
 	<key>FalconEyeAchID</key>
-	<string>195693</string>	
+	<string>195693</string>
 	<key>PenetratingEyeAchID</key>
-	<string>195713</string>	
+	<string>195713</string>
 	<key>ClairvoyantAchID</key>
 	<string>195733</string>
 	<key>SymbolsExpertAchID</key>
-	<string>195753</string>						
+	<string>195753</string>
 	<key>UnicodeMasterAchID</key>
-	<string>195773</string>	
+	<string>195773</string>
 	<key>CrazyImaginationAchID</key>
-	<string>195803</string>				
+	<string>195803</string>
 </dict>
 </plist>

@@ -6,6 +6,14 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
+#ifdef QUATTRO_AD
+#import "QWAdView.h"	// ad support
+#define ADBANNER_TYPE	QWAdView
+#else
+#import <iAd/iAd.h>
+#define ADBANNER_TYPE	ADBannerView
+#endif
+
 #import "ScanViewController.h"
 #import "iScannerAppDelegate.h"
 #import "CutView.h"
@@ -13,6 +21,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Macro.h"
 
+#define DEBUGFULL
 
 #pragma mark -
 #pragma mark Animation IDs and durations
@@ -174,27 +183,35 @@ enum _MoveDirection {
 						nil] retain];	
 	
 	// ad support
+#ifdef QUATTRO_AD	
 	QWEnableLocationServicesForAds(NO);
-	_bannerAd = [QWAdView adViewWithType:QWAdTypeBanner 
+	QWAdView *bannerView = [QWAdView adViewWithType:QWAdTypeBanner 
 								 publisherID:PUBLISHER_ID 
 									  siteID:SITE_ID 
 								 orientation:UIInterfaceOrientationPortrait 
 									delegate:nil];
 	
 	
-	[_bannerAd setBackgroundColor:[UIColor blackColor]];
-	_bannerAd.center = CGPointMake(160, -_bannerAd.frame.size.height / 2);
-	_bannerAd.displayMode = QWDisplayModeRotation;
-	_bannerAd.adInterval = 10.0;
-	[_bannerAd displayNewAd];
+	[bannerView setBackgroundColor:[UIColor blackColor]];
+	bannerView.center = CGPointMake(160, -_bannerAd.frame.size.height / 2);
+	bannerView.displayMode = QWDisplayModeRotation;
+	bannerView.adInterval = 10.0;
+	[bannerView displayNewAd];
+#else
+	ADBannerView *bannerView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+	bannerView.center = CGPointMake(bannerView.frame.size.width / 2, -bannerView.frame.size.height / 2);
+#endif
 	
+	_bannerAd = (UIView *)bannerView;
 	[self.view addSubview:_bannerAd];
+	
 }
 	  
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	// no ads in full version
-	_bannerAd.hidden = appDelegate.fullVersion;
+	// 4.0: make the game free, but show ad always
+	//_bannerAd.hidden = appDelegate.fullVersion;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -229,9 +246,9 @@ enum _MoveDirection {
 	[correctMessages release];
 	[wrongMessages release];	
 	// ad banner
-	_bannerAd.delegate = nil;
+	((ADBANNER_TYPE *)_bannerAd).delegate = nil;
 	[_bannerAd release], _bannerAd = nil;	
-    [super dealloc];
+	[super dealloc];
 }
 
 #pragma mark -
@@ -241,6 +258,9 @@ enum _MoveDirection {
 }
 
 - (void)updateView:(BOOL)animated {
+#ifdef DEBUGFULL
+	NSLog(@"%s", _cmd);
+#endif	
 	
 	cutView.layer.opacity = 1.0f;
 	
@@ -298,11 +318,14 @@ enum _MoveDirection {
 	
 	messageLabel.layer.opacity = 0.0f;
 	tapMessage.layer.opacity = 0.0f;
-		
+
+	
 	// answer input field
-	answerTextField.text = [NSLocalizedString(@"Answer", @"Answer") lowercaseString];
-	answerTextField.layer.opacity = 1.0f;
-	answerTextField.frame = answerFieldOriginalFrame;
+	if (!keyboardShowing) {
+		answerTextField.text = [NSLocalizedString(@"Answer", @"Answer") lowercaseString];
+		answerTextField.layer.opacity = 1.0f;
+		answerTextField.frame = answerFieldOriginalFrame;
+	}
 	
 	// get level pack to know max levels number
 	NSArray *levelPack = [appDelegate levelPackForKey:levelPackId];	
@@ -512,7 +535,7 @@ enum _MoveDirection {
 #define kAnswerFieldResizeX     (80.0f)     // resize
 - (void)moveAnswerTextField:(enum _MoveDirection)moveDirection keyboardHeight:(CGFloat)height {
 #ifdef DEBUGFULL
-	NSLog(@"%s", _cmd);
+	NSLog(@"%s, direction:%d", _cmd, moveDirection);
 #endif	
 	
 	CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;
@@ -540,6 +563,9 @@ enum _MoveDirection {
 #ifdef DEBUGFULL
 	NSLog(@"%s", _cmd);
 #endif	
+	
+	keyboardShowing = YES;
+	
 	// Get the size of the keyboard.
 	NSDictionary* info = [aNotification userInfo];
 	NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
@@ -549,9 +575,8 @@ enum _MoveDirection {
 	[self moveAnswerTextField:MoveDirectionUp keyboardHeight:keyboardSize.height];
 	
 	// show ad
-	if (!appDelegate.fullVersion) {
-		[self showAd:YES];
-	}
+	// since 0.4 update always show ad
+	[self showAd:YES];
 }
 
 // Called when the UIKeyboardDidShowNotification is sent.
@@ -571,12 +596,14 @@ enum _MoveDirection {
 #ifdef DEBUGFULL
     NSLog(@"%s", _cmd);
 #endif	
-    // move the answer input field down (no need to know keyboard height here)
-    [self moveAnswerTextField:MoveDirectionDown keyboardHeight:0];	
+
+	keyboardShowing = NO;
+	
+	// move the answer input field down (no need to know keyboard height here)
+	[self moveAnswerTextField:MoveDirectionDown keyboardHeight:0];	
+	
 	// hide ad
-	if (!appDelegate.fullVersion) {
-		[self showAd:NO];
-	}
+	[self showAd:NO];
 }
 
 // Called when the UIKeyboardDidHideNotification is sent
@@ -704,7 +731,8 @@ enum _MoveDirection {
 
 #pragma mark Ad animation
 - (void)showAd:(BOOL)show {
-	CGPoint adCenter = CGPointMake(160, (show? 1 : -1) * _bannerAd.frame.size.height / 2);
+	CGPoint adCenter = CGPointMake(_bannerAd.frame.size.width / 2, 
+								   (show? 1 : -1) * _bannerAd.frame.size.height / 2);
 	[UIView beginAnimations:@"bannerAnimation" context:nil];
 	[UIView setAnimationDuration:kMoveAnswerFieldAnimationDuration];
 	_bannerAd.center = adCenter;

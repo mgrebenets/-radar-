@@ -135,6 +135,7 @@
 	
 	// full version flag
 	fullVersion = [[NSUserDefaults standardUserDefaults] boolForKey:kFullVersionKey];
+	fullVersion = TRUE;	// make the game free
 	
 	// disable sound by default
 	soundOn = FALSE;
@@ -162,7 +163,7 @@
 	// init open feint (AFTER MAIN WINDOW IS DISPLAYED)
 	[OpenFeint initializeWithProductKey:@"xc5YoWpsN9mbsqU8IvandA"
 							  andSecret:@"TxUIpSgWZEMKOYIlz5y2oDQ8BrZ2kS1XPSCMChFIRA"
-						 andDisplayName:@"iЯadaЯ"
+						 andDisplayName:@"-Radar-"
 							andSettings:nil 
 						   andDelegates:nil];
 	
@@ -265,19 +266,19 @@
         // new value is greater than old - update to dictionary
         [unlockedLevelsDic setObject:[NSNumber numberWithInteger:levelIdx] forKey:key];
 		
-		// achievements
-		BOOL playSound = FALSE;
-		playSound |= [self unlockAchievement:kStarterAchKey achLevelIdx:kStarterAchLevels levelIdx:levelIdx];		
-		playSound |= [self unlockAchievement:kBeginnerAchKey achLevelIdx:kBeginnerAchLevels levelIdx:levelIdx];
-		playSound |= [self unlockAchievement:kEagleEyeAchKey achLevelIdx:kEagleEyeAchLevels levelIdx:levelIdx];
-		playSound |= [self unlockAchievement:kHawkEyedAchKey achLevelIdx:kHawkEyedAchLevels levelIdx:levelIdx];
-		playSound |= [self unlockAchievement:kPenetratingEyeAchKey achLevelIdx:kPenetratingEyeAchLevels levelIdx:levelIdx];
-		
-		// TODO: other achievements
-		
-		if (playSound) {
-			// TODO: play ach unlocked sound
-		}
+			// achievements
+			BOOL playSound = FALSE;
+			playSound |= [self unlockAchievement:kStarterAchKey achLevelIdx:kStarterAchLevels levelIdx:levelIdx];		
+			playSound |= [self unlockAchievement:kBeginnerAchKey achLevelIdx:kBeginnerAchLevels levelIdx:levelIdx];
+			playSound |= [self unlockAchievement:kEagleEyeAchKey achLevelIdx:kEagleEyeAchLevels levelIdx:levelIdx];
+			playSound |= [self unlockAchievement:kHawkEyedAchKey achLevelIdx:kHawkEyedAchLevels levelIdx:levelIdx];
+			playSound |= [self unlockAchievement:kPenetratingEyeAchKey achLevelIdx:kPenetratingEyeAchLevels levelIdx:levelIdx];
+			
+			// TODO: other achievements
+			
+			if (playSound) {
+				// TODO: play ach unlocked sound
+			}
     }
 }
 

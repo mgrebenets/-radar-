@@ -1,14 +1,14 @@
 <resources>
 <game_profile_page_info>
   <suggestions_topic_id>136133</suggestions_topic_id>
-  <has_challenges>false</has_challenges>
-  <has_featured_application>true</has_featured_application>
   <has_leaderboards>true</has_leaderboards>
   <has_chat_rooms>false</has_chat_rooms>
-  <has_ipurchase>true</has_ipurchase>
-  <short_name>-Radar-</short_name>
-  <is_owned_by_local_player>true</is_owned_by_local_player>
+  <has_featured_application>true</has_featured_application>
   <has_achievements>true</has_achievements>
+  <short_name>-Radar-</short_name>
+  <has_ipurchase>true</has_ipurchase>
+  <is_owned_by_local_player>true</is_owned_by_local_player>
+  <has_challenges>false</has_challenges>
   <name>-Radar-</name>
   <id>59823</id>
   <icon_url>/uploads/application_descriptions/h_icons/ba/2d/ab/84/13264/app_image_100x100.png</icon_url>
@@ -27,6 +27,7 @@
       <id>185053</id>
       <is_aggregate>false</is_aggregate>
       <name>Levels Completed</name>
+      <position>0</position>
       <reached_at nil="true"></reached_at>
       <score nil="true"></score>
       <start_version>0000.00.00</start_version>
@@ -45,6 +46,7 @@
       <id>185083</id>
       <is_aggregate>false</is_aggregate>
       <name>&#1054;&#1073;&#1097;&#1080;&#1081; &#1047;&#1072;&#1095;&#1077;&#1090;</name>
+      <position>0</position>
       <reached_at nil="true"></reached_at>
       <score nil="true"></score>
       <start_version>0000.00.00</start_version>

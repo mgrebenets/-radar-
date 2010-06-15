@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QWAdView.h"	// ad support
 @class iScannerAppDelegate;
 @class CutView;
 
@@ -20,6 +19,7 @@
 	NSInteger tutorialStep;
 	BOOL requireTouch;
 	BOOL stopRepeatingScan;
+	BOOL keyboardShowing;
 	UIView *objectView;
 	IBOutlet CutView *cutView;
 	IBOutlet UIImageView *objectImageView;
@@ -40,7 +40,8 @@
 	IBOutlet UILabel *answerCheckLabel;
 	NSArray *correctMessages;
 	NSArray *wrongMessages;	
-	QWAdView *_bannerAd;	// add banner
+
+	UIView *_bannerAd;	// add banner
 }
 
 - (void)tapAction:(id)sender;

@@ -943,7 +943,7 @@
 		ED9199B4112A901D00504F03 /* sonar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ED9199B3112A901D00504F03 /* sonar.mp3 */; };
 		EDD54F8911B6BF0100737407 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD54F8811B6BF0100737407 /* libsqlite3.0.dylib */; };
 		EDD54F8B11B6BF0100737407 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD54F8A11B6BF0100737407 /* libz.1.2.3.dylib */; };
-		EDF9113111C24C7E00176CB0 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF9113011C24C7E00176CB0 /* iAd.framework */; };
+		EDF9113111C24C7E00176CB0 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF9113011C24C7E00176CB0 /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EDF9115811C2539900176CB0 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDF9115711C2539900176CB0 /* MainWindow-iPad.xib */; };
 /* End PBXBuildFile section */
 
@@ -2323,6 +2323,7 @@
 		ED447D5511C7B93100FE440A /* OFTickerView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OFTickerView.mm; sourceTree = "<group>"; };
 		ED447D5611C7B93100FE440A /* OFColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFColors.h; sourceTree = "<group>"; };
 		ED447D5711C7B93100FE440A /* OFColors.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OFColors.mm; sourceTree = "<group>"; };
+		ED5265F9121EC66C00A1D8CE /* SleepingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SleepingView.h; sourceTree = "<group>"; };
 		ED5D006511186288001AB944 /* ScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
 		ED5D006611186288001AB944 /* ScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
 		ED5D01501119B437001AB944 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
@@ -2426,6 +2427,7 @@
 				ED167AF011283BFE009BE080 /* RotatingSymbolsViewController.m */,
 				ED167AF511284049009BE080 /* GlyphView.h */,
 				ED167AF611284049009BE080 /* GlyphView.m */,
+				ED5265F9121EC66C00A1D8CE /* SleepingView.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -6896,7 +6898,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iScanner_Prefix.pch;
 				INFOPLIST_FILE = "iScanner-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../QuattroWirelessSDK3.1.0/QuattroWirelessLib3.1.0-os3.0/QuattroWirelessLib\"",
@@ -6916,7 +6918,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iScanner_Prefix.pch;
 				INFOPLIST_FILE = "iScanner-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../QuattroWirelessSDK3.1.0/QuattroWirelessLib3.1.0-os3.0/QuattroWirelessLib\"",
@@ -6985,7 +6987,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iScanner_Prefix.pch;
 				INFOPLIST_FILE = "iScanner-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../QuattroWirelessSDK3.1.0/QuattroWirelessLib3.1.0-os3.0/QuattroWirelessLib\"",

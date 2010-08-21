@@ -14,6 +14,7 @@
 #import "OFHighScore.h"
 #import "OFAchievementService.h"
 #import "RootViewController.h"
+#import "SleepingView.h"
 #import "PListReader.h"
 #import "Macro.h"
 
@@ -194,8 +195,62 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+#ifdef DEBUGFULL
+	NSLog(@"%s", _cmd);
+#endif	
+	/*
+     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+     */
 	[OpenFeint applicationDidBecomeActive];
+	
+	// start sounds
+	if (soundOn) {
+		[audioPlayer play];
+	}
+	
+	id <SleepingView> sleepyView = [[navigationController viewControllers] lastObject];
+	[sleepyView wakeup];
+	
 }
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+#ifdef DEBUGFULL
+	NSLog(@"%s", _cmd);
+#endif	
+    /*
+     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+     If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
+     */
+	
+	// submit score to open feint
+	[self submitScore];
+	
+	// tell open feint that we're going to sleep
+	[OpenFeint applicationWillResignActive];
+	
+	// save full version flag
+	[[NSUserDefaults standardUserDefaults] setBool:fullVersion forKey:kFullVersionKey];
+	
+	// save unlocked levels dictionary to user defaults
+	[[NSUserDefaults standardUserDefaults] setObject:unlockedLevelsDic forKey:kUnlockedLevelsKey];	
+	
+	// stop audio
+	[audioPlayer stop];
+	
+	id <SleepingView> sleepyView = [[navigationController viewControllers] lastObject];
+	[sleepyView sleep];
+}
+
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+#ifdef DEBUGFULL
+	NSLog(@"%s", _cmd);
+#endif	
+    /*
+     Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
+     */
+}
+
 
 #pragma mark -
 #pragma mark Memory management

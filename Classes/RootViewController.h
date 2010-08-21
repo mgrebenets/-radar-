@@ -6,10 +6,12 @@
 //  Copyright __MyCompanyName__ 2010. All rights reserved.
 //
 
+#import "SleepingView.h"
+
 @class iScannerAppDelegate;
 @class RotatingSymbolsViewController;
 
-@interface RootViewController : UIViewController <UIAlertViewDelegate> {
+@interface RootViewController : UIViewController <UIAlertViewDelegate, SleepingView> {
 	iScannerAppDelegate *appDelegate;
 	IBOutlet UIImageView *hourglassImageView;
 	IBOutlet UIImageView *gridImageView;

@@ -124,6 +124,20 @@
 	
 	[glyphsViewCtl startAnimating];
 }
+
+- (void)sleep {
+#ifdef DEBUGFULL
+	NSLog(@"%s", _cmd);
+#endif
+	[glyphsViewCtl stopAnimating];	
+}
+
+- (void)wakeup {
+#ifdef DEBUGFULL
+	NSLog(@"%s", _cmd);
+#endif
+	[glyphsViewCtl startAnimating];
+}
 		 
 		 
 #pragma mark -
@@ -174,7 +188,6 @@
 	// Release anything that can be recreated in viewDidLoad or on demand.
 	// e.g. self.myOutlet = nil;
 }
-
 
 - (void)dealloc {
     [super dealloc];

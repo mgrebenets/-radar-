@@ -115,6 +115,9 @@ enum _MoveDirection {
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+#ifdef DEBUGFULL
+	NSLog(@"%s", _cmd);
+#endif	
 	[super viewDidLoad];
 	// get delegate
 	appDelegate = (iScannerAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -197,17 +200,23 @@ enum _MoveDirection {
 	bannerView.displayMode = QWDisplayModeRotation;
 	bannerView.adInterval = 10.0;
 	[bannerView displayNewAd];
-#else
-	ADBannerView *bannerView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-	bannerView.center = CGPointMake(bannerView.frame.size.width / 2, -bannerView.frame.size.height / 2);
-#endif
-	
 	_bannerAd = (UIView *)bannerView;
-	[self.view addSubview:_bannerAd];
+#else
+	if (NSClassFromString(@"ADBannerView")) {
+		ADBannerView *bannerView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+		bannerView.center = CGPointMake(bannerView.frame.size.width / 2, -bannerView.frame.size.height / 2);
+		_bannerAd = (UIView *)bannerView;
+	}
+#endif
+
+	if (_bannerAd) [self.view addSubview:_bannerAd];
 	
 }
 	  
 - (void)viewWillAppear:(BOOL)animated {
+#ifdef DEBUGFULL
+	NSLog(@"%s", _cmd);
+#endif	
 	[super viewWillAppear:animated];
 	// no ads in full version
 	// 4.0: make the game free, but show ad always
@@ -215,10 +224,41 @@ enum _MoveDirection {
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+#ifdef DEBUGFULL
+	NSLog(@"%s", _cmd);
+#endif	
 	[self updateView:animated];
 	
 	[self stopScanningAnimation];
 	[self startScanningAnimation];
+}
+
+- (void)sleep {
+#ifdef DEBUGFULL
+	NSLog(@"%s", _cmd);
+#endif
+	[self stopScanningAnimation];
+}
+
+- (void)wakeup {
+#ifdef DEBUGFULL
+	NSLog(@"%s", _cmd);
+#endif
+	[self startScanningAnimation];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+#ifdef DEBUGFULL
+	NSLog(@"%s", _cmd);
+#endif	
+	[self stopScanningAnimation];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+#ifdef DEBUGFULL
+	NSLog(@"%s", _cmd);
+#endif	
+	[super viewDidDisappear:animated];
 }
 
 /*
@@ -568,7 +608,8 @@ enum _MoveDirection {
 	
 	// Get the size of the keyboard.
 	NSDictionary* info = [aNotification userInfo];
-	NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+	//NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+	NSValue* aValue = [info objectForKey:UIKeyboardFrameBeginUserInfoKey];
 	CGSize keyboardSize = [aValue CGRectValue].size;
 	
 	// move the answer input field up

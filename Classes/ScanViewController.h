@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SleepingView.h"
 @class iScannerAppDelegate;
 @class CutView;
 
-@interface ScanViewController : UIViewController  <UITextFieldDelegate>{
+@interface ScanViewController : UIViewController  <UITextFieldDelegate, SleepingView> {
 	iScannerAppDelegate *appDelegate;
 	NSString *levelPackId;
 	NSInteger oldLevelIdx;

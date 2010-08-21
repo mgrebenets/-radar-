@@ -1,59 +1,57 @@
 <resources>
 <game_profile_page_info>
+  <icon_url>/uploads/application_descriptions/h_icons/ba/2d/ab/84/13264/app_image_100x100.png</icon_url>
+  <has_challenges>false</has_challenges>
   <suggestions_topic_id>136133</suggestions_topic_id>
-  <has_leaderboards>true</has_leaderboards>
-  <has_chat_rooms>false</has_chat_rooms>
-  <has_featured_application>true</has_featured_application>
   <has_achievements>true</has_achievements>
   <short_name>-Radar-</short_name>
+  <has_leaderboards>true</has_leaderboards>
+  <has_featured_application>true</has_featured_application>
   <has_ipurchase>true</has_ipurchase>
-  <is_owned_by_local_player>true</is_owned_by_local_player>
-  <has_challenges>false</has_challenges>
   <name>-Radar-</name>
+  <is_owned_by_local_player>true</is_owned_by_local_player>
   <id>59823</id>
-  <icon_url>/uploads/application_descriptions/h_icons/ba/2d/ab/84/13264/app_image_100x100.png</icon_url>
+  <has_chat_rooms>false</has_chat_rooms>
 </game_profile_page_info>
 <offline>
-  <leaderboards>
-    <leaderboard>
-      <active>true</active>
-      <allow_posting_lower_scores>false</allow_posting_lower_scores>
-      <client_application_id>59823</client_application_id>
-      <created_at>2010-02-11T15:17:04Z</created_at>
-      <custom_data nil="true"></custom_data>
-      <descending_sort_order>true</descending_sort_order>
-      <display_text nil="true"></display_text>
-      <end_version>9999.99.99</end_version>
-      <id>185053</id>
-      <is_aggregate>false</is_aggregate>
-      <name>Levels Completed</name>
-      <position>0</position>
-      <reached_at nil="true"></reached_at>
-      <score nil="true"></score>
-      <start_version>0000.00.00</start_version>
-      <updated_at>2010-02-11T15:26:29Z</updated_at>
-      <visible>true</visible>
-    </leaderboard>
-    <leaderboard>
-      <active>true</active>
-      <allow_posting_lower_scores>false</allow_posting_lower_scores>
-      <client_application_id>59823</client_application_id>
-      <created_at>2010-02-11T15:46:56Z</created_at>
-      <custom_data nil="true"></custom_data>
-      <descending_sort_order>true</descending_sort_order>
-      <display_text nil="true"></display_text>
-      <end_version>9999.99.99</end_version>
-      <id>185083</id>
-      <is_aggregate>false</is_aggregate>
-      <name>&#1054;&#1073;&#1097;&#1080;&#1081; &#1047;&#1072;&#1095;&#1077;&#1090;</name>
-      <position>0</position>
-      <reached_at nil="true"></reached_at>
-      <score nil="true"></score>
-      <start_version>0000.00.00</start_version>
-      <updated_at>2010-02-15T14:20:46Z</updated_at>
-      <visible>true</visible>
-    </leaderboard>
-  </leaderboards>
+<leaderboards>
+<leaderboard>
+<id>185053</id>
+<name>Levels Completed</name>
+<active>true</active>
+<visible>true</visible>
+<allow_posting_lower_scores>false</allow_posting_lower_scores>
+<client_application_id>59823</client_application_id>
+<descending_sort_order>true</descending_sort_order>
+<created_at>2010-02-11 07:17:04 -0800</created_at>
+<updated_at>2010-02-11 07:26:29 -0800</updated_at>
+<start_version>0000.00.00</start_version>
+<end_version>9999.99.99</end_version>
+<position>0</position>
+<reached_at></reached_at>
+<display_text></display_text>
+<custom_data></custom_data>
+<score></score>
+</leaderboard>
+<leaderboard>
+<id>185083</id>
+<name>Общий Зачет</name>
+<active>true</active>
+<visible>true</visible>
+<allow_posting_lower_scores>false</allow_posting_lower_scores>
+<client_application_id>59823</client_application_id>
+<descending_sort_order>true</descending_sort_order>
+<created_at>2010-02-11 07:46:56 -0800</created_at>
+<updated_at>2010-02-15 06:20:46 -0800</updated_at>
+<start_version>0000.00.00</start_version>
+<end_version>9999.99.99</end_version>
+<position>0</position>
+<reached_at></reached_at>
+<display_text></display_text>
+<custom_data></custom_data>
+<score></score>
+</leaderboard>
+</leaderboards>
 </offline>
 
 </resources>
